@@ -5,7 +5,7 @@ protocol GameView: class {
 }
 
 enum GameType {
-    case ComputerVersusComputer
+    case HumanVersusComputer
 }
 
 struct TicTacToe {
@@ -14,6 +14,6 @@ struct TicTacToe {
     
     func ready() {
         
-        view.gameTypes = [.ComputerVersusComputer]
+        view.gameTypes = [.HumanVersusComputer]
     }
 }
