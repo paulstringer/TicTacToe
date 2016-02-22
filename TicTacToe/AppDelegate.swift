@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  TicTacToe
-//
-//  Created by Paul Stringer on 22/02/2016.
-//  Copyright © 2016 stringerstheory. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
