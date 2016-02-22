@@ -24,35 +24,35 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
  
     func testGivenGame_WhenTakingTurns_ThenViewsPlayerUpAlternates() {
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurn(1, column: 1)
+        game.takeTurnAtRow(1, column: 1)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurn(2, column: 1)
+        game.takeTurnAtRow(2, column: 1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurn(3, column: 1)
+        game.takeTurnAtRow(3, column: 1)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurn(1, column: 2)
+        game.takeTurnAtRow(1, column: 2)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurn(2, column: 2)
+        game.takeTurnAtRow(2, column: 2)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
     
     func testGivenGame_WhenTakingTurnWhereRowIsLessThanOne_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurn(0, column: 1)
+        game.takeTurnAtRow(0, column: 1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
     func testGivenGame_WhenTakingTurnWhereRowIsGreaterThanThree_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurn(4, column: 1)
+        game.takeTurnAtRow(4, column: 1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
     func testGivenGame_WhenTakingTurnWhereColumnIsLessThanOne_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurn(1, column: 0)
+        game.takeTurnAtRow(1, column: 0)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
     func testGivenGame_WhenTakingTurnWhereColumnIsGreaterThanThree_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurn(1, column: 4)
+        game.takeTurnAtRow(1, column: 4)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
