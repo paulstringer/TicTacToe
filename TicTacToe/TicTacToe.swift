@@ -37,7 +37,11 @@ struct TicTacToe {
         view.gameState = .PlayerOneUp
     }
     
-    mutating func takeTurn(x: Int, y: Int) {
+    mutating func takeTurn(row: Int, column: Int) {
+        
+        guard row > 0 && column > 0 && row < 4 && column < 4 else {
+            return
+        }
         
         switch lastPlayer {
         case .None, .HumanTwo:
