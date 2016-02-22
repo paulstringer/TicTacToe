@@ -11,7 +11,7 @@ class GameTypeTests: XCTestCase {
         game = TicTacToe(view: view)
     }
 
-    //MARK:- Computer V Computer Tests
+    //MARK:- Humam V Human Tests
     
     func testGivenGame_WhenReady_ThenViewsGameTypesNotEmpty() {
         game.ready()
@@ -20,11 +20,11 @@ class GameTypeTests: XCTestCase {
     
     func testGivenGame_WhenReady_ThenViewsGameTypesContainsHumanVersusComputer() {
         game.ready()
-        XCTAssertTrue(view.gameTypes.contains(.HumanVersusComputer))
+        XCTAssertTrue(view.gameTypes.contains(.HumanVersusHuman))
     }
     
-    // TODO: Game Mode should allow human v. computer
-    // TODO: Game Mode should allow human v. human
+    // TODO: Game Mode should allow computer v. computer
+    // TODO: Game Mode should allow compute v. computer
     
     
 }
