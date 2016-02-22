@@ -12,7 +12,7 @@
 		8C2C19491C7B389F00A4FA27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19471C7B389F00A4FA27 /* Main.storyboard */; };
 		8C2C194B1C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C194A1C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C194E1C7B389F00A4FA27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C194C1C7B389F00A4FA27 /* LaunchScreen.storyboard */; };
-		8C2C19591C7B389F00A4FA27 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19581C7B389F00A4FA27 /* TicTacToeTests.swift */; };
+		8C2C19591C7B389F00A4FA27 /* TicTacToeGameModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19581C7B389F00A4FA27 /* TicTacToeGameModeTests.swift */; };
 		8C2C195E1C7B389F00A4FA27 /* TicTacToe WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */; };
 		8C2C19641C7B389F00A4FA27 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19621C7B389F00A4FA27 /* Interface.storyboard */; };
 		8C2C19661C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19651C7B389F00A4FA27 /* Assets.xcassets */; };
@@ -80,7 +80,7 @@
 		8C2C194D1C7B389F00A4FA27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C2C194F1C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2C19541C7B389F00A4FA27 /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C2C19581C7B389F00A4FA27 /* TicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeTests.swift; sourceTree = "<group>"; };
+		8C2C19581C7B389F00A4FA27 /* TicTacToeGameModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeGameModeTests.swift; sourceTree = "<group>"; };
 		8C2C195A1C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TicTacToe WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19631C7B389F00A4FA27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		8C2C19571C7B389F00A4FA27 /* TicTacToeTests */ = {
 			isa = PBXGroup;
 			children = (
-				8C2C19581C7B389F00A4FA27 /* TicTacToeTests.swift */,
+				8C2C19581C7B389F00A4FA27 /* TicTacToeGameModeTests.swift */,
 				8C2C195A1C7B389F00A4FA27 /* Info.plist */,
 			);
 			path = TicTacToeTests;
@@ -354,7 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C2C19591C7B389F00A4FA27 /* TicTacToeTests.swift in Sources */,
+				8C2C19591C7B389F00A4FA27 /* TicTacToeGameModeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +621,7 @@
 				8C2C197C1C7B389F00A4FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C2C197E1C7B389F00A4FA27 /* Build configuration list for PBXNativeTarget "TicTacToe WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -629,6 +630,7 @@
 				8C2C19801C7B389F00A4FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C2C19821C7B389F00A4FA27 /* Build configuration list for PBXNativeTarget "TicTacToe" */ = {
 			isa = XCConfigurationList;
@@ -637,6 +639,7 @@
 				8C2C19841C7B389F00A4FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C2C19851C7B389F00A4FA27 /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -645,6 +648,7 @@
 				8C2C19871C7B389F00A4FA27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

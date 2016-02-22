@@ -1,6 +1,6 @@
 import XCTest
 @testable import TicTacToe
 
-class TicTacToeTests: XCTestCase {
+class TicTacToeGameModeTests: XCTestCase {
     
 }
