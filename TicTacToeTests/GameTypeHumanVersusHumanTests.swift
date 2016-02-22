@@ -1,7 +1,7 @@
 import XCTest
 @testable import TicTacToe
 
-class GameTypeTests: XCTestCase {
+class GameTypeHumanVersusHumanTests: XCTestCase {
     
     let view = GameViewSpy()
     var game: TicTacToe!
@@ -38,7 +38,6 @@ class GameTypeTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
     
-
     // TODO: Game Mode should allow human v. computer
     // TODO: Game Mode should allow computer v. computer
     
