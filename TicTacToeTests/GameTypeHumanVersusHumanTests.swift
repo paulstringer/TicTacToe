@@ -56,6 +56,25 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
+    func testGivenGame_WhenPlayerOnePlaysTopHorizontalLine_ThenViewsGameStateIsPlayerOneWins() {
+        game.takeTurnAtRow(1, column: 1)
+        game.takeTurnAtRow(2, column: 1)
+        game.takeTurnAtRow(1, column: 2)
+        game.takeTurnAtRow(2, column: 2)
+        game.takeTurnAtRow(1, column: 3)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
+    }
+    
+    func testGivenGame_WhenPlayerTwoPlaysTopHorizontalLine_ThenViewsGameStateIsPlayerTwoWins() {
+        game.takeTurnAtRow(2, column: 1)
+        game.takeTurnAtRow(1, column: 1)
+        game.takeTurnAtRow(2, column: 2)
+        game.takeTurnAtRow(1, column: 2)
+        game.takeTurnAtRow(3, column: 1)
+        game.takeTurnAtRow(1, column: 3)
+        XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
+    }
+    
     // TODO: Game Mode should allow human v. computer
     // TODO: Game Mode should allow computer v. computer
     

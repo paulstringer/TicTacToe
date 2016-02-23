@@ -13,16 +13,26 @@ enum GameState {
     case None
     case PlayerOneUp
     case PlayerTwoUp
+    case PlayerOneWins
+    case PlayerTwoWins
 }
 
-enum GamePlayer {
+private enum GamePlayer {
     case None
     case HumanOne
     case HumanTwo
 }
 
-struct TicTacToe {
+private enum GameMark {
+    case None
+    case Nought
+    case Cross
+}
 
+struct TicTacToe {
+    
+    private var board: [GameMark] = [.None, .None, .None]
+    
     private var lastPlayer: GamePlayer
     
     let view: GameView
@@ -43,6 +53,28 @@ struct TicTacToe {
             return
         }
         
+        if row == 1 {
+            board[column-1] = .Cross
+        }
+        
+        var winningLine = true
+        
+        for mark in board {
+            switch mark {
+            case .Cross:
+                break
+            default:
+                winningLine = false
+                continue
+            }
+        }
+        
+        if winningLine {
+            view.gameState = (lastPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
+            lastPlayer = .None
+            return
+        }
+
         switch lastPlayer {
         case .None, .HumanTwo:
             lastPlayer = .HumanOne
@@ -51,6 +83,7 @@ struct TicTacToe {
             lastPlayer = .HumanTwo
             view.gameState = .PlayerOneUp
         }
+        
 
     }
     
