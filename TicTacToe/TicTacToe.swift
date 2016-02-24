@@ -15,6 +15,7 @@ enum GameState {
     case PlayerTwoUp
     case PlayerOneWins
     case PlayerTwoWins
+    case Stalemate
 }
 
 private enum GamePlayer {
@@ -28,8 +29,6 @@ private enum GameMark {
     case Nought
     case Cross
 }
-
-
 
 struct TicTacToe {
 
@@ -69,6 +68,8 @@ struct TicTacToe {
 
         if board.isVictoryForMark(mark) {
             advanceToCurrentPlayerWins()
+        } else if board.isFull() {
+            advanceToStalemate()
         } else {
             advanceCurrentPlayer()
         }
@@ -103,6 +104,10 @@ struct TicTacToe {
         }
     }
     
+    private mutating func advanceToStalemate(){
+        lastTurnPlayer = .None
+        view.gameState = .Stalemate
+    }
 
     
     private func markForCurrentPlayer() -> GameMark {
@@ -136,12 +141,8 @@ private struct TicTacToeBoard {
         
         var result = [ [Int] ]()
         
-        for diaganalOffset in [4,2] {
-            let d = indexes.filter { (index) -> Bool in
-                return (index % diaganalOffset) == 0
-            }
-            result.append(d)
-        }
+        result.append([0,4,8])
+        result.append([2,4,6])
         
         for columnStartIndex in [0,1,2] {
             let d = indexes.filter { (index) -> Bool in
@@ -194,11 +195,13 @@ private struct TicTacToeBoard {
                 
             }
             
-            
-            
         }
         
         return false
+    }
+    
+    func isFull() -> Bool {
+        return board.contains(.None) == false
     }
     
     

@@ -211,7 +211,7 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
-    //MARK: Diaganol Winning Tests 
+    //MARK: Diaganal Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopLeft_ThenPlayerOneWins(){
         game.takeTurnAtPosition(0)
@@ -267,6 +267,29 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         game.takeTurnAtPosition(3)
         game.takeTurnAtPosition(6)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
+    }
+    
+    //MARK: Stalemate Tests
+    
+    func testGivenGame_WhenPlayersReachStalemate_ThenIsStalemate() {
+        takeTurnsAtPositions([0,1,2,3,4,6,5,8,7])
+        XCTAssertEqual(view.gameState, GameState.Stalemate)
+        
+    }
+    
+    func testGivenGame_WhenPlayersReachAnotherStalemate_ThenIsStalemate() {
+        takeTurnsAtPositions([0,2,1,3,5,4,6,7,8])
+        XCTAssertEqual(view.gameState, GameState.Stalemate)
+        
+    }
+    
+    //MARK: Helpers
+    func takeTurnsAtPositions(positions: [BoardPosition.RawValue]) {
+        for (index, p) in positions.enumerate() {
+            let expectedGameState: GameState = (index % 2 == 0) ? .PlayerOneUp : .PlayerTwoUp
+            XCTAssertEqual(view.gameState, expectedGameState)
+            game.takeTurnAtPosition(p)
+        }
     }
     
 }
