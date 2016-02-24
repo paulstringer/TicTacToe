@@ -23,17 +23,23 @@ private enum GamePlayer {
     case HumanTwo
 }
 
+private enum GameMark {
+    case None
+    case Nought
+    case Cross
+}
+
 struct TicTacToe {
     
-    private var board: [Bool] = [false, false, false]
+    private var board: [GameMark] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
-    private var lastPlayer: GamePlayer
+    private var lastTurnPlayer: GamePlayer
     
     let view: GameView
     
     init(view: GameView) {
         self.view = view
-        self.lastPlayer = .None
+        self.lastTurnPlayer = .None
     }
     
     func ready() {
@@ -47,36 +53,64 @@ struct TicTacToe {
             return
         }
         
-        if row == 1 {
-            board[column-1] = true
-        }
+        let square = squareForRow(row, column: column)
         
-        var wins = true
-        
-        for mark in board {
-            if mark == false {
-                wins = false
-                continue
-            }
-        }
-        
-        if wins {
-            view.gameState = (lastPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
-            lastPlayer = .None
+        guard board[square] == .None else {
             return
         }
-
-        switch lastPlayer {
-        case .None, .HumanTwo:
-            lastPlayer = .HumanOne
-            view.gameState = .PlayerTwoUp
-        case .HumanOne:
-            lastPlayer = .HumanTwo
-            view.gameState = .PlayerOneUp
+        
+        let playersMark = markForCurrentPlayer()
+        board[square] = playersMark
+        
+        if isWinningPosition(playersMark) {
+            view.gameState = (lastTurnPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
+            lastTurnPlayer = .None
+            return
         }
         
+        advanceCurrentPlayer()
 
     }
     
+    private func squareForRow(row: Int, column: Int) -> Int {
+        let rowOffset = (row - 1) * 3
+        let columnShift = column - 1
+        return rowOffset + columnShift
+    }
+    
+    private mutating func advanceCurrentPlayer() {
+        switch lastTurnPlayer {
+        case .None, .HumanTwo:
+            lastTurnPlayer = .HumanOne
+            view.gameState = .PlayerTwoUp
+        case .HumanOne:
+            lastTurnPlayer = .HumanTwo
+            view.gameState = .PlayerOneUp
+        }
+    }
+    
+    private func isWinningPosition(mark: GameMark) -> Bool{
+        
+        let playersMark = markForCurrentPlayer()
+        
+        var marksInARow = 0
+        
+        for square in board {
+            if square != playersMark {
+                marksInARow = 0
+            } else {
+                marksInARow++
+            }
+            if marksInARow == 3 {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    private func markForCurrentPlayer() -> GameMark {
+        return (lastTurnPlayer == .HumanOne) ? GameMark.Nought : GameMark.Cross
+    }
 
 }
