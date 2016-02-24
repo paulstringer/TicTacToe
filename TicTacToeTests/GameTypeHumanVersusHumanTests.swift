@@ -283,6 +283,13 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         
     }
     
+    func testGivenGame_WhenStalemateAndPlayerOneTrysToCheat_ThenIsStalemate() {
+        takeTurnsAtPositions([0,2,1,3,5,4,6,7,8])
+        game.takeTurnAtPosition(2)
+        XCTAssertEqual(view.gameState, GameState.Stalemate)
+        
+    }
+    
     //MARK:- Helpers
     
     func takeTurnsAtPositions(positions: [BoardPosition.RawValue]) {
