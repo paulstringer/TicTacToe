@@ -24,22 +24,18 @@ private enum GamePlayer {
     case HumanTwo
 }
 
-private enum GameMark {
-    case None
-    case Nought
-    case Cross
-}
-
 struct TicTacToe {
 
     private let view: GameView
     private var board = TicTacToeBoard()
-    private var lastTurnPlayer: GamePlayer
+    private var lastPlayer: GamePlayer
 
     init(view: GameView) {
         self.view = view
-        self.lastTurnPlayer = .None
+        self.lastPlayer = .None
     }
+    
+    //MARK:- Game
     
     func ready() {
         view.gameTypes = [.HumanVersusHuman]
@@ -58,139 +54,55 @@ struct TicTacToe {
     
     mutating func takeTurnAtPosition(position: BoardPosition) {
         
-        let mark = markForCurrentPlayer()
+        let mark = nextMark()
         
         do {
-            try board.addMark(mark, atPosition: position)
+            try board.addMarker(mark, atPosition: position)
+             advancePlayer()
         } catch {
             return
         }
 
-        if board.isVictoryForMark(mark) {
-            advanceToCurrentPlayerWins()
+        if board.hasCompleteLine() {
+            declareVictory()
         } else if board.isFull() {
-            advanceToStalemate()
-        } else {
-            advanceCurrentPlayer()
+            declareStalemate()
         }
         
     }
     
-    private mutating func advanceToCurrentPlayerWins() {
-        view.gameState = (lastTurnPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
-        lastTurnPlayer = .None
-    }
+    //MARK:- Game Internals
     
-    private mutating func advanceCurrentPlayer() {
-        switch lastTurnPlayer {
+    private mutating func advancePlayer() {
+        switch lastPlayer {
         case .None, .HumanTwo:
-            lastTurnPlayer = .HumanOne
+            lastPlayer = .HumanOne
             view.gameState = .PlayerTwoUp
         case .HumanOne:
-            lastTurnPlayer = .HumanTwo
+            lastPlayer = .HumanTwo
             view.gameState = .PlayerOneUp
         }
     }
     
-    private mutating func advanceToStalemate(){
-        lastTurnPlayer = .None
+    
+    private mutating func declareVictory() {
+        view.gameState = (lastPlayer == .HumanOne) ? .PlayerOneWins : .PlayerTwoWins
+        lastPlayer = .None
+    }
+
+    private mutating func declareStalemate(){
+        lastPlayer = .None
         view.gameState = .Stalemate
     }
-
     
-    private func markForCurrentPlayer() -> GameMark {
-        return (lastTurnPlayer == .HumanOne) ? GameMark.Nought : GameMark.Cross
+    private func nextMark() -> BoardMarker {
+        switch lastPlayer {
+        case .HumanOne:
+            return .Nought
+        default:
+            return .Cross
+        }
     }
+    
 }
 
-enum TicTacToeBoardError: ErrorType {
-    case BoardLocationTaken
-}
-
-public enum BoardPosition: Int {
-    case TopLeft = 0
-    case TopMiddle = 1
-    case TopRight = 2
-    case MiddleLeft = 3
-    case Middle = 4
-    case MiddleRight = 5
-    case BottomLeft = 6
-    case BottomMiddle = 7
-    case BottomRight = 8
-}
-
-private struct TicTacToeBoard {
-    
-    private var board: [GameMark] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
-    
-    private let lines: [[Int]]  = {
-        
-        let indexes = [0,1,2,3,4,5,6,7,8]
-        
-        var result = [ [Int] ]()
-        
-        result.append([0,4,8])
-        result.append([2,4,6])
-        
-        for columnStartIndex in [0,1,2] {
-            let d = indexes.filter { (index) -> Bool in
-                let _index = index-columnStartIndex
-                return (_index % 3) == 0
-            }
-            result.append(d)
-        }
-        
-        for rowStartIndex in [0,3,6] {
-            let row = Array(indexes[rowStartIndex...rowStartIndex+2])
-            result.append(row)
-        }
-        
-        return result
-        
-        
-    }()
-    
-    mutating func addMark(mark: GameMark, atPosition position:BoardPosition) throws {
-        guard canAddMarkAtPosition(position) else {
-            throw TicTacToeBoardError.BoardLocationTaken
-        }
-        board[position.rawValue] = mark
-    }
-    
-    private func canAddMarkAtPosition(location: BoardPosition) -> Bool{
-        return board[location.rawValue] == .None
-    }
-    
-    func isVictoryForMark(playersMark: GameMark) -> Bool{
-        
-        for line in lines {
-            
-            var marksInARow = 0
-            
-            for index in line {
-                
-                let mark = board[index]
-                
-                if mark == playersMark {
-                    marksInARow++
-                } else {
-                    marksInARow = 0
-                }
-                
-                if marksInARow == 3 {
-                    return true
-                }
-                
-            }
-            
-        }
-        
-        return false
-    }
-    
-    func isFull() -> Bool {
-        return board.contains(.None) == false
-    }
-    
-    
-}
