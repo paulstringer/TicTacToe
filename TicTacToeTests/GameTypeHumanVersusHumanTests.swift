@@ -211,7 +211,7 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
-    //MARK: Diaganal Winning Tests
+    //MARK: Diagonal Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopLeft_ThenPlayerOneWins(){
         game.takeTurnAtPosition(0)
@@ -249,7 +249,7 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
-    func testGivenGame_WhenPlayerTwoPlaysDiaganalFromLeft_ThenPlayerTwoWins() {
+    func testGivenGame_WhenPlayerTwoPlaysDiagonalFromLeft_ThenPlayerTwoWins() {
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(2)
@@ -259,7 +259,7 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
-    func testGivenGame_WhenPlayerTwoPlaysDiaganalFromRight_ThenPlayerTwoWins() {
+    func testGivenGame_WhenPlayerTwoPlaysDiagonalFromRight_ThenPlayerTwoWins() {
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(2)
         game.takeTurnAtPosition(1)

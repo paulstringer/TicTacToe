@@ -32,7 +32,7 @@ struct TicTacToeBoard {
         
         var result = [ [Int] ]()
         
-        // Diaganals
+        // Diagonals
         result.append([0,4,8])
         result.append([2,4,6])
         
