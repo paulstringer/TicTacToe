@@ -283,7 +283,8 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
         
     }
     
-    //MARK: Helpers
+    //MARK:- Helpers
+    
     func takeTurnsAtPositions(positions: [BoardPosition.RawValue]) {
         for (index, p) in positions.enumerate() {
             let expectedGameState: GameState = (index % 2 == 0) ? .PlayerOneUp : .PlayerTwoUp

@@ -76,18 +76,6 @@ struct TicTacToe {
         
     }
     
-    private func boardPositionForRow(row: Int, column: Int) -> BoardPosition? {
-        
-        guard row > 0 && column > 0 && row < 4 && column < 4 else {
-            return nil
-        }
-        
-        let rowOffset = (row - 1) * 3
-        let columnShift = column - 1
-        let location = rowOffset + columnShift
-        return BoardPosition(rawValue: location)
-    }
-    
     private mutating func advanceToCurrentPlayerWins() {
         view.gameState = (lastTurnPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
         lastTurnPlayer = .None
