@@ -29,6 +29,18 @@ private enum GameMark {
     case Cross
 }
 
+public enum SquareLocation: Int {
+    case TopLeft = 0
+    case TopMiddle = 1
+    case TopRight = 2
+    case MiddleLeft = 3
+    case Middle = 4
+    case MiddleRight = 5
+    case BottomLeft = 6
+    case BottomMiddle = 7
+    case BottomRight = 8
+}
+
 struct TicTacToe {
     
     private var board: [GameMark] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
@@ -48,34 +60,59 @@ struct TicTacToe {
     }
     
     mutating func takeTurnAtRow(row: Int, column: Int) {
-        
+    
         guard row > 0 && column > 0 && row < 4 && column < 4 else {
             return
         }
         
-        let square = squareForRow(row, column: column)
+        let square = squareLocationForRow(row, column: column)
         
-        guard board[square] == .None else {
+        takeTurnAtSquare(square)
+        
+    }
+    
+    mutating func takeTurnAtSquare(index: SquareLocation.RawValue) {
+        
+        guard let square = SquareLocation(rawValue: index) else {
+            return
+        }
+
+        takeTurnAtSquare(square)
+        
+    }
+    
+    mutating func takeTurnAtSquare(square: SquareLocation) {
+        
+        guard board[square.rawValue] == .None else {
             return
         }
         
-        let playersMark = markForCurrentPlayer()
-        board[square] = playersMark
-        
-        if isWinningPosition(playersMark) {
-            view.gameState = (lastTurnPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
-            lastTurnPlayer = .None
-            return
-        }
-        
-        advanceCurrentPlayer()
+        addMarkAtSquare(square)
 
     }
     
-    private func squareForRow(row: Int, column: Int) -> Int {
+    private mutating func addMarkAtSquare(square: SquareLocation) {
+        
+        let playersMark = markForCurrentPlayer()
+        board[square.rawValue] = playersMark
+        
+        if isWinningPosition(playersMark) {
+            advanceToCurrentPlayerWins()
+        } else {
+            advanceCurrentPlayer()
+        }
+        
+    }
+    private func squareLocationForRow(row: Int, column: Int) -> SquareLocation {
         let rowOffset = (row - 1) * 3
         let columnShift = column - 1
-        return rowOffset + columnShift
+        let location = rowOffset + columnShift
+        return SquareLocation(rawValue: location)!
+    }
+    
+    private mutating func advanceToCurrentPlayerWins() {
+        view.gameState = (lastTurnPlayer == .HumanTwo) ? .PlayerOneWins : .PlayerTwoWins
+        lastTurnPlayer = .None
     }
     
     private mutating func advanceCurrentPlayer() {
@@ -104,6 +141,32 @@ struct TicTacToe {
             if marksInARow == 3 {
                 return true
             }
+        }
+
+        
+        for columnShift in 0...2 {
+
+            marksInARow = 0
+            
+            for (location, square) in board.enumerate() {
+                
+                let index = location-columnShift
+                
+                if index % 3 == 0 {
+                    
+                    if square != playersMark {
+                        marksInARow = 0
+                    } else {
+                        marksInARow++
+                    }
+                    
+                    if marksInARow == 3 {
+                        return true
+                    }
+                    
+                }
+            }
+            
         }
         
         return false
