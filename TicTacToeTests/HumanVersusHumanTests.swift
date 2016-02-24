@@ -1,7 +1,7 @@
 import XCTest
 @testable import TicTacToe
 
-class GameTypeHumanVersusHumanTests: XCTestCase {
+class HumanVersusHumanTests: XCTestCase {
     
     let view = GameViewSpy()
     var game: TicTacToe!
