@@ -29,26 +29,14 @@ private enum GameMark {
     case Cross
 }
 
-public enum SquareLocation: Int {
-    case TopLeft = 0
-    case TopMiddle = 1
-    case TopRight = 2
-    case MiddleLeft = 3
-    case Middle = 4
-    case MiddleRight = 5
-    case BottomLeft = 6
-    case BottomMiddle = 7
-    case BottomRight = 8
-}
+
 
 struct TicTacToe {
-    
-    private var board: [GameMark] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
-    
+
+    private let view: GameView
+    private var board = TicTacToeBoard()
     private var lastTurnPlayer: GamePlayer
-    
-    let view: GameView
-    
+
     init(view: GameView) {
         self.view = view
         self.lastTurnPlayer = .None
@@ -58,56 +46,45 @@ struct TicTacToe {
         view.gameTypes = [.HumanVersusHuman]
         view.gameState = .PlayerOneUp
     }
-    
-    mutating func takeTurnAtRow(row: Int, column: Int) {
-    
-        guard row > 0 && column > 0 && row < 4 && column < 4 else {
-            return
-        }
+
+    mutating func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
         
-        let square = squareLocationForRow(row, column: column)
-        
-        takeTurnAtSquare(square)
-        
-    }
-    
-    mutating func takeTurnAtSquare(index: SquareLocation.RawValue) {
-        
-        guard let square = SquareLocation(rawValue: index) else {
+        guard let position = BoardPosition(rawValue: rawValue) else {
             return
         }
 
-        takeTurnAtSquare(square)
+        takeTurnAtPosition(position)
         
     }
     
-    mutating func takeTurnAtSquare(square: SquareLocation) {
+    mutating func takeTurnAtPosition(position: BoardPosition) {
         
-        guard board[square.rawValue] == .None else {
+        let mark = markForCurrentPlayer()
+        
+        do {
+            try board.addMark(mark, atPosition: position)
+        } catch {
             return
         }
-        
-        addMarkAtSquare(square)
 
-    }
-    
-    private mutating func addMarkAtSquare(square: SquareLocation) {
-        
-        let playersMark = markForCurrentPlayer()
-        board[square.rawValue] = playersMark
-        
-        if isWinningPosition(playersMark) {
+        if board.isVictoryForMark(mark) {
             advanceToCurrentPlayerWins()
         } else {
             advanceCurrentPlayer()
         }
         
     }
-    private func squareLocationForRow(row: Int, column: Int) -> SquareLocation {
+    
+    private func boardPositionForRow(row: Int, column: Int) -> BoardPosition? {
+        
+        guard row > 0 && column > 0 && row < 4 && column < 4 else {
+            return nil
+        }
+        
         let rowOffset = (row - 1) * 3
         let columnShift = column - 1
         let location = rowOffset + columnShift
-        return SquareLocation(rawValue: location)!
+        return BoardPosition(rawValue: location)
     }
     
     private mutating func advanceToCurrentPlayerWins() {
@@ -126,54 +103,103 @@ struct TicTacToe {
         }
     }
     
-    private func isWinningPosition(mark: GameMark) -> Bool{
+
+    
+    private func markForCurrentPlayer() -> GameMark {
+        return (lastTurnPlayer == .HumanOne) ? GameMark.Nought : GameMark.Cross
+    }
+}
+
+enum TicTacToeBoardError: ErrorType {
+    case BoardLocationTaken
+}
+
+public enum BoardPosition: Int {
+    case TopLeft = 0
+    case TopMiddle = 1
+    case TopRight = 2
+    case MiddleLeft = 3
+    case Middle = 4
+    case MiddleRight = 5
+    case BottomLeft = 6
+    case BottomMiddle = 7
+    case BottomRight = 8
+}
+
+private struct TicTacToeBoard {
+    
+    private var board: [GameMark] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    
+    private let lines: [[Int]]  = {
         
-        let playersMark = markForCurrentPlayer()
+        let indexes = [0,1,2,3,4,5,6,7,8]
         
-        var marksInARow = 0
+        var result = [ [Int] ]()
         
-        for square in board {
-            if square != playersMark {
-                marksInARow = 0
-            } else {
-                marksInARow++
+        for diaganalOffset in [4,2] {
+            let d = indexes.filter { (index) -> Bool in
+                return (index % diaganalOffset) == 0
             }
-            if marksInARow == 3 {
-                return true
-            }
+            result.append(d)
         }
-
         
-        for columnShift in 0...2 {
-
-            marksInARow = 0
-            
-            for (location, square) in board.enumerate() {
-                
-                let index = location-columnShift
-                
-                if index % 3 == 0 {
-                    
-                    if square != playersMark {
-                        marksInARow = 0
-                    } else {
-                        marksInARow++
-                    }
-                    
-                    if marksInARow == 3 {
-                        return true
-                    }
-                    
-                }
+        for columnStartIndex in [0,1,2] {
+            let d = indexes.filter { (index) -> Bool in
+                let _index = index-columnStartIndex
+                return (_index % 3) == 0
             }
+            result.append(d)
+        }
+        
+        for rowStartIndex in [0,3,6] {
+            let row = Array(indexes[rowStartIndex...rowStartIndex+2])
+            result.append(row)
+        }
+        
+        return result
+        
+        
+    }()
+    
+    mutating func addMark(mark: GameMark, atPosition position:BoardPosition) throws {
+        guard canAddMarkAtPosition(position) else {
+            throw TicTacToeBoardError.BoardLocationTaken
+        }
+        board[position.rawValue] = mark
+    }
+    
+    private func canAddMarkAtPosition(location: BoardPosition) -> Bool{
+        return board[location.rawValue] == .None
+    }
+    
+    func isVictoryForMark(playersMark: GameMark) -> Bool{
+        
+        for line in lines {
+            
+            var marksInARow = 0
+            
+            for index in line {
+                
+                let mark = board[index]
+                
+                if mark == playersMark {
+                    marksInARow++
+                } else {
+                    marksInARow = 0
+                }
+                
+                if marksInARow == 3 {
+                    return true
+                }
+                
+            }
+            
+            
             
         }
         
         return false
     }
     
-    private func markForCurrentPlayer() -> GameMark {
-        return (lastTurnPlayer == .HumanOne) ? GameMark.Nought : GameMark.Cross
-    }
-
+    
 }

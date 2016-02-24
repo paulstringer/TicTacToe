@@ -24,192 +24,249 @@ class GameTypeHumanVersusHumanTests: XCTestCase {
  
     func testGivenGame_WhenTakingTurns_ThenViewsPlayerUpAlternates() {
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(1, column: 1)
+        game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtRow(2, column: 1)
+        game.takeTurnAtPosition(.MiddleLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(3, column: 1)
+        game.takeTurnAtPosition(.BottomLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtRow(1, column: 2)
+        game.takeTurnAtPosition(.TopMiddle)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(2, column: 2)
+        game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
     
-    func testGivenGame_WhenTakingTurnWhereRowIsLessThanOne_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurnAtRow(0, column: 1)
+    func testGivenGame_WhenTakingTurnWherePositionIsTooSmall_ThenViewsPlayerRemainsPlayerOne() {
+        game.takeTurnAtPosition(-1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
-    func testGivenGame_WhenTakingTurnWhereRowIsGreaterThanThree_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurnAtRow(4, column: 1)
+    func testGivenGame_WhenTakingTurnWherePositionIsTooBig_ThenViewsPlayerRemainsPlayerOne() {
+        game.takeTurnAtPosition(9)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
-    func testGivenGame_WhenTakingTurnWhereColumnIsLessThanOne_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurnAtRow(1, column: 0)
-        XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-    }
-    
-    func testGivenGame_WhenTakingTurnWhereColumnIsGreaterThanThree_ThenViewsPlayerRemainsPlayerOne() {
-        game.takeTurnAtRow(1, column: 4)
-        XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-    }
-    
-    func testGivenGame_WhenPlayerTwoPlaysSameSquareAsPlayerOne_ThenViewsPlayerRemainsPlayerTwo(){
-        game.takeTurnAtRow(1, column: 3)
-        game.takeTurnAtRow(1, column: 3)
+    func testGivenGame_WhenPlayerTwoPlaysSamePositionAsPlayerOne_ThenViewsPlayerRemainsPlayerTwo(){
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(.Middle)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
     
     //MARK:- Horizontal Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysTopEdge_ThenViewsGameStateIsPlayerOneWins() {
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(2, column: 1)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(2, column: 2)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(1, column: 3)
+        game.takeTurnAtPosition(2)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysMiddleRow_ThenViewsGameStateIsPlayerOneWins() {
-        game.takeTurnAtRow(2, column: 1)
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(2, column: 2)
-        game.takeTurnAtRow(1, column: 2)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(2, column: 3)
+        game.takeTurnAtPosition(5)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysBottomEdge_ThenViewsGameStateIsPlayerOneWins() {
-        game.takeTurnAtRow(3, column: 1)
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(3, column: 2)
-        game.takeTurnAtRow(1, column: 2)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(7)
+        game.takeTurnAtPosition(1)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtRow(3, column: 3)
+        game.takeTurnAtPosition(8)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysTopEdge_ThenViewsGameStateIsPlayerTwoWins() {
-        game.takeTurnAtRow(2, column: 1)
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(2, column: 2)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(3, column: 1)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(6)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtRow(1, column: 3)
+        game.takeTurnAtPosition(2)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysMiddleRow_ThenViewsGameStateIsPlayerOneWins() {
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(2, column: 1)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(2, column: 2)
-        game.takeTurnAtRow(3, column: 1)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(6)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtRow(2, column: 3)
+        game.takeTurnAtPosition(5)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysBottomEdge_ThenViewsGameStateIsPlayerTwoWins() {
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(3, column: 1)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(3, column: 2)
-        game.takeTurnAtRow(2, column: 1)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(7)
+        game.takeTurnAtPosition(3)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtRow(3, column: 3)
+        game.takeTurnAtPosition(8)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
+    }
+    
+    func testGivenGame_WhenPlayerOnePlaysSequentialSquaresNotOnARow_ThenPlayerTwoIsUp() {
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(4)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
+        game.takeTurnAtPosition(3)
+        XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
 
     //MARK:- Horizontal Blocking Tests
     
     func testGivenGame_WhenPlayerTwoBlocksPlayerOnesTopEdge_ThenViewsPlayerUpIsPlayerOne() {
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(3, column: 1)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(1, column: 3)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(2)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
     func testGivenGame_WhenPlayerOneBlocksPlayerTwosMiddleColumn_ThenViewsPlayerUpIsPlayerTwo() {
-        game.takeTurnAtRow(1, column: 1)
-        game.takeTurnAtRow(2, column: 1)
-        game.takeTurnAtRow(1, column: 2)
-        game.takeTurnAtRow(2, column: 2)
-        game.takeTurnAtRow(2, column: 3)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(5)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
     }
     
     //MARK:- Vertical Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysLeftEdge_ThenPlayerOneWins(){
-        game.takeTurnAtSquare(.TopLeft)
-        game.takeTurnAtSquare(.TopMiddle)
-        game.takeTurnAtSquare(.MiddleLeft)
-        game.takeTurnAtSquare(.TopRight)
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        game.takeTurnAtPosition(.MiddleLeft)
+        game.takeTurnAtPosition(.TopRight)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtSquare(.BottomLeft)
+        game.takeTurnAtPosition(.BottomLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysMiddleColumn_ThenPlayerOneWins(){
-        game.takeTurnAtSquare(.TopMiddle)
-        game.takeTurnAtSquare(.TopLeft)
-        game.takeTurnAtSquare(.Middle)
-        game.takeTurnAtSquare(.TopRight)
+        game.takeTurnAtPosition(.TopMiddle)
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(.TopRight)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtSquare(.BottomMiddle)
+        game.takeTurnAtPosition(.BottomMiddle)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysRightEdge_ThenPlayerOneWins(){
-        game.takeTurnAtSquare(.TopRight)
-        game.takeTurnAtSquare(.TopLeft)
-        game.takeTurnAtSquare(.MiddleRight)
-        game.takeTurnAtSquare(.TopMiddle)
+        game.takeTurnAtPosition(.TopRight)
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.MiddleRight)
+        game.takeTurnAtPosition(.TopMiddle)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
-        game.takeTurnAtSquare(.BottomRight)
+        game.takeTurnAtPosition(.BottomRight)
         XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysLeftEdge_ThenPlayerTwoWins(){
-        game.takeTurnAtSquare(.TopMiddle)
-        game.takeTurnAtSquare(.TopLeft)
-        game.takeTurnAtSquare(.TopRight)
-        game.takeTurnAtSquare(.MiddleLeft)
-        game.takeTurnAtSquare(.BottomRight)
+        game.takeTurnAtPosition(.TopMiddle)
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.TopRight)
+        game.takeTurnAtPosition(.MiddleLeft)
+        game.takeTurnAtPosition(.BottomRight)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtSquare(.BottomLeft)
+        game.takeTurnAtPosition(.BottomLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysMiddleColumn_ThenPlayerTwoWins(){
-        game.takeTurnAtSquare(.TopLeft)
-        game.takeTurnAtSquare(.TopMiddle)
-        game.takeTurnAtSquare(.TopRight)
-        game.takeTurnAtSquare(.Middle)
-        game.takeTurnAtSquare(.BottomLeft)
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        game.takeTurnAtPosition(.TopRight)
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(.BottomLeft)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtSquare(.BottomMiddle)
+        game.takeTurnAtPosition(.BottomMiddle)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysRightEdge_ThenPlayerTwoWins(){
-        game.takeTurnAtSquare(0)
-        game.takeTurnAtSquare(2)
-        game.takeTurnAtSquare(1)
-        game.takeTurnAtSquare(5)
-        game.takeTurnAtSquare(3)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(5)
+        game.takeTurnAtPosition(3)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoUp)
-        game.takeTurnAtSquare(8)
+        game.takeTurnAtPosition(8)
         XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
     }
-
+    
+    //MARK: Diaganol Winning Tests 
+    
+    func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopLeft_ThenPlayerOneWins(){
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(8)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
+    }
+    
+    func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopRight_ThenPlayerOneWins(){
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(6)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
+    }
+    
+    func testGivenGame_WhenPlayerOnePlaysDiagonalFromBottomLeft_ThenPlayerOneWins(){
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(2)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
+    }
+    
+    func testGivenGame_WhenPlayerOnePlaysDiagonalFromBottomRight_ThenPlayerOneWins(){
+        game.takeTurnAtPosition(8)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(0)
+        XCTAssertEqual(view.gameState, GameState.PlayerOneWins)
+    }
+    
+    func testGivenGame_WhenPlayerTwoPlaysDiaganalFromLeft_ThenPlayerTwoWins() {
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(8)
+        XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
+    }
+    
+    func testGivenGame_WhenPlayerTwoPlaysDiaganalFromRight_ThenPlayerTwoWins() {
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(6)
+        XCTAssertEqual(view.gameState, GameState.PlayerTwoWins)
+    }
     
 }
