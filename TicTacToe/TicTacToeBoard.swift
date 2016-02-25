@@ -10,6 +10,8 @@ public enum BoardPosition: Int {
     case BottomLeft = 6
     case BottomMiddle = 7
     case BottomRight = 8
+    
+    static let allValues = [TopLeft.rawValue, TopMiddle.rawValue, TopRight.rawValue, MiddleLeft.rawValue, Middle.rawValue, MiddleRight.rawValue, BottomLeft.rawValue, BottomMiddle.rawValue, BottomRight.rawValue]
 }
 
 enum BoardMarker {
@@ -20,11 +22,12 @@ enum BoardMarker {
 
 enum TicTacToeBoardError: ErrorType {
     case BoardPositionTaken
+    case InvalidMove
 }
 
 private let LineCompleteMarkerCount = 3
 
-struct TicTacToeBoard {
+struct TicTacToeBoard: BoardView {
     
     private var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
@@ -51,15 +54,34 @@ struct TicTacToeBoard {
         
     }()
     
-    mutating func addMarker(marker: BoardMarker, atPosition position:BoardPosition) throws {
-        guard canAddMarkerAtPosition(position) else {
-            throw TicTacToeBoardError.BoardPositionTaken
+    var lastTurn: BoardPosition?
+
+    var markers: [BoardMarker] {
+        get {
+            return board
         }
+    }
+    mutating func addMarker(marker: BoardMarker, atPosition position:BoardPosition) throws {
+        try checkAddMarker(marker, atPosition: position)
+        lastTurn = position
         board[position.rawValue] = marker
     }
     
-    private func canAddMarkerAtPosition(position: BoardPosition) -> Bool{
+    private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
+        guard boardPositionIsEmpty(position) else {
+            throw TicTacToeBoardError.BoardPositionTaken
+        }
+        guard markerIsExpectedNextMarker(marker) else {
+            throw TicTacToeBoardError.InvalidMove
+        }
+    }
+    
+    private func boardPositionIsEmpty(position: BoardPosition) -> Bool {
         return board[position.rawValue] == .None
+    }
+    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
+        guard let lastTurn = lastTurn else { return true }
+        return marker != board[lastTurn.rawValue]
     }
     
     func hasCompleteLine() -> Bool{
@@ -103,5 +125,18 @@ struct TicTacToeBoard {
         return board.contains(.None) == false
     }
     
+    var emptyPositions: [BoardPosition] {
+        
+        get {
+            var positions = [BoardPosition]()
+            for (index, marker) in board.enumerate() {
+                if marker == .None {
+                    positions.append(BoardPosition(rawValue: index)!)
+                }
+            }
+            return positions
+        }
+        
+    }
     
 }
