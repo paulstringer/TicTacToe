@@ -11,6 +11,24 @@ protocol BoardView {
     var markers: [BoardMarker] { get }
 }
 
+extension BoardView {
+    
+    var emptyPositions: [BoardPosition] {
+        
+        get {
+            var positions = [BoardPosition]()
+            for (index, marker) in self.markers.enumerate() {
+                if marker == .None {
+                    positions.append(BoardPosition(rawValue: index)!)
+                }
+            }
+            return positions
+        }
+        
+    }
+    
+}
+
 enum GameType {
     case HumanVersusHuman
     case HumanVersusComputer

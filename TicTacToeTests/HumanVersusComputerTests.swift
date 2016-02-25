@@ -43,36 +43,23 @@ class HumanVersusComputerTests: XCTestCase {
     
     func testGivenGame_WhenTakingTwoTurns_ThenComputerTakesTurnsAtDifferentPosition() {
         game.takeTurnAtPosition(0)
-        game.takeTurnAtPosition(2)
-        XCTAssertNotEqual(view.gameBoard.lastTurn, BoardPosition(rawValue: 2))
+        let position = view.gameBoard.emptyPositions.first!
+        game.takeTurnAtPosition(position)
+        XCTAssertNotEqual(view.gameBoard.lastTurn, position)
         XCTAssertEqual(view.gameState, GameState.PlayerOneUp)
     }
     
     func testGivenGame_WhenTakingTurn_ThenBoardHasOneCrossOneNought() {
         game.takeTurnAtPosition(0)
-        let noughts = view.gameBoard.markers.filter { (marker) in
-            return marker == .Nought
-        }
-        let crosses = view.gameBoard.markers.filter { (marker) in
-            return marker == .Cross
-        }
-        XCTAssertEqual(noughts.count, 1)
-        XCTAssertEqual(crosses.count, 1)
+        XCTAssertEqual(view.gameBoard.noughts, 1)
+        XCTAssertEqual(view.gameBoard.crosses, 1)
     }
     
-    func testGivenGame_WhenTakingTwoTurn_ThenBoardHasTwoCrossesTwoNoughts() {
+    func testGivenGame_WhenTakingTwoTurns_ThenBoardHasTwoCrossesTwoNoughts() {
         game.takeTurnAtPosition(0)
-        game.takeTurnAtPosition(2)
-        let noughts = view.gameBoard.markers.filter { (marker) in
-            return marker == .Nought
-        }
-        let crosses = view.gameBoard.markers.filter { (marker) in
-            return marker == .Cross
-        }
-        XCTAssertEqual(noughts.count, 2)
-        XCTAssertEqual(crosses.count, 2)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameBoard.noughts, 2)
+        XCTAssertEqual(view.gameBoard.noughts, 2)
     }
 
-    
-    
 }

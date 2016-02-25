@@ -79,6 +79,7 @@ struct TicTacToeBoard: BoardView {
     private func boardPositionIsEmpty(position: BoardPosition) -> Bool {
         return board[position.rawValue] == .None
     }
+    
     private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
         guard let lastTurn = lastTurn else { return true }
         return marker != board[lastTurn.rawValue]
@@ -125,18 +126,5 @@ struct TicTacToeBoard: BoardView {
         return board.contains(.None) == false
     }
     
-    var emptyPositions: [BoardPosition] {
-        
-        get {
-            var positions = [BoardPosition]()
-            for (index, marker) in board.enumerate() {
-                if marker == .None {
-                    positions.append(BoardPosition(rawValue: index)!)
-                }
-            }
-            return positions
-        }
-        
-    }
-    
+
 }
