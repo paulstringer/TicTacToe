@@ -6,7 +6,7 @@ protocol GameView: class {
     var gameBoard: BoardView! { get set }
 }
 
-protocol BoardView: CustomStringConvertible {
+protocol BoardView {
     var lastTurn: BoardPosition? { get }
     var markers: [BoardMarker] { get }
 }
