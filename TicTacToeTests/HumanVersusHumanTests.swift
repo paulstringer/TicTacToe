@@ -1,13 +1,14 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusHumanTests: XCTestCase {
+class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     
-    let view = GameViewSpy()
+    var view: GameViewSpy!
     var game: TicTacToe!
     
     override func setUp() {
         super.setUp()
+        view = GameViewSpy()
         game = TicTacToe(view: view)
         game.ready()
     }
@@ -289,15 +290,5 @@ class HumanVersusHumanTests: XCTestCase {
         XCTAssertEqual(view.gameState, GameState.Stalemate)
         
     }
-    
-    //MARK:- Helpers
-    
-    func takeTurnsAtPositions(positions: [BoardPosition.RawValue]) {
-        for (index, p) in positions.enumerate() {
-            let expectedGameState: GameState = (index % 2 == 0) ? .PlayerOneUp : .PlayerTwoUp
-            XCTAssertEqual(view.gameState, expectedGameState)
-            game.takeTurnAtPosition(p)
-        }
-    }
-    
+
 }

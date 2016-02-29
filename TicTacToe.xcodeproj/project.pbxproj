@@ -24,6 +24,7 @@
 		8C2C198D1C7B3E7200A4FA27 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
 		8C2C198F1C7E085C00A4FA27 /* TicTacToeBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */; };
 		8C2C19911C7E2AA700A4FA27 /* HumanVersusComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */; };
+		8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
 		8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeBoard.swift; sourceTree = "<group>"; };
 		8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusComputerTests.swift; path = TicTacToeTests/HumanVersusComputerTests.swift; sourceTree = SOURCE_ROOT; };
+		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeTestExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
 				8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */,
+				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 			files = (
 				8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */,
 				8C2C19911C7E2AA700A4FA27 /* HumanVersusComputerTests.swift in Sources */,
+				8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */,
 				8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

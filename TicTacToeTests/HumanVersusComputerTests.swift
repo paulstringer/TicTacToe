@@ -1,13 +1,14 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusComputerTests: XCTestCase {
+class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
 
-    let view = GameViewSpy()
+    var view: GameViewSpy!
     var game: TicTacToe!
     
     override func setUp() {
         super.setUp()
+        view = GameViewSpy()
         game = TicTacToe(view: view)
         game.ready()
         game.gameType = .HumanVersusComputer
@@ -73,39 +74,19 @@ class HumanVersusComputerTests: XCTestCase {
     
     //Mark:- Perfect Human V Computer Game
     
-    func testGivenGame_WhenTakingTurnCorner_ThenComputerPlaysMiddle() {
+    func testGivenGame_WhenTakingTurnsWithPerfectStrategy_ThenGameIsStalemate() {
         game.takeTurnAtPosition(.TopLeft)
-        XCTAssertEqual(view.gameBoard.lastTurn, BoardPosition.Middle)
-    }
-    
-    func testGivenGame_WhenTakingTurnOppositeCorner_ThenComputerPlaysTopEdge() {
-        game.takeTurnAtPosition(.TopLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         game.takeTurnAtPosition(.BottomRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .TopMiddle)
-    }
-    
-    func testGivenGame_WhenTakingTurnBlockingMiddleColumn_ThenComputerBlocksBottomLine() {
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.BottomRight)
         game.takeTurnAtPosition(.BottomMiddle)
         XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
-    }
-    
-    func testGivenGame_WhenTakingTurnBlockingTopRight_ThenComputerBlocksRightEdge() {
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.BottomRight)
-        game.takeTurnAtPosition(.BottomMiddle)
         game.takeTurnAtPosition(.TopRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
-    }
-    
-    func testGivenGame_WhenTakingTurnLastEmptyPosition_ThenGameIsStalemate() {
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.BottomRight)
-        game.takeTurnAtPosition(.BottomMiddle)
-        game.takeTurnAtPosition(.TopRight)
         game.takeTurnAtPosition(.MiddleLeft)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
         XCTAssertEqual(view.gameState, GameState.Stalemate)
     }
+    
+
 }
