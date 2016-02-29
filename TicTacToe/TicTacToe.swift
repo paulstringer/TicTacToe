@@ -6,7 +6,7 @@ protocol GameView: class {
     var gameBoard: BoardView! { get set }
 }
 
-protocol BoardView {
+protocol BoardView: CustomStringConvertible {
     var lastTurn: BoardPosition? { get }
     var markers: [BoardMarker] { get }
 }
@@ -84,10 +84,8 @@ struct TicTacToe {
     
     mutating func takeTurnAtPosition(position: BoardPosition) {
         
-        let marker = nextMark()
-        
         do {
-            try board.addMarker(marker, atPosition: position)
+            try board.takeTurnAtPosition(position)
         } catch {
             return
         }
@@ -108,11 +106,47 @@ struct TicTacToe {
     //MARK:- Game Internals
     
     private mutating func takeComputersTurnIfNeeded() {
-        guard gameType == .HumanVersusComputer else {
+        guard gameType == .HumanVersusComputer && lastPlayer != .Computer else {
             return
         }
+
         lastPlayer = .Computer
-        takeTurnAtPosition( board.emptyPositions[0] )
+        takeTurnAtPosition( hint() )
+
+    }
+    
+    private func hint() -> BoardPosition {
+        
+        guard let lastTurn = board.lastTurn else {
+            return board.emptyPositions[0]
+        }
+        
+        if lastTurn.isCorner && board.boardPositionIsEmpty(.Middle) {
+            return .Middle
+        }
+
+        if let positionBlocking = positionThatBlocksWinningMove() {
+            return positionBlocking
+        }
+        
+        return board.emptyPositions[0]
+        
+    }
+    
+    private func positionThatBlocksWinningMove() -> BoardPosition? {
+        
+        let lines = board.linesWithCount(2)
+        
+        for line in lines {
+            for value in line {
+                let position = BoardPosition(rawValue: value)!
+                if board.boardPositionIsEmpty(position) {
+                    return position
+                }
+            }
+        }
+
+        return nil
     }
     
     private mutating func updateGameState() {
@@ -138,15 +172,5 @@ struct TicTacToe {
         lastPlayer = .None
         view.gameState = .Stalemate
     }
-    
-    private func nextMark() -> BoardMarker {
-        switch lastPlayer {
-        case .HumanTwo, .None:
-            return .Nought
-        default:
-            return .Cross
-        }
-    }
-    
 }
 

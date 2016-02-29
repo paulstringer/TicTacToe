@@ -69,4 +69,25 @@ class HumanVersusComputerTests: XCTestCase {
         XCTAssertEqual(view.gameBoard.noughts, 2)
     }
 
+    // http://www.wikihow.com/Win-at-Tic-Tac-Toe
+    
+    //Mark:- Perfect Human V Computer Game
+    
+    func testGivenGame_WhenTakingTurnCorner_ThenComputerPlaysMiddle() {
+        game.takeTurnAtPosition(.TopLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, BoardPosition.Middle)
+    }
+    
+    func testGivenGame_WhenTakingTurnOppositeCorner_ThenComputerPlaysFirstEdge() {
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.BottomRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopMiddle)
+    }
+    
+    func testGivenGame_WhenTakingTurnBlockingMiddleColumn_ThenComputerBlocksBottomLine() {
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.BottomRight)
+        game.takeTurnAtPosition(.BottomMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
+    }
 }
