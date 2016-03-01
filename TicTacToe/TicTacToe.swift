@@ -112,6 +112,8 @@ struct TicTacToe {
     
     //MARK:- Computer's Strategy
     
+    private var computerPositions = [BoardPosition]()
+    
     private mutating func takeComputersTurnIfNeeded() {
         guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
             return
@@ -124,15 +126,19 @@ struct TicTacToe {
     private func hint() -> BoardPosition {
         
         guard let lastTurn = board.lastTurn else {
-            return board.emptyPositions[0]
+            return .TopLeft
         }
         
         if lastTurn.isCorner && board.boardPositionIsEmpty(.Middle) {
             return .Middle
         }
 
-        if let position = emptyPositionForNextWinningLine() {
-            return position
+        if let strategicPosition = emptyPositionForNextWinningLine() {
+            return strategicPosition
+        }
+        
+        if let strategicPosition = bestStrategicMove() {
+            return strategicPosition
         }
         
         return board.emptyPositions[0]
@@ -168,6 +174,22 @@ struct TicTacToe {
         return candidates.first
     }
     
+    
+    private func bestStrategicMove() -> BoardPosition? {
+        
+        let computerCapturedTheMiddleGround = computerPositions.contains(.Middle)
+        
+        for position in board.emptyPositions {
+            if computerCapturedTheMiddleGround && position.isEdge {
+                return position
+            } else if position.isCorner {
+                return position
+            }
+        }
+        
+        return nil
+    }
+    
     //MARK:- Game State Transitions
     
     private mutating func updateGameState() {
@@ -187,12 +209,18 @@ struct TicTacToe {
                 lastPlayer = .HumanTwo
                 view.gameState = .PlayerOneUp
             case .HumanVersusComputer:
+                computerPositions.append(board.lastTurn!)
                 lastPlayer = .Computer
             }
         }
     }
 
     private mutating func declareVictory() {
+        
+        guard lastPlayer != .None else {
+            return
+        }
+        
         switch gameType {
         case .HumanVersusHuman:
             view.gameState = (lastPlayer == .HumanOne) ? .PlayerTwoWins : .PlayerOneWins
