@@ -74,7 +74,7 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
     
     //Mark:- Perfect Human V Computer Game
     
-    func testGivenGame_WhenTakingTurnsUsingPerfectStrategies_ThenGameIsStalemate() {
+    func testGivenGame_WhenTakingTurnsForPerfectStrategies_ThenGameIsStalemate() {
         game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         game.takeTurnAtPosition(.BottomRight)
@@ -88,15 +88,29 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameState, GameState.Stalemate)
     }
     
-    func testGivenGame_WhenTakingTurnsMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
+    func testGivenGame_WhenTakingTurnsButHumanMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
         game.takeTurnAtPosition(.TopLeft)
-        XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         game.takeTurnAtPosition(.BottomRight)
-        XCTAssertEqual(view.gameBoard.lastTurn, .TopMiddle)
         game.takeTurnAtPosition(.BottomMiddle)
-        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
-        game.takeTurnAtPosition(.MiddleRight) // Mistake
+        game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
+        XCTAssertEqual(view.gameState, GameState.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsButHumanMissesBlockAtBottomMiddle_ThenComputerPlaysBottomMiddleAndWins() {
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.BottomRight)
+        game.takeTurnAtPosition(.TopRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomMiddle)
+        XCTAssertEqual(view.gameState, GameState.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsHumanTrysLeftEdgeLine_ThenComputerPlaysDiagonalAndWins() {
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.BottomLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
         XCTAssertEqual(view.gameState, GameState.ComputerWins)
     }
     

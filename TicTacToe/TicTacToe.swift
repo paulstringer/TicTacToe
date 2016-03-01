@@ -110,7 +110,7 @@ struct TicTacToe {
         
     }
     
-    //MARK:- Game Internals
+    //MARK:- Computer's Strategy
     
     private mutating func takeComputersTurnIfNeeded() {
         guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
@@ -131,29 +131,44 @@ struct TicTacToe {
             return .Middle
         }
 
-        if let positionBlocking = positionThatBlocksWinningMove() {
-            return positionBlocking
+        if let position = emptyPositionForNextWinningLine() {
+            return position
         }
         
         return board.emptyPositions[0]
         
     }
     
-    private func positionThatBlocksWinningMove() -> BoardPosition? {
+    private func emptyPositionForNextWinningLine() -> BoardPosition? {
         
         let lines = board.linesWithCount(2)
+        
+        var candidates = [BoardPosition]()
         
         for line in lines {
             for value in line {
                 let position = BoardPosition(rawValue: value)!
                 if board.boardPositionIsEmpty(position) {
-                    return position
+                    candidates.append(position)
                 }
             }
         }
 
-        return nil
+        candidates.sortInPlace { (a, b) -> Bool in
+            var virtualBoard = self.board
+            do {
+               try virtualBoard.takeTurnAtPosition(a)
+                return virtualBoard.hasCompleteLine()
+            } catch {
+                return false
+            }
+
+        }
+        
+        return candidates.first
     }
+    
+    //MARK:- Game State Transitions
     
     private mutating func updateGameState() {
         
