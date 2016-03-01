@@ -19,7 +19,8 @@ extension BoardView {
             var positions = [BoardPosition]()
             for (index, marker) in self.markers.enumerate() {
                 if marker == .None {
-                    positions.append(BoardPosition(rawValue: index)!)
+                    let position = BoardPosition(rawValue: index)!
+                    positions.append(position)
                 }
             }
             return positions
@@ -41,8 +42,8 @@ enum GameState {
     case ComputerUp
     case PlayerOneWins
     case PlayerTwoWins
-    case Stalemate
     case ComputerWins
+    case Stalemate
 }
 
 private enum GamePlayer {
