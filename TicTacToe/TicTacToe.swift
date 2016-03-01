@@ -46,25 +46,22 @@ enum GameState {
     case Stalemate
 }
 
-private enum GamePlayer {
-    case None
-    case HumanOne
-    case HumanTwo
-    case Computer
-}
-
 struct TicTacToe {
 
+    private var gamePlayerType: TicTacToeGamePlayerType = TicTacToeGameStatePlayerNone()
     private let view: GameView
     private var board = TicTacToeBoard()
-    private var lastPlayer: GamePlayer
+    private var lastPlayer: TicTacToeGamePlayer {
+        get {
+            return gamePlayerType.type
+        }
+    }
     private var bot = TicTacToeBot()
     
     var gameType: GameType
     
     init(view: GameView) {
         self.view = view
-        self.lastPlayer = .None
         self.gameType = .HumanVersusHuman
     }
     
@@ -140,7 +137,9 @@ struct TicTacToe {
         switch lastPlayer {
         
         case .None, .HumanTwo, .Computer:
-            lastPlayer = .HumanOne
+            
+            setGamePlayerType(.HumanOne)
+            
             switch gameType {
             case .HumanVersusHuman:
                 view.gameState = .PlayerTwoUp
@@ -149,12 +148,13 @@ struct TicTacToe {
             }
             
         case .HumanOne:
+            
             switch gameType {
             case .HumanVersusHuman:
-                lastPlayer = .HumanTwo
+                setGamePlayerType(.HumanTwo)
                 view.gameState = .PlayerOneUp
             case .HumanVersusComputer:
-                lastPlayer = .Computer
+                setGamePlayerType(.Computer)
             }
             
         }
@@ -177,12 +177,16 @@ struct TicTacToe {
             view.gameState = (lastPlayer == .HumanOne) ? .ComputerWins : .PlayerOneWins
         }
 
-        lastPlayer = .None
+        setGamePlayerType(.None)
     }
 
     private mutating func declareStalemate(){
-        lastPlayer = .None
+        setGamePlayerType(.None)
         view.gameState = .Stalemate
+    }
+
+    private mutating func setGamePlayerType(type: TicTacToeGamePlayer) {
+        gamePlayerType = newTicTacToeGamePlayerType(type)
     }
 }
 
