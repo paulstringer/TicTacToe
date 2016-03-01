@@ -57,6 +57,7 @@ struct TicTacToe {
     private let view: GameView
     private var board = TicTacToeBoard()
     private var lastPlayer: GamePlayer
+    private var bot: TicTacToeBot?
     
     var gameType: GameType
     
@@ -88,113 +89,60 @@ struct TicTacToe {
         
         do {
             try board.takeTurnAtPosition(position)
+            view.gameBoard = board
         } catch {
             return
         }
         
-        view.gameBoard = board
-        
-        guard false == board.hasCompleteLine() else {
-            declareVictory()
+        if declareVictoryOrStalemateIfGameOver() {
             return
+        } else {
+            incrementPlayer()
         }
-        
-        guard false == board.isFull() else {
-            declareStalemate()
-            return
-        }
-        
-        updateGameState()
-        
-        takeComputersTurnIfNeeded()
-        
+
     }
     
     //MARK:- Computer's Strategy
     
-    private var computerPositions = [BoardPosition]()
+    private mutating func declareVictoryOrStalemateIfGameOver() -> Bool {
+    
+        guard false == board.hasCompleteLine() else {
+            declareVictory()
+            return true
+        }
+        
+        guard false == board.isFull() else {
+            declareStalemate()
+            return true
+        }
+    
+        return false
+    
+    }
     
     private mutating func takeComputersTurnIfNeeded() {
+        
         guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
             return
         }
         
-        takeTurnAtPosition( hint() )
-
-    }
-    
-    private func hint() -> BoardPosition {
-        
-        guard let lastTurn = board.lastTurn else {
-            return .TopLeft
+        if bot == nil {
+            bot = TicTacToeBot()
         }
         
-        if lastTurn.isCorner && board.boardPositionIsEmpty(.Middle) {
-            return .Middle
+        if let position = bot?.nextMove(board) {
+            takeTurnAtPosition(position)
+            bot?.turnTakenAtBoardPosition(position)
         }
 
-        if let strategicPosition = emptyPositionForNextWinningLine() {
-            return strategicPosition
-        }
-        
-        if let strategicPosition = bestStrategicMove() {
-            return strategicPosition
-        }
-        
-        return board.emptyPositions[0]
-        
-    }
-    
-    private func emptyPositionForNextWinningLine() -> BoardPosition? {
-        
-        let lines = board.linesWithCount(2)
-        
-        var candidates = [BoardPosition]()
-        
-        for line in lines {
-            for value in line {
-                let position = BoardPosition(rawValue: value)!
-                if board.boardPositionIsEmpty(position) {
-                    candidates.append(position)
-                }
-            }
-        }
-
-        candidates.sortInPlace { (a, b) -> Bool in
-            var virtualBoard = self.board
-            do {
-               try virtualBoard.takeTurnAtPosition(a)
-                return virtualBoard.hasCompleteLine()
-            } catch {
-                return false
-            }
-
-        }
-        
-        return candidates.first
-    }
-    
-    
-    private func bestStrategicMove() -> BoardPosition? {
-        
-        let computerCapturedTheMiddleGround = computerPositions.contains(.Middle)
-        
-        for position in board.emptyPositions {
-            if computerCapturedTheMiddleGround && position.isEdge {
-                return position
-            } else if position.isCorner {
-                return position
-            }
-        }
-        
-        return nil
     }
     
     //MARK:- Game State Transitions
     
-    private mutating func updateGameState() {
+    private mutating func incrementPlayer() {
         
         switch lastPlayer {
+        
         case .None, .HumanTwo, .Computer:
             lastPlayer = .HumanOne
             switch gameType {
@@ -203,16 +151,21 @@ struct TicTacToe {
             case .HumanVersusComputer:
                 view.gameState = .PlayerOneUp
             }
+            
         case .HumanOne:
             switch gameType {
             case .HumanVersusHuman:
                 lastPlayer = .HumanTwo
                 view.gameState = .PlayerOneUp
             case .HumanVersusComputer:
-                computerPositions.append(board.lastTurn!)
                 lastPlayer = .Computer
             }
+            
         }
+        
+        
+        takeComputersTurnIfNeeded()
+        
     }
 
     private mutating func declareVictory() {
