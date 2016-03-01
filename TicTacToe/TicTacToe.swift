@@ -38,9 +38,11 @@ enum GameState {
     case None
     case PlayerOneUp
     case PlayerTwoUp
+    case ComputerUp
     case PlayerOneWins
     case PlayerTwoWins
     case Stalemate
+    case ComputerWins
 }
 
 private enum GamePlayer {
@@ -92,25 +94,29 @@ struct TicTacToe {
         
         view.gameBoard = board
         
-        if board.hasCompleteLine() {
+        guard false == board.hasCompleteLine() else {
             declareVictory()
-        } else if board.isFull() {
-            declareStalemate()
-        } else {
-            takeComputersTurnIfNeeded()
-            updateGameState()
+            return
         }
+        
+        guard false == board.isFull() else {
+            declareStalemate()
+            return
+        }
+        
+        updateGameState()
+        
+        takeComputersTurnIfNeeded()
         
     }
     
     //MARK:- Game Internals
     
     private mutating func takeComputersTurnIfNeeded() {
-        guard gameType == .HumanVersusComputer && lastPlayer != .Computer else {
+        guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
             return
         }
-
-        lastPlayer = .Computer
+        
         takeTurnAtPosition( hint() )
 
     }
@@ -150,21 +156,35 @@ struct TicTacToe {
     }
     
     private mutating func updateGameState() {
+        
         switch lastPlayer {
-        case .None, .HumanTwo:
+        case .None, .HumanTwo, .Computer:
             lastPlayer = .HumanOne
-            view.gameState = .PlayerTwoUp
+            switch gameType {
+            case .HumanVersusHuman:
+                view.gameState = .PlayerTwoUp
+            case .HumanVersusComputer:
+                view.gameState = .PlayerOneUp
+            }
         case .HumanOne:
-            lastPlayer = .HumanTwo
-            view.gameState = .PlayerOneUp
-        case .Computer:
-            lastPlayer = .HumanOne
-            break
+            switch gameType {
+            case .HumanVersusHuman:
+                lastPlayer = .HumanTwo
+                view.gameState = .PlayerOneUp
+            case .HumanVersusComputer:
+                lastPlayer = .Computer
+            }
         }
     }
-    
+
     private mutating func declareVictory() {
-        view.gameState = (lastPlayer == .HumanOne) ? .PlayerTwoWins : .PlayerOneWins
+        switch gameType {
+        case .HumanVersusHuman:
+            view.gameState = (lastPlayer == .HumanOne) ? .PlayerTwoWins : .PlayerOneWins
+        case .HumanVersusComputer:
+            view.gameState = (lastPlayer == .HumanOne) ? .ComputerWins : .PlayerOneWins
+        }
+
         lastPlayer = .None
     }
 

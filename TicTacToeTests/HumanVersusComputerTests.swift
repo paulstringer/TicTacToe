@@ -74,7 +74,7 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
     
     //Mark:- Perfect Human V Computer Game
     
-    func testGivenGame_WhenTakingTurnsWithPerfectStrategy_ThenGameIsStalemate() {
+    func testGivenGame_WhenTakingTurnsUsingPerfectStrategies_ThenGameIsStalemate() {
         game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         game.takeTurnAtPosition(.BottomRight)
@@ -86,6 +86,18 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         game.takeTurnAtPosition(.MiddleLeft)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
         XCTAssertEqual(view.gameState, GameState.Stalemate)
+    }
+    
+    func testGivenGame_WhenTakingTurnsMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
+        game.takeTurnAtPosition(.TopLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
+        game.takeTurnAtPosition(.BottomRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopMiddle)
+        game.takeTurnAtPosition(.BottomMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
+        game.takeTurnAtPosition(.MiddleRight) // Mistake
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
+        XCTAssertEqual(view.gameState, GameState.ComputerWins)
     }
     
 
