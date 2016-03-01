@@ -48,16 +48,15 @@ enum GameState {
 
 struct TicTacToe {
 
-    private var gamePlayerType: TicTacToeGamePlayerType = TicTacToeGameStatePlayerNone()
-    private let view: GameView
-    private var board = TicTacToeBoard()
+    private var gamePlayerType: TicTacToeGamePlayerType = TicTacToePlayerNone()
+    let view: GameView
+    var board = TicTacToeBoard()
     private var lastPlayer: TicTacToeGamePlayer {
         get {
             return gamePlayerType.type
         }
     }
-    private var bot = TicTacToeBot()
-    
+    var bot = TicTacToeBot()
     var gameType: GameType
     
     init(view: GameView) {
@@ -120,13 +119,10 @@ struct TicTacToe {
     
     private mutating func takeBotsTurn() {
         
-        guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
-            return
+        if let move = gamePlayerType.nextMove(self) {
+            takeTurnAtPosition(move)
+            bot.turnTakenAtBoardPosition(move)
         }
-        
-        let position = bot.nextMove(board)
-        takeTurnAtPosition(position)
-        bot.turnTakenAtBoardPosition(position)
 
     }
     
@@ -134,58 +130,26 @@ struct TicTacToe {
     
     private mutating func incrementPlayer() {
         
-        switch lastPlayer {
-        
-        case .None, .HumanTwo, .Computer:
-            
-            setGamePlayerType(.HumanOne)
-            
-            switch gameType {
-            case .HumanVersusHuman:
-                view.gameState = .PlayerTwoUp
-            case .HumanVersusComputer:
-                view.gameState = .PlayerOneUp
-            }
-            
-        case .HumanOne:
-            
-            switch gameType {
-            case .HumanVersusHuman:
-                setGamePlayerType(.HumanTwo)
-                view.gameState = .PlayerOneUp
-            case .HumanVersusComputer:
-                setGamePlayerType(.Computer)
-            }
-            
-        }
-        
-        
+        gamePlayerType = gamePlayerType.incrementPlayer(self)
         takeBotsTurn()
         
     }
 
     private mutating func declareVictory() {
         
-        guard lastPlayer != .None else {
-            return
-        }
-        
-        switch gameType {
-        case .HumanVersusHuman:
-            view.gameState = (lastPlayer == .HumanOne) ? .PlayerTwoWins : .PlayerOneWins
-        case .HumanVersusComputer:
-            view.gameState = (lastPlayer == .HumanOne) ? .ComputerWins : .PlayerOneWins
-        }
-
+        gamePlayerType.declareVictory(self)
         setGamePlayerType(.None)
     }
 
     private mutating func declareStalemate(){
-        setGamePlayerType(.None)
+        
+
         view.gameState = .Stalemate
+        setGamePlayerType(.None)
     }
 
-    private mutating func setGamePlayerType(type: TicTacToeGamePlayer) {
+    
+    mutating func setGamePlayerType(type: TicTacToeGamePlayer) {
         gamePlayerType = newTicTacToeGamePlayerType(type)
     }
 }
