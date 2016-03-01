@@ -57,7 +57,7 @@ struct TicTacToe {
     private let view: GameView
     private var board = TicTacToeBoard()
     private var lastPlayer: GamePlayer
-    private var bot: TicTacToeBot?
+    private var bot = TicTacToeBot()
     
     var gameType: GameType
     
@@ -120,20 +120,15 @@ struct TicTacToe {
     
     }
     
-    private mutating func takeComputersTurnIfNeeded() {
+    private mutating func takeBotsTurn() {
         
         guard gameType == .HumanVersusComputer &&  lastPlayer != .Computer else {
             return
         }
         
-        if bot == nil {
-            bot = TicTacToeBot()
-        }
-        
-        if let position = bot?.nextMove(board) {
-            takeTurnAtPosition(position)
-            bot?.turnTakenAtBoardPosition(position)
-        }
+        let position = bot.nextMove(board)
+        takeTurnAtPosition(position)
+        bot.turnTakenAtBoardPosition(position)
 
     }
     
@@ -164,7 +159,7 @@ struct TicTacToe {
         }
         
         
-        takeComputersTurnIfNeeded()
+        takeBotsTurn()
         
     }
 
