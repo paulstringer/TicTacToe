@@ -14,14 +14,14 @@ extension GameBoard {
     var noughts: Int {
 
         get {
-            return markers.filter { (marker) in return marker == .Nought }.count
+            return board.filter { (marker) in return marker == .Nought }.count
         }
     }
     
     var crosses: Int {
         
         get {
-            return markers.filter { (marker) in return marker == .Cross }.count
+            return board.filter { (marker) in return marker == .Cross }.count
         }
     }
     

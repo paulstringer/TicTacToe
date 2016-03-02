@@ -45,13 +45,13 @@ enum BoardError: ErrorType {
     case InvalidMove
 }
 
-typealias Line = [BoardPosition]
+typealias BoardLine = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
-    private var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
-    private let lines: [Line]  = {
+    private let lines: [BoardLine]  = {
         
         var result = [ [BoardPosition] ]()
         
@@ -79,13 +79,13 @@ struct TicTacToeBoard: GameBoard {
     
     var lastTurn: BoardPosition?
 
-    var markers: [BoardMarker] {
-        
-        get {
-            return board
-        }
-        
-    }
+//    var markers: [BoardMarker] {
+//        
+//        get {
+//            return board
+//        }
+//        
+//    }
     
     //MARK: Board Operations
     
@@ -106,9 +106,9 @@ struct TicTacToeBoard: GameBoard {
         return linesForContigousMarkerCount(3).isEmpty == false
     }
     
-    func linesForContigousMarkerCount(count: Int) -> [Line] {
+    func linesForContigousMarkerCount(count: Int) -> [BoardLine] {
         
-        var result = [Line]()
+        var result = [BoardLine]()
         
         for line in lines {
             

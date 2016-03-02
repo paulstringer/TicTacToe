@@ -18,7 +18,7 @@ enum GameStatus {
 
 protocol GameBoard {
     var lastTurn: BoardPosition? { get }
-    var markers: [BoardMarker] { get }
+    var board: [BoardMarker] { get }
 }
 
 protocol GameView: class {

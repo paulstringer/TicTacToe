@@ -161,7 +161,7 @@ extension GameBoard {
         
         get {
             var positions = [BoardPosition]()
-            for (index, marker) in self.markers.enumerate() {
+            for (index, marker) in board.enumerate() {
                 if marker == .None {
                     let position = BoardPosition(rawValue: index)!
                     positions.append(position)
