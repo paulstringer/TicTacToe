@@ -4,12 +4,12 @@ import Foundation
 class GameViewSpy: GameView {
     
     var gameTypes = [GameType]()
-    var gameState: GameState = .None
-    var gameBoard: BoardView!
+    var gameStatus: GameStatus = .None
+    var gameBoard: GameBoard!
     
 }
 
-extension BoardView {
+extension GameBoard {
     
     var noughts: Int {
 

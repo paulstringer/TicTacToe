@@ -46,7 +46,7 @@ typealias Line = [Int]
 
 private let LineCompleteMarkerCount = 3
 
-struct TicTacToeBoard: BoardView {
+struct TicTacToeBoard: GameBoard {
     
     private var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     

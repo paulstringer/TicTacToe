@@ -1,193 +1,181 @@
 import Foundation
 
-
-enum TicTacToeGamePlayer {
-    case NewGame
-    case HumanOne
-    case HumanOnePlayingComputer
-    case HumanTwo
-    case Computer
-}
-
-
-protocol TicTacToeGamePlayerType {
+protocol TicTacToeGameState {
     
     func setGameType(type: GameType, game: TicTacToe)
     
-    var type: TicTacToeGamePlayer { get }
+    func takeTurn(game: TicTacToe, position: BoardPosition)
     
-    func incrementPlayer(game:TicTacToe)
+    // PRIVATE
+    
+    func finishTurn(game:TicTacToe)
     
     func declareVictory(game: TicTacToe)
     
-    func nextMove(game: TicTacToe) -> BoardPosition?
-    
 }
 
-extension TicTacToeGamePlayerType {
+extension TicTacToeGameState {
+    
+    //MARK: No-Op Default Implementations
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameState = .PlayerOneWins
     }
     
-    func nextMove(game: TicTacToe) -> BoardPosition? {
-
-//        guard game.gameType == .HumanVersusComputer else {
-//            return nil
-//        }
-//        
-//        return game.bot.nextMove(game.board)
-
-        return nil
-        
+    func finishTurn(game: TicTacToe) {
     }
     
     func setGameType(type: GameType, game: TicTacToe) {
-        // No-Op for most instances
-    }
-}
-
-func newTicTacToeGamePlayerType(type: TicTacToeGamePlayer) -> TicTacToeGamePlayerType {
-    
-    switch type {
-    case .NewGame:
-        return TicTacToePlayerNewGame()
-    case .HumanOne:
-        return TicTacToePlayerHumanOne()
-    case .HumanOnePlayingComputer:
-        return TicTacToePlayerHumanOneAgainstComputer()
-    case .HumanTwo:
-        return TicTacToePlayerHumanTwo()
-    case .Computer:
-        return TicTacToePlayerComputer()
     }
     
-}
+    //MARK: Game Mechanics
+    
+    func takeTurn(game: TicTacToe, position: BoardPosition) {
 
-func newTicTacToeGamePlayerForGameType(type: GameType) -> TicTacToeGamePlayerType {
-    
-    switch type {
-
-    case .HumanVersusHuman:
-        return TicTacToePlayerHumanTwo()
-    case .HumanVersusComputer:
-        return TicTacToePlayerComputer()
-    }
-    
-}
-
-struct TicTacToePlayerNewGame: TicTacToeGamePlayerType {
-    
-    var type:TicTacToeGamePlayer = .NewGame
-    
-    func declareVictory(game: TicTacToe) {
-        // No-op
-    }
-    
-    func incrementPlayer(game: TicTacToe) {
-
-//        switch game.gameType {
-//        case .HumanVersusHuman: // TicTacToePlayerHumanTwo
-//            game.view.gameState = .PlayerTwoUp
-//            game.setGamePlayerType(.HumanOne)
-////            return newTicTacToeGamePlayerType(.HumanOne)
-//        case .HumanVersusComputer: // TicTacToePlayerComputer
-//            game.view.gameState = .PlayerOneUp
-//            game.setGamePlayerType(.HumanOnePlayingComputer)
-////            return newTicTacToeGamePlayerType(.HumanOnePlayingComputer)
-//        }
+        do {
+            try game.board.takeTurnAtPosition(position)
+            game.view.gameBoard = game.board
+        } catch {
+            return
+        }
         
-        // No-op
-
+        guard declareVictoryOrStalemate(game) == false else {
+            return
+        }
+        
+        finishTurn(game)
+        
     }
     
+    private func declareVictoryOrStalemate(game: TicTacToe) -> Bool {
+        
+        guard false == game.board.hasCompleteLine() else {
+            declareVictory(game)
+            return true
+        }
+        
+        guard false == game.board.isFull() else {
+            declareStalemate(game)
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    private func declareStalemate(game: TicTacToe) {
+        game.state = TicTacToePlayerStalemate(game: game)
+    }
+    
+}
 
+struct TicTacToePlayerStalemate: TicTacToeGameState {
+    
+    init(game: TicTacToe) {
+        game.view.gameStatus = .Stalemate
+    }
+    
+}
+
+struct TicTacToePlayerNewGame: TicTacToeGameState {
+    
     func setGameType(type: GameType, game: TicTacToe) {
-        
-        // change state to the first player for the state
-        
         switch type {
         case .HumanVersusHuman:
-            game.view.gameState = .PlayerTwoUp
-            game.setGamePlayerType(.HumanOne)
+            game.state = TicTacToePlayerHumanOne(game: game)
         case .HumanVersusComputer:
-            game.view.gameState = .PlayerOneUp
-            game.setGamePlayerType(.HumanOnePlayingComputer)
+            game.state = TicTacToePlayerHumanOneAgainstComputer(game: game)
         }
     }
 }
 
-//TODO: Extract all gameType switch code into discreet states for simplification
-struct TicTacToePlayerHumanOne: TicTacToeGamePlayerType  {
+struct TicTacToePlayerHumanOne: TicTacToeGameState  {
     
-    var type: TicTacToeGamePlayer = .HumanOne
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerOneUp
+    }
     
-    func incrementPlayer(game: TicTacToe) {
-        
-        game.view.gameState = .PlayerTwoUp
-        
-        game.setGamePlayerType(.HumanTwo)
-        
+    func finishTurn(game: TicTacToe) {
+        game.state = TicTacToePlayerHumanTwo(game: game)
     }
     
     func declareVictory(game: TicTacToe) {
-        
-        game.view.gameState = .PlayerOneWins
-        
+        game.view.gameStatus = .PlayerOneWins
     }
 }
 
-struct TicTacToePlayerHumanOneAgainstComputer: TicTacToeGamePlayerType {
+struct TicTacToePlayerHumanOneAgainstComputer: TicTacToeGameState {
     
-    var type: TicTacToeGamePlayer = .HumanOnePlayingComputer
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerOneUp
+    }
     
-    func incrementPlayer(game: TicTacToe) {
-        
-        game.setGamePlayerType(.Computer)
-//        return newTicTacToeGamePlayerType(.Computer)
-        
+    func finishTurn(game: TicTacToe) {
+        let state = TicTacToePlayerComputer()
+        game.state = state
+        state.takeBotsTurn(game)
     }
     
     func declareVictory(game: TicTacToe) {
-        
-            game.view.gameState = .ComputerWins
-        
+        game.view.gameStatus = .ComputerWins
     }
     
 }
 
-struct TicTacToePlayerHumanTwo: TicTacToeGamePlayerType {
+struct TicTacToePlayerHumanTwo: TicTacToeGameState {
     
-    var type:TicTacToeGamePlayer = .HumanTwo
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerTwoUp
+    }
     
-    func incrementPlayer(game: TicTacToe) {
-
-        game.view.gameState = .PlayerOneUp
-        game.setGamePlayerType(.HumanOne)
-        
+    func finishTurn(game: TicTacToe) {
+        game.state = TicTacToePlayerHumanOne(game: game)
     }
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameState = .PlayerTwoWins
+        game.view.gameStatus = .PlayerTwoWins
     }
     
 }
 
-struct TicTacToePlayerComputer: TicTacToeGamePlayerType {
+struct TicTacToePlayerComputer: TicTacToeGameState {
     
-    var type:TicTacToeGamePlayer = .Computer
-    
-    func nextMove(game: TicTacToe) -> BoardPosition? {
-        // NO-OP
-        return game.bot.nextMove(game.board)
+    func finishTurn(game: TicTacToe) {
+        game.state = TicTacToePlayerHumanOneAgainstComputer(game: game)
     }
+    
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameState = .ComputerWins
+        game.view.gameStatus = .ComputerWins
     }
     
-    func incrementPlayer(game: TicTacToe) {
-        game.view.gameState = .PlayerOneUp
-        game.setGamePlayerType(.HumanOnePlayingComputer)
+    func takeBotsTurn(game: TicTacToe) {
+
+        let position = game.bot.nextMove(game.board)
+        
+        takeTurn(game, position: position)
+
+        game.bot.turnTakenAtBoardPosition(position)
+        
     }
+}
+
+//MARK: BoardView Extension
+
+extension GameBoard {
+    
+    var emptyPositions: [BoardPosition] {
+        
+        get {
+            var positions = [BoardPosition]()
+            for (index, marker) in self.markers.enumerate() {
+                if marker == .None {
+                    let position = BoardPosition(rawValue: index)!
+                    positions.append(position)
+                }
+            }
+            return positions
+        }
+        
+    }
+    
 }
