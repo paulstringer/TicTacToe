@@ -27,13 +27,13 @@ protocol GameView: class {
     var gameBoard: GameBoard! { get set }
 }
 
-class TicTacToe {
+public class TicTacToe {
 
-    let view: GameView
+    internal let view: GameView
     
-    var state = TicTacToePlayerNewGame() as TicTacToeGameState
-    var board = TicTacToeBoard()
-    lazy var bot: TicTacToeBot = { TicTacToeBot() }()
+    internal var state = TicTacToePlayerNewGame() as TicTacToeGameState
+    internal var board = TicTacToeBoard()
+    internal lazy var bot: TicTacToeBot = { TicTacToeBot() }()
     
     init(view: GameView) {
         
