@@ -10,25 +10,28 @@ public enum BoardPosition: Int {
     case BottomLeft = 6
     case BottomMiddle = 7
     case BottomRight = 8
-    
-    static let allValues = [TopLeft.rawValue, TopMiddle.rawValue, TopRight.rawValue, MiddleLeft.rawValue, Middle.rawValue, MiddleRight.rawValue, BottomLeft.rawValue, BottomMiddle.rawValue, BottomRight.rawValue]
-    
+}
+
+extension BoardPosition {
     
     var isCorner: Bool {
         get {
-            return [0,2,6,8].contains(self.rawValue)
+            return [ TopLeft, TopRight, BottomLeft, BottomRight].contains(self)
         }
     }
-
+    
     var isEdge: Bool {
         get {
-            return [
-                BoardPosition.MiddleLeft,
-                BoardPosition.TopMiddle,
-                BoardPosition.MiddleRight,
-                BoardPosition.BottomMiddle].contains(self)
+            return [ MiddleLeft, TopMiddle, MiddleRight, BottomMiddle].contains(self)
         }
     }
+    
+    var isMiddle: Bool {
+        get {
+            return self == Middle
+        }
+    }
+    
 }
 
 enum BoardMarker {
@@ -37,14 +40,12 @@ enum BoardMarker {
     case Cross
 }
 
-enum TicTacToeBoardError: ErrorType {
+enum BoardError: ErrorType {
     case BoardPositionTaken
     case InvalidMove
 }
 
-typealias Line = [Int]
-
-private let LineCompleteMarkerCount = 3
+typealias Line = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
@@ -52,37 +53,45 @@ struct TicTacToeBoard: GameBoard {
     
     private let lines: [Line]  = {
         
-        var result = [ [Int] ]()
+        var result = [ [BoardPosition] ]()
         
         // Diagonals
-        result.append([0,4,8])
-        result.append([2,4,6])
+        result.append([.TopLeft,.Middle,.BottomRight])
+        result.append([.TopRight,.Middle, .BottomLeft])
         
         // Columns
-        result.append([0,3,6])
-        result.append([1,4,7])
-        result.append([2,5,8])
+        result.append([.TopLeft,.MiddleLeft,.BottomLeft])
+        result.append([.TopMiddle,.Middle,.BottomMiddle])
+        result.append([.TopRight,.MiddleRight,.BottomRight])
         
         // Rows
-        result.append([0,1,2])
-        result.append([3,4,5])
-        result.append([6,7,8])
+        result.append([.TopLeft,.TopMiddle,.TopRight])
+        result.append([.MiddleLeft,.Middle,.MiddleRight])
+        result.append([.BottomLeft,.BottomMiddle,.BottomRight])
         
         return result
         
         
     }()
     
+    
+    //MARK: Game Board
+    
     var lastTurn: BoardPosition?
 
     var markers: [BoardMarker] {
+        
         get {
             return board
         }
+        
     }
+    
+    //MARK: Board Operations
+    
     mutating func takeTurnAtPosition(position:BoardPosition) throws {
 
-        let marker = nextBoardMarker()
+        let marker = nextPlayersMarker()
 
         try checkAddMarker(marker, atPosition: position)
         
@@ -91,44 +100,13 @@ struct TicTacToeBoard: GameBoard {
         board[position.rawValue] = marker
     }
     
-    private func nextBoardMarker() -> BoardMarker {
-        if let lastTurn = lastTurn {
-            switch (board[lastTurn.rawValue]) {
-            case .Cross:
-                return .Nought
-            case .Nought:
-                return .Cross
-            default:
-                return .Nought
-            }
-        } else {
-            return .Nought
-        }
-    }
-    
-    private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
-        guard boardPositionIsEmpty(position) else {
-            throw TicTacToeBoardError.BoardPositionTaken
-        }
-        guard markerIsExpectedNextMarker(marker) else {
-            throw TicTacToeBoardError.InvalidMove
-        }
-    }
-    
-    func boardPositionIsEmpty(position: BoardPosition) -> Bool {
-        return board[position.rawValue] == .None
-    }
-    
-    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
-        guard let lastTurn = lastTurn else { return true }
-        return marker != board[lastTurn.rawValue]
-    }
+    //MARK: Board Checks
     
     func hasCompleteLine() -> Bool{
-        return linesWithCount(LineCompleteMarkerCount).isEmpty == false
+        return linesForContigousMarkerCount(3).isEmpty == false
     }
     
-    func linesWithCount(count: Int) -> [Line] {
+    func linesForContigousMarkerCount(count: Int) -> [Line] {
         
         var result = [Line]()
         
@@ -137,9 +115,9 @@ struct TicTacToeBoard: GameBoard {
             var marker: BoardMarker?
             var contigousMarkerCount = 0
             
-            for index in line {
+            for position in line {
                 
-                let aMarker = board[index]
+                let aMarker = board[position.rawValue]
                 
                 if marker == nil && aMarker != .None {
                     marker = aMarker
@@ -164,5 +142,49 @@ struct TicTacToeBoard: GameBoard {
     func isFull() -> Bool {
         return board.contains(.None) == false
     }
+    
+    func boardPositionIsEmpty(position: BoardPosition) -> Bool {
+        return board[position.rawValue] == .None
+    }
+    
+    //MARK: Private Helpers
+    
+    private func nextPlayersMarker() -> BoardMarker {
+        
+        guard let lastTurn = lastTurn else {
+            return .Nought
+        }
+        
+        let lastPlayersMarker = board[lastTurn.rawValue]
+        
+        switch (lastPlayersMarker) {
+        case .Cross:
+            return .Nought
+        case .Nought:
+            return .Cross
+        default:
+            return .Nought
+        }
+            
+        
+    }
+    
+    private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
+        
+        guard boardPositionIsEmpty(position) else {
+            throw BoardError.BoardPositionTaken
+        }
+        
+        guard markerIsExpectedNextMarker(marker) else {
+            throw BoardError.InvalidMove
+        }
+    }
+    
+    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
+        guard let lastTurn = lastTurn else { return true }
+        return marker != board[lastTurn.rawValue]
+    }
+    
+ 
 
 }

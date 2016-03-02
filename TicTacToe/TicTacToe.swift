@@ -33,7 +33,7 @@ class TicTacToe {
     
     var state = TicTacToePlayerNewGame() as TicTacToeGameState
     var board = TicTacToeBoard()
-    var bot = TicTacToeBot()
+    lazy var bot: TicTacToeBot = { TicTacToeBot() }()
     
     init(view: GameView) {
         

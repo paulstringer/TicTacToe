@@ -38,34 +38,29 @@ extension TicTacToeGameState {
             return
         }
         
-        guard declareVictoryOrStalemate(game) == false else {
-            return
+        if victory(game) {
+            declareVictory(game)
+        } else if stalemate(game) {
+            declareStalemate(game)
+        } else {
+            finishTurn(game)
         }
-        
-        finishTurn(game)
         
     }
     
-    private func declareVictoryOrStalemate(game: TicTacToe) -> Bool {
-        
-        guard false == game.board.hasCompleteLine() else {
-            declareVictory(game)
-            return true
-        }
-        
-        guard false == game.board.isFull() else {
-            declareStalemate(game)
-            return true
-        }
-        
-        return false
-        
+    // MARK: End Game Operations
+    
+    private func victory(game: TicTacToe) -> Bool{
+        return game.board.hasCompleteLine()
+    }
+    
+    private func stalemate(game: TicTacToe) -> Bool{
+        return game.board.isFull()
     }
     
     private func declareStalemate(game: TicTacToe) {
         game.state = TicTacToePlayerStalemate(game: game)
     }
-    
 }
 
 struct TicTacToePlayerStalemate: TicTacToeGameState {
@@ -112,7 +107,7 @@ struct TicTacToePlayerHumanOneAgainstComputer: TicTacToeGameState {
     func finishTurn(game: TicTacToe) {
         let state = TicTacToePlayerComputer()
         game.state = state
-        state.takeBotsTurn(game)
+        state.takeComputersTurn(game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -143,13 +138,12 @@ struct TicTacToePlayerComputer: TicTacToeGameState {
         game.state = TicTacToePlayerHumanOneAgainstComputer(game: game)
     }
     
-    
     func declareVictory(game: TicTacToe) {
         game.view.gameStatus = .ComputerWins
     }
     
-    func takeBotsTurn(game: TicTacToe) {
-
+    func takeComputersTurn(game: TicTacToe) {
+    
         let position = game.bot.nextMove(game.board)
         
         takeTurn(game, position: position)

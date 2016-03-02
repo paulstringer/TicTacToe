@@ -22,23 +22,24 @@ struct TicTacToeBot {
             return .Middle
         }
         
-        if let strategicPosition = emptyPositionForNextWinningLine(board) {
-            return strategicPosition
+        if let position = emptyPositionForNextWinningLine(board) {
+            return position
         }
         
-        if let strategicPosition = bestStrategicMove(board) {
-            return strategicPosition
+        if let position = hint(board) {
+            return position
         }
         
         return board.emptyPositions[0]
         
     }
 
-    private func bestStrategicMove(board: TicTacToeBoard) -> BoardPosition? {
+    private func hint(board: TicTacToeBoard) -> BoardPosition? {
         
         let didCaptureCenterGround = myTurns.contains(.Middle)
         
         for position in board.emptyPositions {
+            
             if didCaptureCenterGround && position.isEdge {
                 return position
             } else if position.isCorner {
@@ -51,13 +52,12 @@ struct TicTacToeBot {
     
     private func emptyPositionForNextWinningLine(board: TicTacToeBoard) -> BoardPosition? {
         
-        let lines = board.linesWithCount(2)
+        let lines = board.linesForContigousMarkerCount(2)
         
         var candidates = [BoardPosition]()
         
         for line in lines {
-            for value in line {
-                let position = BoardPosition(rawValue: value)!
+            for position in line {
                 if board.boardPositionIsEmpty(position) {
                     candidates.append(position)
                 }
