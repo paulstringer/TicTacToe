@@ -10,8 +10,7 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         super.setUp()
         view = GameViewSpy()
         game = TicTacToe(view: view)
-        game.ready()
-        game.gameType = .HumanVersusComputer
+        game.startGame(.HumanVersusComputer)
     }
     
     //MARK:- Humam V Human Tests

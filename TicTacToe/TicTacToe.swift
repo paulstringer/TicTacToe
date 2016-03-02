@@ -46,9 +46,9 @@ enum GameState {
     case Stalemate
 }
 
-struct TicTacToe {
+class TicTacToe {
 
-    private var gamePlayerType: TicTacToeGamePlayerType = TicTacToePlayerNone()
+    private var gamePlayerType: TicTacToeGamePlayerType = TicTacToePlayerNewGame()
     let view: GameView
     var board = TicTacToeBoard()
     private var lastPlayer: TicTacToeGamePlayer {
@@ -57,22 +57,27 @@ struct TicTacToe {
         }
     }
     var bot = TicTacToeBot()
-    var gameType: GameType
+    var gameType: GameType {
+        didSet {
+            gamePlayerType.setGameType(gameType, game: self)
+        }
+    }
     
     init(view: GameView) {
         self.view = view
         self.gameType = .HumanVersusHuman
+        view.gameTypes = [.HumanVersusHuman, .HumanVersusComputer]
+        view.gameBoard = board
     }
     
     //MARK:- Game
     
-    func ready() {
-        view.gameTypes = [.HumanVersusHuman, .HumanVersusComputer]
+    func startGame(type: GameType) {
+        gamePlayerType.setGameType(type, game: self)
         view.gameState = .PlayerOneUp
-        view.gameBoard = board
     }
 
-    mutating func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
+    func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
         
         guard let position = BoardPosition(rawValue: rawValue) else {
             return
@@ -82,7 +87,7 @@ struct TicTacToe {
         
     }
     
-    mutating func takeTurnAtPosition(position: BoardPosition) {
+    func takeTurnAtPosition(position: BoardPosition) {
         
         do {
             try board.takeTurnAtPosition(position)
@@ -101,7 +106,7 @@ struct TicTacToe {
     
     //MARK:- Computer's Strategy
     
-    private mutating func declareVictoryOrStalemateIfGameOver() -> Bool {
+    private func declareVictoryOrStalemateIfGameOver() -> Bool {
     
         guard false == board.hasCompleteLine() else {
             declareVictory()
@@ -117,7 +122,7 @@ struct TicTacToe {
     
     }
     
-    private mutating func takeBotsTurn() {
+    private func takeBotsTurn() {
         
         if let move = gamePlayerType.nextMove(self) {
             takeTurnAtPosition(move)
@@ -128,28 +133,28 @@ struct TicTacToe {
     
     //MARK:- Game State Transitions
     
-    private mutating func incrementPlayer() {
+    private func incrementPlayer() {
         
-        gamePlayerType = gamePlayerType.incrementPlayer(self)
+        gamePlayerType.incrementPlayer(self)
         takeBotsTurn()
         
     }
 
-    private mutating func declareVictory() {
+    private func declareVictory() {
         
         gamePlayerType.declareVictory(self)
-        setGamePlayerType(.None)
+        setGamePlayerType(.NewGame) // <-- State For Game Over
     }
 
-    private mutating func declareStalemate(){
+    private func declareStalemate(){
         
 
         view.gameState = .Stalemate
-        setGamePlayerType(.None)
+        setGamePlayerType(.NewGame) // <-- State For Stalemate
     }
 
     
-    mutating func setGamePlayerType(type: TicTacToeGamePlayer) {
+    func setGamePlayerType(type: TicTacToeGamePlayer) {
         gamePlayerType = newTicTacToeGamePlayerType(type)
     }
 }
