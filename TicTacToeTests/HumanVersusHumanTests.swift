@@ -3,14 +3,13 @@ import XCTest
 
 class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     
-    var view: GameViewSpy!
+    var view: GameView!
     var game: TicTacToe!
     
     override func setUp() {
         super.setUp()
         view = GameViewSpy()
-        game = TicTacToe(view: view)
-        game.newGame(.HumanVersusHuman)
+        newGame(.HumanVersusHuman)
     }
     
     //MARK:- Humam V Human Tests

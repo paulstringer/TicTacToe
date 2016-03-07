@@ -32,6 +32,60 @@ extension BoardPosition {
         }
     }
     
+    var diagonalOpposite: BoardPosition?{
+        
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .BottomRight
+            case .BottomRight:
+                return .TopLeft
+            case .TopRight:
+                return .BottomLeft
+            case .BottomLeft:
+                return .TopRight
+            default:
+                return nil
+            }
+        }
+    }
+    
+    var verticalOppositeCorner: BoardPosition?{
+        
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .BottomLeft
+            case .TopRight:
+                return .BottomRight
+            case .BottomLeft:
+                return .TopLeft
+            case .BottomRight:
+                return .TopRight
+            default:
+                return nil
+            }
+        }
+    }
+    
+    var horizontalOppositeCorner: BoardPosition?{
+        
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .TopRight
+            case .TopRight:
+                return .TopLeft
+            case .BottomLeft:
+                return .BottomRight
+            case .BottomRight:
+                return .BottomLeft
+            default:
+                return nil
+            }
+        }
+    }
+    
 }
 
 enum BoardMarker {
@@ -78,14 +132,7 @@ struct TicTacToeBoard: GameBoard {
     //MARK: Game Board
     
     var lastTurn: BoardPosition?
-
-//    var markers: [BoardMarker] {
-//        
-//        get {
-//            return board
-//        }
-//        
-//    }
+    
     
     //MARK: Board Operations
     

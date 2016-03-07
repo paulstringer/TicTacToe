@@ -5,24 +5,37 @@
 import Foundation
 
 struct TicTacToeBot {
-    
+    private var didTakeFirstTurn = false
     private var myTurns = [BoardPosition]()
     
     mutating func turnTakenAtBoardPosition(position: BoardPosition) {
         myTurns.append(position)
     }
     
-    func nextMove(board: TicTacToeBoard) -> BoardPosition {
+    mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
         
-        guard let lastTurn = board.lastTurn else {
+        guard let _ = board.lastTurn else {
+            didTakeFirstTurn = true
             return .TopLeft
         }
         
-        if lastTurn.isCorner && board.boardPositionIsEmpty(.Middle) {
-            return .Middle
+        if let position = emptyPositionForNextWinningLine(board) {
+            return position
         }
         
-        if let position = emptyPositionForNextWinningLine(board) {
+        if didTakeFirstTurn == true, let position = emptyOppositeCorner(board) {
+            return position
+        }
+        
+        if didTakeFirstTurn == true, let position = emptyCorner(board) {
+            return position
+        }
+        
+        if board.boardPositionIsEmpty(.Middle) {
+            return .Middle
+        }
+    
+        if let position = emptyOppositeCorner(board) {
             return position
         }
         
@@ -48,6 +61,60 @@ struct TicTacToeBot {
         }
         
         return nil
+    }
+    
+    private func emptyCorner(board: TicTacToeBoard) -> BoardPosition? {
+
+        let emptyCorners = board.emptyPositions.filter({ (position) -> Bool in
+            return position.isCorner
+        })
+        
+        if board.emptyPositions.contains(.Middle) == false {
+            return emptyCorners.first
+        }
+        
+        return emptyCorners.first
+    }
+    
+    private func emptyOppositeCorner(board: TicTacToeBoard) -> BoardPosition? {
+        
+        var result: BoardPosition?
+        
+        myTurns.forEach { (turn) -> () in
+            if let opposite = turn.diagonalOpposite {
+                if board.emptyPositions.contains(opposite)  {
+                    result = opposite
+                    return
+                }
+            }
+        }
+        
+        if result == nil {
+        
+            myTurns.forEach { (turn) -> () in
+                if let opposite = turn.horizontalOppositeCorner {
+                    if board.emptyPositions.contains(opposite)  {
+                        result = opposite
+                        return
+                    }
+                }
+            }
+        
+        }
+        
+        if result == nil {
+
+            myTurns.forEach { (turn) -> () in
+                if let opposite = turn.verticalOppositeCorner {
+                    if board.emptyPositions.contains(opposite)  {
+                        result = opposite
+                        return
+                    }
+                }
+            }
+        }
+        
+        return result
     }
     
     private func emptyPositionForNextWinningLine(board: TicTacToeBoard) -> BoardPosition? {
