@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TicTacToeGameState {
+protocol TicTacToeState {
     
     func setGameType(type: GameType, game: TicTacToe)
     
@@ -14,7 +14,7 @@ protocol TicTacToeGameState {
     
 }
 
-extension TicTacToeGameState {
+extension TicTacToeState {
     
     //MARK: No-Op Default Implementations
     
@@ -59,11 +59,11 @@ extension TicTacToeGameState {
     }
     
     private func declareStalemate(game: TicTacToe) {
-        game.state = TicTacToePlayerStalemate(game: game)
+        game.state = TicTacToeStalemate(game: game)
     }
 }
 
-struct TicTacToePlayerStalemate: TicTacToeGameState {
+struct TicTacToeStalemate: TicTacToeState {
     
     init(game: TicTacToe) {
         game.view.gameStatus = .Stalemate
@@ -71,26 +71,26 @@ struct TicTacToePlayerStalemate: TicTacToeGameState {
     
 }
 
-struct TicTacToePlayerNewGame: TicTacToeGameState {
+struct TicTacToeNewGame: TicTacToeState {
     
     func setGameType(type: GameType, game: TicTacToe) {
         switch type {
         case .HumanVersusHuman:
-            game.state = TicTacToePlayerHumanOne(game: game)
+            game.state = TicTacToeHumanOneUp(game: game)
         case .HumanVersusComputer:
-            game.state = TicTacToePlayerHumanOneAgainstComputer(game: game)
+            game.state = TicTacToeHumanOneAgainstComputerUp(game: game)
         }
     }
 }
 
-struct TicTacToePlayerHumanOne: TicTacToeGameState  {
+struct TicTacToeHumanOneUp: TicTacToeState  {
     
     init(game: TicTacToe) {
         game.view.gameStatus = .PlayerOneUp
     }
     
     func finishTurn(game: TicTacToe) {
-        game.state = TicTacToePlayerHumanTwo(game: game)
+        game.state = TicTacToeHumanTwoUp(game: game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -98,14 +98,14 @@ struct TicTacToePlayerHumanOne: TicTacToeGameState  {
     }
 }
 
-struct TicTacToePlayerHumanOneAgainstComputer: TicTacToeGameState {
+struct TicTacToeHumanOneAgainstComputerUp: TicTacToeState {
     
     init(game: TicTacToe) {
         game.view.gameStatus = .PlayerOneUp
     }
     
     func finishTurn(game: TicTacToe) {
-        let state = TicTacToePlayerComputer()
+        let state = TicTacToeComputerUp()
         game.state = state
         state.takeComputersTurn(game)
     }
@@ -116,14 +116,14 @@ struct TicTacToePlayerHumanOneAgainstComputer: TicTacToeGameState {
     
 }
 
-struct TicTacToePlayerHumanTwo: TicTacToeGameState {
+struct TicTacToeHumanTwoUp: TicTacToeState {
     
     init(game: TicTacToe) {
         game.view.gameStatus = .PlayerTwoUp
     }
     
     func finishTurn(game: TicTacToe) {
-        game.state = TicTacToePlayerHumanOne(game: game)
+        game.state = TicTacToeHumanOneUp(game: game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -132,10 +132,10 @@ struct TicTacToePlayerHumanTwo: TicTacToeGameState {
     
 }
 
-struct TicTacToePlayerComputer: TicTacToeGameState {
+struct TicTacToeComputerUp: TicTacToeState {
     
     func finishTurn(game: TicTacToe) {
-        game.state = TicTacToePlayerHumanOneAgainstComputer(game: game)
+        game.state = TicTacToeHumanOneAgainstComputerUp(game: game)
     }
     
     func declareVictory(game: TicTacToe) {

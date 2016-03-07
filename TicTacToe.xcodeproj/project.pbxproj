@@ -26,7 +26,7 @@
 		8C2C19911C7E2AA700A4FA27 /* HumanVersusComputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */; };
 		8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */; };
 		8CB9841E1C85ACB7005BA4F0 /* TicTacToeBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeBot.swift */; };
-		8CB984201C85F0AC005BA4F0 /* TicTacToeGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */; };
+		8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +104,7 @@
 		8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusComputerTests.swift; path = TicTacToeTests/HumanVersusComputerTests.swift; sourceTree = SOURCE_ROOT; };
 		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeTestExtension.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeBot.swift; sourceTree = "<group>"; };
-		8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameState.swift; sourceTree = "<group>"; };
+		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,12 +210,12 @@
 			isa = PBXGroup;
 			children = (
 				8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */,
+				8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */,
 				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
 				8CB9841D1C85ACB7005BA4F0 /* TicTacToeBot.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
 				8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */,
 				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
-				8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 			files = (
 				8C2C198D1C7B3E7200A4FA27 /* TicTacToe.swift in Sources */,
 				8C2C19461C7B389F00A4FA27 /* ViewController.swift in Sources */,
-				8CB984201C85F0AC005BA4F0 /* TicTacToeGameState.swift in Sources */,
+				8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */,
 				8C2C19441C7B389F00A4FA27 /* AppDelegate.swift in Sources */,
 				8C2C198F1C7E085C00A4FA27 /* TicTacToeBoard.swift in Sources */,
 				8CB9841E1C85ACB7005BA4F0 /* TicTacToeBot.swift in Sources */,

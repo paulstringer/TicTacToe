@@ -31,7 +31,7 @@ public class TicTacToe {
 
     internal let view: GameView
     
-    internal var state = TicTacToePlayerNewGame() as TicTacToeGameState
+    internal var state = TicTacToeNewGame() as TicTacToeState
     internal var board = TicTacToeBoard()
     internal lazy var bot: TicTacToeBot = { TicTacToeBot() }()
     
