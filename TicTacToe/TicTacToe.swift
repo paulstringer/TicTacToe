@@ -1,8 +1,13 @@
 import Foundation
 
 enum GameType {
-    case HumanVersusHuman
-    case HumanVersusComputer
+    case HumanVersusHuman, HumanVersusComputer, ComputerVersusHuman
+    
+    static var allValues: [GameType] {
+        get {
+            return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
+        }
+    }
 }
 
 enum GameStatus {
@@ -29,20 +34,21 @@ protocol GameView: class {
 
 public class TicTacToe {
 
-    internal let view: GameView
+    let view: GameView
     
-    internal var state = TicTacToeNewGame() as TicTacToeState
-    internal var board = TicTacToeBoard()
-    internal lazy var bot: TicTacToeBot = { TicTacToeBot() }()
+    
+    var board = TicTacToeBoard()
+    lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
+    lazy var bot: TicTacToeBot = { TicTacToeBot() }()
     
     init(view: GameView) {
         
         self.view = view
         
-        view.gameTypes = [.HumanVersusHuman, .HumanVersusComputer]
+        view.gameTypes = GameType.allValues
     }
     
-    func startGame(type: GameType) {
+    func newGame(type: GameType) {
         
         state.setGameType(type, game: self)
         

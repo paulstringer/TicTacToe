@@ -10,20 +10,26 @@ class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
         super.setUp()
         view = GameViewSpy()
         game = TicTacToe(view: view)
-        game.startGame(.HumanVersusHuman)
+        game.newGame(.HumanVersusHuman)
     }
     
     //MARK:- Humam V Human Tests
-    
-    func testGivenGame_WhenReady_ThenViewsGameTypesNotEmpty() {
-        XCTAssertFalse(view.gameTypes.isEmpty)
-    }
-    
-    func testGivenGame_WhenReady_ThenViewsGameTypesContainsHumanHuman() {
+
+    func testGivenView_WhenTicTacToeInitialised_ThenViewsGameTypesContainsHumanHuman() {
         XCTAssertTrue(view.gameTypes.contains(.HumanVersusHuman))
     }
- 
-    func testGivenGame_WhenTakingTurns_ThenViewsPlayerUpAlternates() {
+    
+    func testGivenView_WhenNewHumanVersusHumanGameStarted_ThenPlayerOneUp() {
+        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+    }
+    
+    func testGivenView_WhenNewHumanVersusHumanGameStarted_ThenLastTurnIsNil() {
+        XCTAssertNil(view.gameBoard.lastTurn)
+    }
+    
+    //MARK:- Humam V Human Turn Order Tests
+    
+    func testGivenView_WhenTakingTurns_ThenViewsPlayerUpAlternates() {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
         game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)

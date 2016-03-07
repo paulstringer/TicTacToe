@@ -10,25 +10,21 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         super.setUp()
         view = GameViewSpy()
         game = TicTacToe(view: view)
-        game.startGame(.HumanVersusComputer)
+        game.newGame(.HumanVersusComputer)
     }
     
-    //MARK:- Humam V Human Tests
+    //MARK:- Human V Human Tests
     
-    func testGivenGame_WhenReady_ThenViewsGameTypesContainsHumanVersusComputer() {
+    func testGivenView_WhenInitialised_ThenViewsGameTypesContainsHumanVersusComputer() {
         XCTAssertTrue(view.gameTypes.contains(.HumanVersusComputer))
     }
     
-    func testGivenGame_WhenReady_ThenPlayerOneUp() {
+    func testGivenView_WhenNewHumanVersusComputerGameStarted_ThenPlayerOneUp() {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
     }
     
-    func testGivenGame_WhenReady_ThenLastTurnIsNil() {
+    func testGivenView_WhenNewHumanVersusComputerGameStarted_ThenLastTurnIsNil() {
         XCTAssertNil(view.gameBoard.lastTurn)
-    }
-    
-    func testGivenGame_WhenReady_ThenPlayerOneIsUp() {
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
     }
     
     //MARK:- Turn taking Tests
