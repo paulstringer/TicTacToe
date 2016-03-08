@@ -41,15 +41,13 @@ public class TicTacToe {
 
     let view: GameView
     
-    
     var board = TicTacToeBoard()
     lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
-    lazy var bot: TicTacToeBot = { TicTacToeHeuristicBot() }()
+    lazy var bot: TicTacToeBot = { TicTacToeMinimaxComputerVersusHumanBot() }()
     
     init(view: GameView) {
         
         self.view = view
-        
         view.gameTypes = GameType.allValues
     }
     

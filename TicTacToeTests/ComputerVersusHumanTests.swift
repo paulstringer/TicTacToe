@@ -65,6 +65,7 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
     
     func testGivenView_WhenHumansSecondTurnBlocksMiddleDiagonal_ThenComputerBlocksBottomMiddle() {
         game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(game.board.lastTurn, .BottomMiddle)
         game.takeTurnAtPosition(.Middle)
         XCTAssertEqual(game.board.lastTurn, .BottomMiddle)
     }
@@ -92,9 +93,9 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
     
     //MARK: Play 100 Random Game Tests
     
-    func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
-        XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
-    }
+//    func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
+//        XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
+//    }
     
     //MARK: More Human Opponent Tests
     

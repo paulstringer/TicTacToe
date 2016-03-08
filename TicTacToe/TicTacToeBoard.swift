@@ -105,7 +105,7 @@ struct TicTacToeBoard: GameBoard {
     
     var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
-    private let lines: [BoardLine]  = {
+    static private let lines: [BoardLine]  = {
         
         var result = [ [BoardPosition] ]()
         
@@ -157,7 +157,7 @@ struct TicTacToeBoard: GameBoard {
         
         var result = [BoardLine]()
         
-        for line in lines {
+        for line in TicTacToeBoard.lines {
             
             var marker: BoardMarker?
             var contigousMarkerCount = 0

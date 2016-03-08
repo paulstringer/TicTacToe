@@ -28,6 +28,7 @@
 		8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
 		8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
 		8CFE59241C8DC14400A38EAB /* ComputerVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */; };
+		8CFE592A1C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeHeuristicBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
 		8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComputerVersusHumanTests.swift; path = TicTacToeTests/ComputerVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
+		8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeMinimaxBot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */,
 				8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */,
 				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
+				8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				8C2C198D1C7B3E7200A4FA27 /* TicTacToe.swift in Sources */,
 				8C2C19461C7B389F00A4FA27 /* ViewController.swift in Sources */,
+				8CFE592A1C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift in Sources */,
 				8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */,
 				8C2C19441C7B389F00A4FA27 /* AppDelegate.swift in Sources */,
 				8C2C198F1C7E085C00A4FA27 /* TicTacToeBoard.swift in Sources */,
