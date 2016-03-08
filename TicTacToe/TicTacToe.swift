@@ -32,6 +32,11 @@ protocol GameView: class {
     var gameBoard: GameBoard! { get set }
 }
 
+protocol TicTacToeBot {
+    mutating func turnTakenAtBoardPosition(position: BoardPosition)
+    mutating func nextMove(board: TicTacToeBoard) -> BoardPosition
+}
+
 public class TicTacToe {
 
     let view: GameView
@@ -39,7 +44,7 @@ public class TicTacToe {
     
     var board = TicTacToeBoard()
     lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
-    lazy var bot: TicTacToeBot = { TicTacToeBot() }()
+    lazy var bot: TicTacToeBot = { TicTacToeHeuristicBot() }()
     
     init(view: GameView) {
         

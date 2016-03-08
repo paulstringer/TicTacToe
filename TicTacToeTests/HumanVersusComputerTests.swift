@@ -157,10 +157,12 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerOneWins)
     }
     
-    //MARK: Play 100 Random Games
+    //MARK: Play 100 Random Game Test
     
     func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
         XCTAssertTrue(playGamesAssertingComputersSuperiority(.HumanVersusComputer))
     }
+    
+
 
 }

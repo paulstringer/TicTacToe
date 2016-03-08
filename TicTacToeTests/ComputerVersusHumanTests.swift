@@ -76,7 +76,7 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
     }
     
-    //MARK:- Perfect Strategic Computer v Human game
+    //MARK:- Perfect Strategic Computer v Human game test
     
     func testGivenView_WhenTakingBestTurns_ThenGameIsStalemate() {
         game.takeTurnAtPosition(.Middle)
@@ -90,9 +90,18 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
     
-    //MARK: Play 100 Random Games
+    //MARK: Play 100 Random Game Tests
     
     func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
         XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
+    }
+    
+    //MARK: More Human Opponent Tests
+    
+    func testGivenView_WhenHumanPlaysEdgeNextToFirstMove_ThenComputerWins(){
+        game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
+        game.takeTurnAtPosition(.MiddleLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomRight)
     }
 }

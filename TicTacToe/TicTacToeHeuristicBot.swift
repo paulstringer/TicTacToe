@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct TicTacToeBot {
+struct TicTacToeHeuristicBot: TicTacToeBot {
     private var didTakeFirstTurn = false
     private var myTurns = [BoardPosition]()
     
@@ -23,7 +23,7 @@ struct TicTacToeBot {
             return position
         }
         
-        if didTakeFirstTurn == true, let position = emptyOppositeCorner(board) {
+        if let position = emptyOppositeCorner(board) {
             return position
         }
         
