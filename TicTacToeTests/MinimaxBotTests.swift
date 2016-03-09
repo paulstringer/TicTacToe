@@ -42,7 +42,6 @@ class GameTreeBotTests: XCTestCase, TicTacToeTestCase {
     }
 
     func testGivenEmptyBoard_WhenComputerVersusHumanGameStarted_ThenComputerTakesTurn() {
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot())
         XCTAssertEqual(view.gameBoard.emptyPositions.count,8)
     }
     
@@ -53,6 +52,14 @@ class GameTreeBotTests: XCTestCase, TicTacToeTestCase {
             .None,.None,.None]
         self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot(), markers: markers)
         XCTAssertEqual(view.gameBoard.emptyPositions.count,6)
+    }
+    
+    //MARK: - Second Move Tests
+    
+    func testGivenView_WhenHumanPlaysEdgeNextToFirstCorner_ThenComputerPlaysOppositeStraightCorner(){
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
     }
     
     //MARK:- End Game Tests

@@ -123,7 +123,7 @@ struct TicTacToeMinimaxBot: TicTacToeBot {
         print("Executing Minimax on Parent Node \(node.position) Depth=\(depth)")
         
         if depth == 0 || node.gameOver {
-            print("--- !!!Reached Leaf (Game Over) with Score \(node.score())!!!")
+            print("--- !!!Reached Leaf (Game Over) with Score \(node.score()) Depth=\(depth)!!!")
             return node.score()
         }
         
