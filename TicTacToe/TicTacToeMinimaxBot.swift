@@ -22,7 +22,6 @@ struct TicTacToeNode {
             case .PlayerOneUp, .PlayerTwoUp:
                 return false
             default:
-                print("Game Over \(gameView.gameStatus)")
                 return true
             }
         }
@@ -48,8 +47,6 @@ struct TicTacToeNode {
             nodes.append(child)
         }
         
-        print("Added \(nodes.count) moves from this position \(position)")
-        
         return nodes
         
     }
@@ -73,19 +70,6 @@ struct TicTacToeNode {
     }
     
     mutating func score() -> Int {
-        
-        // http://www3.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
-        
-        // BASE THE SCORE ON CURRENT BOARD STATE NOT A FINAL GAME STATE
-        
-//        +100 for EACH 3-in-a-line for computer.
-//        +10 for EACH 2-in-a-line (with a empty cell) for computer.
-//        +1 for EACH 1-in-a-line (with two empty cells) for computer.
-//        
-//        if gameView.gameBoard.hasCompleteLine() {
-//            
-//        }
-//        
         switch gameView.gameStatus {
         case .PlayerOneWins:
             return 10
@@ -105,55 +89,53 @@ struct TicTacToeMinimaxBot: TicTacToeBot {
     
     mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
         
-        
-        var move = BoardPosition.TopLeft
-        
         guard board.lastTurn != nil else {
-            return move
+            return .TopLeft
         }
         
-        let rootNode = TicTacToeNode(board: board)
-        let _ = minimax( rootNode, move: &move)
-        return move
+        return bestMove(board)
         
     }
 
-    func minimax(var node: TicTacToeNode, inout move: BoardPosition, maximisePlayer: Bool = false, depth:Int = 9 ) -> Int {
-
-        print("Executing Minimax on Parent Node \(node.position) Depth=\(depth)")
+    func bestMove(board: TicTacToeBoard) -> BoardPosition {
+        var move = BoardPosition.TopLeft
+        let rootNode = TicTacToeNode(board: board)
+        _ = minimax(rootNode, outMove: &move)
+        return move
+        
+    }
+    
+    func minimax(var node: TicTacToeNode, inout outMove move: BoardPosition, maximise: Bool = false, depth:Int = 9 ) -> Int {
         
         if depth == 0 || node.gameOver {
-            print("--- !!!Reached Leaf (Game Over) with Score \(node.score()) Depth=\(depth)!!!")
-            return node.score()
+            let depthScore = (maximise) ? depth * -1 : depth
+            return node.score() + depthScore
         }
         
-        var moves = [TicTacToeNode]()
+        var moves = [BoardPosition]()
         var scores = [Int]()
-        var childIndex = 0
         let children = node.children
-        for (index, child) in children.enumerate() {
-            print("--- Processing Child \(index)/\(node.children.count) node \(node.position) Depth \(depth)")
-            let score = minimax(child, move: &move, maximisePlayer: !maximisePlayer, depth: depth - 1)
-            scores.append(score)
-            moves.append(child)
-            print("--- Score Received for Minimax (Count=\(scores.count)) of Node \(node.position) Depth \(depth))")
-            childIndex++
+        
+        for child in children {
+            let score = minimax(child, outMove: &move, maximise: !maximise, depth: depth - 1)
+            if let position = child.position {
+                scores.append(score)
+                moves.append(position)
+            }
         }
         
-        print("--- Children Exhausted \(childIndex)/\(node.children.count)")
-        
-        if maximisePlayer {
+        if maximise {
             let max = scores.maxElement()!
             let indexOfMove = scores.indexOf(max)!
-            move = moves[indexOfMove].position!
+            move = moves[indexOfMove]
             return max
         } else {
             let min = scores.minElement()!
             let indexOfMove = scores.indexOf(min)!
-            move = moves[indexOfMove].position!
+            move = moves[indexOfMove]
             return min
         }
-        
+
         
     }
 

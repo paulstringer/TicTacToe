@@ -6,9 +6,10 @@ class HeuristicBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
 
     var view: GameView!
     var game: TicTacToe!
+    var bot: TicTacToeBot?
     
     override func setUp() {
-        newGame(.ComputerVersusHuman)
+        newGame(.ComputerVersusHuman, bot: TicTacToeHeuristicBot())
     }
 
     //MARK:- Computer V Human Tests
@@ -97,10 +98,4 @@ class HeuristicBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
         XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
     }
     
-    //MARK: Takes Advantage of Human Opponent Mistakes Tests
-    
-    func testGivenView_WhenHumanMakesMistakePlayingEdgeNextToFirstCorner_ThenComputerPlaysOppositeStraightCorner(){
-        game.takeTurnAtPosition(.TopMiddle)
-        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
-    }
 }

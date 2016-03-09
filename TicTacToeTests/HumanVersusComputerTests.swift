@@ -5,10 +5,11 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
 
     var view: GameView!
     var game: TicTacToe!
+    var bot: TicTacToeBot?
     
     override func setUp() {
         super.setUp()
-        newGame(.HumanVersusComputer)
+        newGame(.HumanVersusComputer,bot: TicTacToeHeuristicBot())
     }
     
     //MARK:- Human V Human Tests
@@ -162,6 +163,4 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
         XCTAssertTrue(playGamesAssertingComputersSuperiority(.HumanVersusComputer))
     }
     
-
-
 }

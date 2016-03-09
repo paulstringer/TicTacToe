@@ -5,6 +5,7 @@ import XCTest
 protocol TicTacToeTestCase: class {
     var view: GameView! { get set }
     var game: TicTacToe! { get set }
+    var bot: TicTacToeBot? { get set }
 }
 
 extension TicTacToeTestCase {
@@ -18,27 +19,30 @@ extension TicTacToeTestCase {
 
     func newGame(type: GameType, bot: TicTacToeBot? = nil, markers: [BoardMarker]? = nil) {
 
-        view = GameViewSpy()
+        self.view = GameViewSpy()
+        self.bot = bot
+        
+        setUpGame(markers)
+        
+        game.newGame(type)
+    }
+
+    private func setUpGame(markers: [BoardMarker]?) {
         
         if let markers = markers {
             let board = TicTacToeBoard(board:markers)
-            game = TicTacToe(view: view, board: board)
+            self.game = TicTacToe(view: view, board: board)
         } else {
-            game = TicTacToe(view: view)
+            self.game = TicTacToe(view: view)
         }
-
         
-        if let bot = bot {
+        
+        if let bot = self.bot {
             game.bot = bot
         }
-
-     
-        
-        game.newGame(type)
-     
         
     }
-
+    
     func playGamesAssertingComputersSuperiority(type: GameType) -> Bool {
         
         var computerWinCount = 0
@@ -68,7 +72,7 @@ extension TicTacToeTestCase {
             XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerOneWins)
             XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerTwoWins)
             
-            newGame(type)
+            newGame(type, bot: self.bot)
         }
         
         print("Played \(gameCount) Games with \(computerWinCount) Computer Wins, \(stalemateCount) Stalemates, Humans Wins=\(humanWinCount) (0 expected)")

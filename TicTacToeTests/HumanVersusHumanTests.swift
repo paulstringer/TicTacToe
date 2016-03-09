@@ -5,6 +5,7 @@ class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     
     var view: GameView!
     var game: TicTacToe!
+    var bot: TicTacToeBot?
     
     override func setUp() {
         super.setUp()
