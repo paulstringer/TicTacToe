@@ -81,7 +81,7 @@ struct TicTacToeNode {
     }
 }
 
-struct TicTacToeMinimaxBot: TicTacToeBot {
+struct TicTacToeGameTreeBot: TicTacToeBot {
 
     mutating func turnTakenAtBoardPosition(position: BoardPosition) {
         // NOTHING TO DO
