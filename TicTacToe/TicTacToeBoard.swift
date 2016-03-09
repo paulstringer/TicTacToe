@@ -103,7 +103,7 @@ typealias BoardLine = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
-    var board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    var board: [BoardMarker]
     
     static private let lines: [BoardLine]  = {
         
@@ -128,6 +128,10 @@ struct TicTacToeBoard: GameBoard {
         
     }()
     
+    init(board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]) {
+        self.board = board
+        self.lastTurn = lastPlayersBoardPosition()
+    }
     
     //MARK: Game Board
     
@@ -147,7 +151,7 @@ struct TicTacToeBoard: GameBoard {
         board[position.rawValue] = marker
     }
     
-    //MARK: Board Checks
+    //MARK: Board Analysis
     
     func hasCompleteLine() -> Bool{
         return linesForContigousMarkerCount(3).isEmpty == false
@@ -194,26 +198,32 @@ struct TicTacToeBoard: GameBoard {
         return board[position.rawValue] == .None
     }
     
+    func lastPlayersBoardPosition() -> BoardPosition? {
+        
+        let nextMarker = nextPlayersMarker()
+        var lastMarker: BoardMarker?
+        
+        switch nextMarker {
+        case .Nought:
+            lastMarker = .Cross
+        case .Cross:
+            lastMarker = .Nought
+        case .None:
+            lastMarker = nil
+        }
+        
+        if let lastMarker = lastMarker, indexOfLastMarker = board.indexOf(lastMarker) {
+            return BoardPosition(rawValue: indexOfLastMarker)!
+        } else {
+            return nil
+        }
+    }
+    
     //MARK: Private Helpers
     
     private func nextPlayersMarker() -> BoardMarker {
-        
-        guard let lastTurn = lastTurn else {
-            return .Nought
-        }
-        
-        let lastPlayersMarker = board[lastTurn.rawValue]
-        
-        switch (lastPlayersMarker) {
-        case .Cross:
-            return .Nought
-        case .Nought:
-            return .Cross
-        default:
-            return .Nought
-        }
-            
-        
+        let even = emptyPositions.count % 2  == 0
+        return even ? .Nought : .Cross
     }
     
     private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {

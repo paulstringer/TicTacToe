@@ -93,13 +93,22 @@ struct TicTacToeNewGame: TicTacToeState {
     }
     
     func setGameType(type: GameType, game: TicTacToe) {
+        
+        let odd = game.board.emptyPositions.count % 2 == 1
+        
         switch type {
         case .HumanVersusHuman:
             TicTacToeHumanOneUp.performTransition(game)
-        case .HumanVersusComputer:
+        case .HumanVersusComputer where odd:
             TicTacToeHumanOneAgainstComputerUp.performTransition(game)
-        case .ComputerVersusHuman:
+        case .ComputerVersusHuman where odd:
             TicTacToeComputerUp.performTransition(game)
+        case .HumanVersusComputer where !odd:
+            TicTacToeComputerUp.performTransition(game)
+        case .ComputerVersusHuman where !odd:
+            TicTacToeHumanOneAgainstComputerUp.performTransition(game)
+        default:
+            break
         }
     }
 }
@@ -142,7 +151,7 @@ struct TicTacToeHumanOneAgainstComputerUp: TicTacToeState {
     }
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameStatus = .ComputerWins
+        game.view.gameStatus = .ComputerWins // Looks like a bug?
     }
     
 }
@@ -174,6 +183,7 @@ struct TicTacToeHumanTwoUp: TicTacToeState {
 struct TicTacToeComputerUp: TicTacToeState {
     
     static func performTransition(game: TicTacToe) {
+        
         let computer = TicTacToeComputerUp()
         computer.takeComputersTurn(game)
     }
@@ -187,7 +197,7 @@ struct TicTacToeComputerUp: TicTacToeState {
     }
     
     func takeComputersTurn(game: TicTacToe) {
-    
+        
         let position = game.bot.nextMove(game.board)
         
         takeTurn(game, position: position)
@@ -195,6 +205,7 @@ struct TicTacToeComputerUp: TicTacToeState {
         game.bot.turnTakenAtBoardPosition(position)
         
     }
+    
 }
 
 //MARK: BoardView Extension

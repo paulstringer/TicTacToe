@@ -22,6 +22,7 @@ struct TicTacToeNode {
             case .PlayerOneUp, .PlayerTwoUp:
                 return false
             default:
+                print("Game Over \(gameView.gameStatus)")
                 return true
             }
         }
@@ -55,24 +56,15 @@ struct TicTacToeNode {
     
     func runGame() -> GameView {
         
+        // Create a new game at the current position
         let view = TicTacToeNodeGameView()
-        let game = TicTacToe(view: view)
+        let board = TicTacToeBoard(board: gameBoard.board)
+        let game = TicTacToe(view: view, board: board)
         
-        // Start a new game that allows us to take each turn
+        // Play the Game Manually
         game.newGame(.HumanVersusHuman)
         
-        // Play all the positions on the board
-        let allMarkedPositions = gameBoard.board
-        for (index, marker) in allMarkedPositions.enumerate() {
-            switch marker {
-            case .None:
-                break
-            default:
-                game.takeTurnAtPosition(index)
-            }
-        }
-        
-        // Play position for this nodes (except where it is the first)
+        // Play position for this nodes (except where it is root first)
         if let position = position {
             game.takeTurnAtPosition(position)
         }
@@ -112,6 +104,7 @@ struct TicTacToeMinimaxBot: TicTacToeBot {
     }
     
     mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
+        
         
         var move = BoardPosition.TopLeft
         

@@ -40,6 +40,58 @@ class GameTreeBotTests: XCTestCase, TicTacToeTestCase {
     func testGivenView_WhenBotTakesFirstTurn_FirstTurnEqualsCorner() {
         XCTAssertTrue(view.gameBoard.lastTurn!.isCorner)
     }
+
+    func testGivenEmptyBoard_WhenComputerVersusHumanGameStarted_ThenComputerTakesTurn() {
+        self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot())
+        XCTAssertEqual(view.gameBoard.emptyPositions.count,8)
+    }
     
+    func testGivenBoardWithOddNumberOfMarkers_WhenComputerVersusHumanGameStarted_ThenComputerDoesNotTakeTurn() {
+        let markers: [BoardMarker] = [
+            .Nought,.Cross,.Cross,
+            .None,.None,.None,
+            .None,.None,.None]
+        self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot(), markers: markers)
+        XCTAssertEqual(view.gameBoard.emptyPositions.count,6)
+    }
+    
+    //MARK:- End Game Tests
+    
+    func testGivenTieOrWinBoardMoves_WhenBotTakesTurn_ThenTurnTakenIsWinMove() {
+        let markers: [BoardMarker] = [
+            .Nought,.Nought,.Cross,
+            .None,.Cross,.None,
+            .Nought,.Cross,.None]
+        
+        self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot(), markers: markers)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
+
+    }
+    
+    func testGivenTieOrWinBoard_WhenHumanDoesntBlock_ThenComputerWins() {
+        let markers: [BoardMarker] = [
+            .Nought,.Nought,.Cross,
+            .Cross,.Cross,.None,
+            .Nought,.Cross,.None]
+        
+        newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot(), markers: markers)
+        game.takeTurnAtPosition(.BottomRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+
+    }
+    
+    func testGivenTieOrWinBoardMoves_WhenBotTakesTurnAndHumanBlocks_ThenStalemate() {
+        let markers: [BoardMarker] = [
+            .Nought,.Nought,.Cross,
+            .None,.Cross,.None,
+            .Nought,.Cross,.None]
+        
+        self.newGame(.ComputerVersusHuman, bot: TicTacToeMinimaxBot(), markers: markers)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
+        game.takeTurnAtPosition(.MiddleRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
+        
+    }
 
 }

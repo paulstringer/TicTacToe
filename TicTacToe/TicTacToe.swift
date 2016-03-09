@@ -45,9 +45,10 @@ public class TicTacToe {
     lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
     lazy var bot: TicTacToeBot = { TicTacToeHeuristicBot() }()
     
-    init(view: GameView) {
+    init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
         
         self.view = view
+        self.board = board
         view.gameTypes = GameType.allValues
     }
     
@@ -56,6 +57,7 @@ public class TicTacToe {
         state.setGameType(type, game: self)
         
         view.gameBoard = board
+        
     }
 
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {

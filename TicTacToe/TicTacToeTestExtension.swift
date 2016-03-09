@@ -16,11 +16,27 @@ extension TicTacToeTestCase {
         }
     }
 
-    func newGame(type: GameType, bot: TicTacToeBot = TicTacToeHeuristicBot()) {
+    func newGame(type: GameType, bot: TicTacToeBot? = nil, markers: [BoardMarker]? = nil) {
+
         view = GameViewSpy()
-        game = TicTacToe(view: view)
-        game.bot = bot
+        
+        if let markers = markers {
+            let board = TicTacToeBoard(board:markers)
+            game = TicTacToe(view: view, board: board)
+        } else {
+            game = TicTacToe(view: view)
+        }
+
+        
+        if let bot = bot {
+            game.bot = bot
+        }
+
+     
+        
         game.newGame(type)
+     
+        
     }
 
     func playGamesAssertingComputersSuperiority(type: GameType) -> Bool {
