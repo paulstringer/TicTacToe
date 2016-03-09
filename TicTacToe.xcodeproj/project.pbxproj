@@ -28,6 +28,7 @@
 		8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
 		8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
 		8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */; };
+		8CF851801C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */; };
 		8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */; };
 		8CFE592A1C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift */; };
 /* End PBXBuildFile section */
@@ -109,6 +110,7 @@
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeHeuristicBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
 		8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTreeBotVersusHumanTests.swift; path = TicTacToeTests/GameTreeBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
+		8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusGameTreeBotTests.swift; path = TicTacToeTests/HumanVersusGameTreeBotTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeuristicBotVersusHumanTests.swift; path = TicTacToeTests/HeuristicBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59291C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameTreeBot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,6 +252,7 @@
 				8CFE59291C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift */,
 				8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */,
 				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
+				8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */,
 			);
 			name = "Tic Tac Toe Game Bots";
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */,
 				8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */,
 				8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */,
+				8CF851801C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift in Sources */,
 				8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

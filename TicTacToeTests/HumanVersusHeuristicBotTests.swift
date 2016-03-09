@@ -12,7 +12,7 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
         newGame(.HumanVersusComputer,bot: TicTacToeHeuristicBot())
     }
     
-    //MARK:- Human V Human Tests
+    //MARK:- Human V Computer Basic Setup Tests
     
     func testGivenView_WhenInitialised_ThenViewsGameTypesContainsHumanVersusComputer() {
         XCTAssertTrue(view.gameTypes.contains(.HumanVersusComputer))
