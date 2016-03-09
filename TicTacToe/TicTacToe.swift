@@ -43,7 +43,7 @@ public class TicTacToe {
     
     var board = TicTacToeBoard()
     lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
-    lazy var bot: TicTacToeBot = { TicTacToeMinimaxComputerVersusHumanBot() }()
+    lazy var bot: TicTacToeBot = { TicTacToeHeuristicBot() }()
     
     init(view: GameView) {
         

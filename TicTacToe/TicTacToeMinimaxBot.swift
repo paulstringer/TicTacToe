@@ -8,7 +8,11 @@ class TicTacToeNodeGameView: GameView {
 
 struct TicTacToeNode {
     
-    lazy var children: [TicTacToeNode] = self.generateChildren()
+    lazy var children: [TicTacToeNode] = {
+     
+        self.generateChildren()
+        
+    }()
 
     let position: BoardPosition?
     
@@ -36,12 +40,14 @@ struct TicTacToeNode {
         var nodes = [TicTacToeNode]()
         let board = gameView.gameBoard
         let remainingMoves = board.emptyPositions
-        
+
         // Generate Children for each remaining move
         for move in remainingMoves {
             let child = TicTacToeNode(board: board, move: move)
             nodes.append(child)
         }
+        
+        print("Added \(nodes.count) moves from this position \(position)")
         
         return nodes
         
@@ -76,6 +82,18 @@ struct TicTacToeNode {
     
     mutating func score() -> Int {
         
+        // http://www3.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
+        
+        // BASE THE SCORE ON CURRENT BOARD STATE NOT A FINAL GAME STATE
+        
+//        +100 for EACH 3-in-a-line for computer.
+//        +10 for EACH 2-in-a-line (with a empty cell) for computer.
+//        +1 for EACH 1-in-a-line (with two empty cells) for computer.
+//        
+//        if gameView.gameBoard.hasCompleteLine() {
+//            
+//        }
+//        
         switch gameView.gameStatus {
         case .PlayerOneWins:
             return 10
@@ -87,55 +105,61 @@ struct TicTacToeNode {
     }
 }
 
-struct TicTacToeMinimaxComputerVersusHumanBot: TicTacToeBot {
+struct TicTacToeMinimaxBot: TicTacToeBot {
 
     mutating func turnTakenAtBoardPosition(position: BoardPosition) {
         // NOTHING TO DO
     }
     
     mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
-        // TODO:
-        var moves = [ (TicTacToeNode, Int) ]()
-        var stop = false
+        
+        var move = BoardPosition.TopLeft
+        
+        guard board.lastTurn != nil else {
+            return move
+        }
+        
         let rootNode = TicTacToeNode(board: board)
-        let _ = negamax( rootNode, moves: &moves, stop: &stop )
-        
-        moves.sortInPlace { (lhs, rhs) -> Bool in
-            let (_, lhsScore) = lhs
-            let (_, rhsScore) = lhs
-            return lhsScore > rhsScore
-        }
-        
-
-        if let (node, _) = moves.first {
-            return node.position!
-        } else {
-            fatalError()
-        }
+        let _ = minimax( rootNode, move: &move)
+        return move
         
     }
 
-    func negamax(var node: TicTacToeNode, inout moves: [(TicTacToeNode, Int)], inout stop: Bool ) -> Int {
+    func minimax(var node: TicTacToeNode, inout move: BoardPosition, maximisePlayer: Bool = false, depth:Int = 9 ) -> Int {
 
-        if node.gameOver {
-            if node.gameView.gameStatus == .PlayerOneWins {
-                stop = true
-            }
+        print("Executing Minimax on Parent Node \(node.position) Depth=\(depth)")
+        
+        if depth == 0 || node.gameOver {
+            print("--- !!!Reached Leaf (Game Over) with Score \(node.score())!!!")
             return node.score()
         }
         
-        var bestValue = Int(INT_FAST16_MIN)
-        
-        for child in node.children {
-            let v = -negamax(child, moves: &moves, stop: &stop)
-            bestValue = max(bestValue, v)
-            moves.append( (child, bestValue) )
-            if stop {
-                break
-            }
+        var moves = [TicTacToeNode]()
+        var scores = [Int]()
+        var childIndex = 0
+        let children = node.children
+        for (index, child) in children.enumerate() {
+            print("--- Processing Child \(index)/\(node.children.count) node \(node.position) Depth \(depth)")
+            let score = minimax(child, move: &move, maximisePlayer: !maximisePlayer, depth: depth - 1)
+            scores.append(score)
+            moves.append(child)
+            print("--- Score Received for Minimax (Count=\(scores.count)) of Node \(node.position) Depth \(depth))")
+            childIndex++
         }
         
-        return bestValue
+        print("--- Children Exhausted \(childIndex)/\(node.children.count)")
+        
+        if maximisePlayer {
+            let max = scores.maxElement()!
+            let indexOfMove = scores.indexOf(max)!
+            move = moves[indexOfMove].position!
+            return max
+        } else {
+            let min = scores.minElement()!
+            let indexOfMove = scores.indexOf(min)!
+            move = moves[indexOfMove].position!
+            return min
+        }
         
         
     }

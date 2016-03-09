@@ -27,7 +27,8 @@
 		8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */; };
 		8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
 		8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
-		8CFE59241C8DC14400A38EAB /* ComputerVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */; };
+		8CF8517B1C902C200030AAA0 /* MinimaxBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517A1C902C200030AAA0 /* MinimaxBotTests.swift */; };
+		8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */; };
 		8CFE592A1C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +108,8 @@
 		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeTestExtension.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeHeuristicBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
-		8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComputerVersusHumanTests.swift; path = TicTacToeTests/ComputerVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
+		8CF8517A1C902C200030AAA0 /* MinimaxBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimaxBotTests.swift; path = TicTacToeTests/MinimaxBotTests.swift; sourceTree = SOURCE_ROOT; };
+		8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeuristicBotVersusHumanTests.swift; path = TicTacToeTests/HeuristicBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeMinimaxBot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,9 +221,10 @@
 				8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
 				8C2C19901C7E2AA700A4FA27 /* HumanVersusComputerTests.swift */,
-				8CFE59231C8DC14400A38EAB /* ComputerVersusHumanTests.swift */,
+				8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */,
 				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
 				8CFE59291C8ECF2900A38EAB /* TicTacToeMinimaxBot.swift */,
+				8CF8517A1C902C200030AAA0 /* MinimaxBotTests.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -405,7 +408,8 @@
 				8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */,
 				8C2C19911C7E2AA700A4FA27 /* HumanVersusComputerTests.swift in Sources */,
 				8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */,
-				8CFE59241C8DC14400A38EAB /* ComputerVersusHumanTests.swift in Sources */,
+				8CF8517B1C902C200030AAA0 /* MinimaxBotTests.swift in Sources */,
+				8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */,
 				8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

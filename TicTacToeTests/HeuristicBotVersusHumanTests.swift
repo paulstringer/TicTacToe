@@ -1,13 +1,13 @@
 import XCTest
 
 @testable import TicTacToe
-class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
+
+class HeuristicBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
 
     var view: GameView!
     var game: TicTacToe!
     
     override func setUp() {
-        view = GameViewSpy()
         newGame(.ComputerVersusHuman)
     }
 
@@ -65,7 +65,7 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
     
     func testGivenView_WhenHumansSecondTurnBlocksMiddleDiagonal_ThenComputerBlocksBottomMiddle() {
         game.takeTurnAtPosition(.TopMiddle)
-        XCTAssertEqual(game.board.lastTurn, .BottomMiddle)
+        XCTAssertEqual(game.board.lastTurn, .BottomRight)
         game.takeTurnAtPosition(.Middle)
         XCTAssertEqual(game.board.lastTurn, .BottomMiddle)
     }
@@ -93,16 +93,14 @@ class ComputerVersusHumanTests: XCTestCase, TicTacToeTestCase {
     
     //MARK: Play 100 Random Game Tests
     
-//    func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
-//        XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
-//    }
+    func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
+        XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
+    }
     
-    //MARK: More Human Opponent Tests
+    //MARK: Takes Advantage of Human Opponent Mistakes Tests
     
-    func testGivenView_WhenHumanPlaysEdgeNextToFirstMove_ThenComputerWins(){
+    func testGivenView_WhenHumanMakesMistakePlayingEdgeNextToFirstCorner_ThenComputerPlaysOppositeStraightCorner(){
         game.takeTurnAtPosition(.TopMiddle)
         XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
-        game.takeTurnAtPosition(.MiddleLeft)
-        XCTAssertEqual(view.gameBoard.lastTurn, .BottomRight)
     }
 }

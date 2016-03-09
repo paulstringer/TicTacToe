@@ -8,7 +8,6 @@ class HumanVersusComputerTests: XCTestCase, TicTacToeTestCase {
     
     override func setUp() {
         super.setUp()
-        view = GameViewSpy()
         newGame(.HumanVersusComputer)
     }
     

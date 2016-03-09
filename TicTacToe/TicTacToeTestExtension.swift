@@ -16,8 +16,10 @@ extension TicTacToeTestCase {
         }
     }
 
-    func newGame(type: GameType) {
+    func newGame(type: GameType, bot: TicTacToeBot = TicTacToeHeuristicBot()) {
+        view = GameViewSpy()
         game = TicTacToe(view: view)
+        game.bot = bot
         game.newGame(type)
     }
 
