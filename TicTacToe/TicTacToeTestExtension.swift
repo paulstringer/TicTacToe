@@ -5,29 +5,22 @@ import XCTest
 protocol TicTacToeTestCase: class {
     var view: GameView! { get set }
     var game: TicTacToe! { get set }
-    var bot: TicTacToeBot? { get set }
+    var bot: TicTacToeBot? { get }
+    var type: GameType! { get }
 }
 
 extension TicTacToeTestCase {
-    
-    func takeTurnsAtPositions(positions: [BoardPosition.RawValue]) {
-        
-        for position in positions {
-            game.takeTurnAtPosition(position)
-        }
-    }
 
-    func newGame(type: GameType, bot: TicTacToeBot? = nil, markers: [BoardMarker]? = nil) {
+    func setUpGame(markers: [BoardMarker]? = nil) {
 
         self.view = GameViewSpy()
-        self.bot = bot
         
-        setUpGame(markers)
+        prepareGame(markers)
         
         game.newGame(type)
     }
 
-    private func setUpGame(markers: [BoardMarker]?) {
+    private func prepareGame(markers: [BoardMarker]?) {
         
         if let markers = markers {
             let board = TicTacToeBoard(board:markers)
@@ -72,7 +65,7 @@ extension TicTacToeTestCase {
             XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerOneWins)
             XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerTwoWins)
             
-            newGame(type, bot: self.bot)
+            setUpGame()
         }
         
         print("Played \(gameCount) Games with \(computerWinCount) Computer Wins, \(stalemateCount) Stalemates, Humans Wins=\(humanWinCount) (0 expected)")

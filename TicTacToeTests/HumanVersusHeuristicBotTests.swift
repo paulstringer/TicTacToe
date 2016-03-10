@@ -6,10 +6,13 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
     var view: GameView!
     var game: TicTacToe!
     var bot: TicTacToeBot?
+    var type: GameType!
     
     override func setUp() {
         super.setUp()
-        newGame(.HumanVersusComputer,bot: TicTacToeHeuristicBot())
+        bot = TicTacToeHeuristicBot()
+        type = .HumanVersusComputer
+        setUpGame()
     }
     
     //MARK:- Human V Computer Basic Setup Tests
@@ -29,7 +32,7 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
     //MARK:- Turn taking Tests
     
     func testGivenGame_WhenTakingTurn_ThenPlayerOneIsUp() {
-        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
     }
     

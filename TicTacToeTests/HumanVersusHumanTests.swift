@@ -6,10 +6,12 @@ class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     var view: GameView!
     var game: TicTacToe!
     var bot: TicTacToeBot?
+    var type: GameType!
     
     override func setUp() {
         super.setUp()
-        newGame(.HumanVersusHuman)
+        type = .HumanVersusHuman
+        setUpGame()
     }
     
     //MARK:- Humam V Human Tests
@@ -278,19 +280,44 @@ class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     //MARK: Stalemate Tests
     
     func testGivenGame_WhenPlayersReachStalemate_ThenIsStalemate() {
-        takeTurnsAtPositions([0,1,2,3,4,6,5,8,7])
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(5)
+        game.takeTurnAtPosition(8)
+        game.takeTurnAtPosition(7)
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
         
     }
     
     func testGivenGame_WhenPlayersReachAnotherStalemate_ThenIsStalemate() {
-        takeTurnsAtPositions([0,2,1,3,5,4,6,7,8])
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(5)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(7)
+        game.takeTurnAtPosition(8)
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
         
     }
     
     func testGivenGame_WhenStalemateAndPlayerOneTrysToCheat_ThenIsStalemate() {
-        takeTurnsAtPositions([0,2,1,3,5,4,6,7,8])
+        game.takeTurnAtPosition(0)
+        game.takeTurnAtPosition(2)
+        game.takeTurnAtPosition(1)
+        game.takeTurnAtPosition(3)
+        game.takeTurnAtPosition(5)
+        game.takeTurnAtPosition(4)
+        game.takeTurnAtPosition(6)
+        game.takeTurnAtPosition(7)
+        game.takeTurnAtPosition(8)
+        
         game.takeTurnAtPosition(2)
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
         

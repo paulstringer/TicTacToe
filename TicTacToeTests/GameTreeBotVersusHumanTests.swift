@@ -6,17 +6,20 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
     var view: GameView!
     var game: TicTacToe!
     var bot: TicTacToeBot?
+    var type: GameType!
     
     override func setUp() {
         super.setUp()
-        newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot())
+        bot = TicTacToeGameTreeBot()
+        type = .ComputerVersusHuman
+        setUpGame()
     }
     
     // MARK:- Performance Tests (keep the bot fast)
     
     func testGivenMeasureBlock_WhenBotTakesFirstTurn_MeasureBotPerformance() {
         measureBlock { () -> Void in
-            self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot())
+            self.setUpGame()
         }
     }
     
@@ -43,7 +46,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Nought,.Cross,.Cross,
             .None,.None,.None,
             .None,.None,.None]
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         XCTAssertEqual(view.gameBoard.emptyPositions.count,6)
     }
     
@@ -64,7 +67,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Cross,.None,.None,
             .Nought,.None,.None]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
     }
     
@@ -74,7 +77,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Cross,.Cross,.None,
             .Nought,.None,.None]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
             game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .BottomRight)
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
@@ -86,7 +89,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Cross,.Cross,.None,
             .Nought,.None,.None]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         game.takeTurnAtPosition(.BottomRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
@@ -100,7 +103,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .None,.Cross,.None,
             .Nought,.Cross,.None]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
 
     }
@@ -111,7 +114,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Cross,.Cross,.None,
             .Nought,.Cross,.None]
         
-        newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         game.takeTurnAtPosition(.BottomRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
@@ -124,7 +127,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .None,.Cross,.None,
             .Nought,.Cross,.None]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
         game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
@@ -137,7 +140,7 @@ class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
             .Cross,.None,.None,
             .Cross,.Nought,.Nought]
         
-        self.newGame(.ComputerVersusHuman, bot: TicTacToeGameTreeBot(), markers: markers)
+        setUpGame(markers)
         XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
         
