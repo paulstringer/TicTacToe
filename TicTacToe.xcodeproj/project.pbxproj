@@ -32,6 +32,7 @@
 		8CE999071C918AFA0003F170 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
 		8CE999081C918AFA0003F170 /* TicTacToeGameTreeBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift */; };
 		8CE9990B1C9191CD0003F170 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE999091C9191CD0003F170 /* Interface.storyboard */; };
+		8CE9990D1C9197250003F170 /* BoardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9990C1C9197250003F170 /* BoardInterfaceController.swift */; };
 		8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */; };
 		8CF851801C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */; };
 		8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */; };
@@ -114,6 +115,7 @@
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeHeuristicBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
 		8CE9990A1C9191CD0003F170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		8CE9990C1C9197250003F170 /* BoardInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardInterfaceController.swift; sourceTree = "<group>"; };
 		8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTreeBotVersusHumanTests.swift; path = TicTacToeTests/GameTreeBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusGameTreeBotTests.swift; path = TicTacToeTests/HumanVersusGameTreeBotTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeuristicBotVersusHumanTests.swift; path = TicTacToeTests/HeuristicBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2C19711C7B389F00A4FA27 /* InterfaceController.swift */,
+				8CE9990C1C9197250003F170 /* BoardInterfaceController.swift */,
 				8C2C19731C7B389F00A4FA27 /* ExtensionDelegate.swift */,
 				8C2C19751C7B389F00A4FA27 /* Assets.xcassets */,
 				8C2C19771C7B389F00A4FA27 /* Info.plist */,
@@ -458,6 +461,7 @@
 				8CE999071C918AFA0003F170 /* TicTacToeHeuristicBot.swift in Sources */,
 				8CE999011C918AD30003F170 /* TicTacToe.swift in Sources */,
 				8CE999081C918AFA0003F170 /* TicTacToeGameTreeBot.swift in Sources */,
+				8CE9990D1C9197250003F170 /* BoardInterfaceController.swift in Sources */,
 				8C2C19721C7B389F00A4FA27 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,10 +28,79 @@
             </objects>
             <point key="canvasLocation" x="186" y="658"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Board Interface Controller-->
         <scene sceneID="Uek-0z-zxM">
             <objects>
-                <controller id="eq8-p5-c0S"/>
+                <controller id="eq8-p5-c0S" customClass="BoardInterfaceController" customModule="TicTacToe_WatchKit_Extension">
+                    <items>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Q61-Xs-CWF" userLabel="Board">
+                            <items>
+                                <group width="1" alignment="left" id="k8X-Ba-Ax0" userLabel="Top">
+                                    <items>
+                                        <button width="43" height="43" alignment="left" title="Button" id="AE5-p5-JsR">
+                                            <connections>
+                                                <action selector="topLeftAction" destination="eq8-p5-c0S" id="ZaT-Uu-aB4"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="sdj-mN-O3T">
+                                            <connections>
+                                                <action selector="topMiddleAction" destination="eq8-p5-c0S" id="dVn-qA-DlZ"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="zFr-e0-vqc">
+                                            <connections>
+                                                <action selector="topRightAction" destination="eq8-p5-c0S" id="Ynr-j3-9ci"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <separator alignment="left" id="ZeW-AZ-aeM"/>
+                                <group width="1" alignment="left" id="EIa-Qv-nem" userLabel="Middle">
+                                    <items>
+                                        <button width="43" height="43" alignment="left" title="Button" id="PwC-Xn-Yl3">
+                                            <connections>
+                                                <action selector="middleLeftAction" destination="eq8-p5-c0S" id="FK1-z0-ih2"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="AhK-cK-LQ2">
+                                            <connections>
+                                                <action selector="middleAction" destination="eq8-p5-c0S" id="2qs-Ez-G6D"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="4gc-7z-ozx">
+                                            <connections>
+                                                <action selector="middleRightAction" destination="eq8-p5-c0S" id="XaD-Hj-Eta"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <separator alignment="left" id="ody-nr-SfQ"/>
+                                <group width="1" alignment="left" id="6VO-xC-OXG" userLabel="Bottom">
+                                    <items>
+                                        <button width="43" height="43" alignment="left" title="Button" id="QgO-IY-w77">
+                                            <connections>
+                                                <action selector="bottomLeftAction" destination="eq8-p5-c0S" id="V1D-Gh-EDK"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="YcU-qN-tKM">
+                                            <connections>
+                                                <action selector="bottomMiddleAction" destination="eq8-p5-c0S" id="VIe-3X-gXO"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43" height="43" alignment="left" title="Button" id="fan-E2-AgJ">
+                                            <connections>
+                                                <action selector="bottomRightAction" destination="eq8-p5-c0S" id="7jq-6q-5DY"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="board" destination="Q61-Xs-CWF" id="aQU-EX-rgp"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="428" y="658"/>
         </scene>

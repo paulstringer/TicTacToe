@@ -45,7 +45,7 @@ class InterfaceController: WKInterfaceController, GameView {
         return game
     }
     
-    //MARK:- Game Interface
+    //MARK:- Game Picker Interface
     
     func configureNewGamePicker() {
         let items = gameTypes.map { (type) -> WKPickerItem in
@@ -61,7 +61,6 @@ class InterfaceController: WKInterfaceController, GameView {
     }
     
     @IBAction func pickerAction(value: Int) {
-        print("Selected Game Type \(value)")
         selectedGameType = gameTypes[value]
     }
     
