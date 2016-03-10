@@ -1,31 +1,68 @@
-//
-//  InterfaceController.swift
-//  TicTacToe WatchKit Extension
-//
-//  Created by Paul Stringer on 22/02/2016.
-//  Copyright © 2016 stringerstheory. All rights reserved.
-//
-
 import WatchKit
 import Foundation
 
+class InterfaceController: WKInterfaceController, GameView {
 
-class InterfaceController: WKInterfaceController {
-
+    var game: TicTacToe!
+    
+    //MARK: Interface
+    @IBOutlet var picker: WKInterfacePicker!
+    
+    //MARK:- GameView
+    
+    var selectedGameType: GameType!
+    var gameTypes = [GameType]() {
+        didSet {
+            selectedGameType = gameTypes.first
+        }
+    }
+    var gameStatus: GameStatus = .None
+    var gameBoard: GameBoard!
+    
+    override init() {
+        super.init()
+        game = TicTacToe(view: self)
+    }
+    
+    
+    //MARK:- Interface Controller Lifecyle
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
-        // Configure interface objects here.
+        configureNewGamePicker()
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
+    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+        game.newGame(selectedGameType)
+        return game
+    }
+    
+    //MARK:- Game Interface
+    
+    func configureNewGamePicker() {
+        let items = gameTypes.map { (type) -> WKPickerItem in
+            return pickerItemForGameType(type)
+        }
+        picker.setItems(items)
+    }
+    
+    func pickerItemForGameType(type: GameType) -> WKPickerItem {
+        let item = WKPickerItem()
+        item.title = "\(type)"
+        return item
+    }
+    
+    @IBAction func pickerAction(value: Int) {
+        print("Selected Game Type \(value)")
+        selectedGameType = gameTypes[value]
+    }
+    
 }

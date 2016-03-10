@@ -14,19 +14,24 @@
 		8C2C194E1C7B389F00A4FA27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C194C1C7B389F00A4FA27 /* LaunchScreen.storyboard */; };
 		8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */; };
 		8C2C195E1C7B389F00A4FA27 /* TicTacToe WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */; };
-		8C2C19641C7B389F00A4FA27 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19621C7B389F00A4FA27 /* Interface.storyboard */; };
 		8C2C19661C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19651C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C196D1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C2C19721C7B389F00A4FA27 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19711C7B389F00A4FA27 /* InterfaceController.swift */; };
 		8C2C19741C7B389F00A4FA27 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19731C7B389F00A4FA27 /* ExtensionDelegate.swift */; };
 		8C2C19761C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19751C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */; };
-		8C2C198D1C7B3E7200A4FA27 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
-		8C2C198F1C7E085C00A4FA27 /* TicTacToeBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */; };
 		8C2C19911C7E2AA700A4FA27 /* HumanVersusHeuristicBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicBotTests.swift */; };
 		8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */; };
 		8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
-		8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
+		8CE999011C918AD30003F170 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
+		8CE999021C918AD30003F170 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
+		8CE999031C918AD30003F170 /* TicTacToeBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */; };
+		8CE999041C918AEE0003F170 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
+		8CE999051C918AEE0003F170 /* TicTacToeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */; };
+		8CE999061C918AEE0003F170 /* TicTacToeBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */; };
+		8CE999071C918AFA0003F170 /* TicTacToeHeuristicBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */; };
+		8CE999081C918AFA0003F170 /* TicTacToeGameTreeBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift */; };
+		8CE9990B1C9191CD0003F170 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE999091C9191CD0003F170 /* Interface.storyboard */; };
 		8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */; };
 		8CF851801C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */; };
 		8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */; };
@@ -94,7 +99,6 @@
 		8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HumanVersusHumanTests.swift; path = TicTacToeTests/HumanVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8C2C195A1C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TicTacToe WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C2C19631C7B389F00A4FA27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		8C2C19651C7B389F00A4FA27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2C19671C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TicTacToe WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +113,7 @@
 		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeTestExtension.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeHeuristicBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeState.swift; sourceTree = "<group>"; };
+		8CE9990A1C9191CD0003F170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTreeBotVersusHumanTests.swift; path = TicTacToeTests/GameTreeBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusGameTreeBotTests.swift; path = TicTacToeTests/HumanVersusGameTreeBotTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeuristicBotVersusHumanTests.swift; path = TicTacToeTests/HeuristicBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
@@ -183,7 +188,7 @@
 		8C2C19611C7B389F00A4FA27 /* TicTacToe WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				8C2C19621C7B389F00A4FA27 /* Interface.storyboard */,
+				8CE999091C9191CD0003F170 /* Interface.storyboard */,
 				8C2C19651C7B389F00A4FA27 /* Assets.xcassets */,
 				8C2C19671C7B389F00A4FA27 /* Info.plist */,
 			);
@@ -399,8 +404,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE9990B1C9191CD0003F170 /* Interface.storyboard in Resources */,
 				8C2C19661C7B389F00A4FA27 /* Assets.xcassets in Resources */,
-				8C2C19641C7B389F00A4FA27 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,13 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C2C198D1C7B3E7200A4FA27 /* TicTacToe.swift in Sources */,
 				8C2C19461C7B389F00A4FA27 /* ViewController.swift in Sources */,
 				8CFE592A1C8ECF2900A38EAB /* TicTacToeGameTreeBot.swift in Sources */,
-				8CB984201C85F0AC005BA4F0 /* TicTacToeState.swift in Sources */,
 				8C2C19441C7B389F00A4FA27 /* AppDelegate.swift in Sources */,
-				8C2C198F1C7E085C00A4FA27 /* TicTacToeBoard.swift in Sources */,
 				8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */,
+				8CE999051C918AEE0003F170 /* TicTacToeState.swift in Sources */,
+				8CE999061C918AEE0003F170 /* TicTacToeBoard.swift in Sources */,
+				8CE999041C918AEE0003F170 /* TicTacToe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +452,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE999021C918AD30003F170 /* TicTacToeState.swift in Sources */,
+				8CE999031C918AD30003F170 /* TicTacToeBoard.swift in Sources */,
 				8C2C19741C7B389F00A4FA27 /* ExtensionDelegate.swift in Sources */,
+				8CE999071C918AFA0003F170 /* TicTacToeHeuristicBot.swift in Sources */,
+				8CE999011C918AD30003F170 /* TicTacToe.swift in Sources */,
+				8CE999081C918AFA0003F170 /* TicTacToeGameTreeBot.swift in Sources */,
 				8C2C19721C7B389F00A4FA27 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,10 +501,10 @@
 			path = TicTacToe;
 			sourceTree = "<group>";
 		};
-		8C2C19621C7B389F00A4FA27 /* Interface.storyboard */ = {
+		8CE999091C9191CD0003F170 /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8C2C19631C7B389F00A4FA27 /* Base */,
+				8CE9990A1C9191CD0003F170 /* Base */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -615,13 +625,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = TicTacToe_WatchKit_Extension;
 				INFOPLIST_FILE = "TicTacToe WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
@@ -631,9 +644,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = TicTacToe_WatchKit_Extension;
 				INFOPLIST_FILE = "TicTacToe WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
