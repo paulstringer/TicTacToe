@@ -4,8 +4,9 @@ import XCTest
 
 class HeuristicBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
 
-    var view: GameView!
+    var view: protocol<GameView,GameChooserView>!
     var game: TicTacToe!
+    var gameChooser: TicTacToeGameChooser!
     var bot: TicTacToeBot?
     var type: GameType!
     

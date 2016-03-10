@@ -2,13 +2,43 @@ import WatchKit
 import Foundation
 
 
-class BoardInterfaceController: WKInterfaceController {
+class BoardInterfaceController: WKInterfaceController, GameView {
 
-    @IBOutlet var board: WKInterfaceGroup!
+    var game: TicTacToe!
+    
+    //MARK: GameView
+    var gameStatus: GameStatus = .None
+    var gameBoard: GameBoard! {
+        didSet {
+            renderBoard()
+        }
+    }
+    
+    //MARK: Game Buttons
+    var buttons: [WKInterfaceButton]!
+    @IBOutlet var topLeftButton: WKInterfaceButton!
+    @IBOutlet var topMiddleButton: WKInterfaceButton!
+    @IBOutlet var topRightButton: WKInterfaceButton!
+    @IBOutlet var middleLeftButton: WKInterfaceButton!
+    @IBOutlet var middleButton: WKInterfaceButton!
+    @IBOutlet var middleRightButton: WKInterfaceButton!
+    @IBOutlet var bottomLeftButton: WKInterfaceButton!
+    @IBOutlet var bottomMiddleButton: WKInterfaceButton!
+    @IBOutlet var bottomRightButton: WKInterfaceButton!
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        buttons = [
+            topLeftButton, topMiddleButton, topRightButton,
+            middleLeftButton, middleButton, middleRightButton,
+            bottomLeftButton, bottomMiddleButton, bottomRightButton]
+        
+        if let gameTypeValue = context as? GameTypeValue, let gameType = GameType(rawValue: gameTypeValue) {
+            game = TicTacToe(view: self)
+            game.newGame(gameType)
+        }
     }
 
     override func willActivate() {
@@ -21,56 +51,58 @@ class BoardInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    //MARK: - Board Button Action
+    //MARK: - Board Button Actions
     
     @IBAction func topLeftAction() {
-        
-        print("Board Action \(0)")
+        game.takeTurnAtPosition(.TopLeft)
     }
     
     @IBAction func topMiddleAction() {
-        
-        print("Board Action \(1)")
+        game.takeTurnAtPosition(.TopMiddle)
     }
     
     @IBAction func topRightAction() {
-        
-        print("Board Action \(2)")
-        
+        game.takeTurnAtPosition(.TopRight)
     }
     
     
     
     @IBAction func middleLeftAction() {
         
-        print("Board Action \(3)")
+        game.takeTurnAtPosition(.MiddleLeft)
     }
     
     @IBAction func middleAction() {
         
-        print("Board Action \(4)")
+        game.takeTurnAtPosition(.Middle)
     }
     
     @IBAction func middleRightAction() {
-        print("Board Action \(5)")
+        game.takeTurnAtPosition(.MiddleRight)
     }
     
     
     
     
     @IBAction func bottomLeftAction() {
-        print("Board Action \(6)")
+        game.takeTurnAtPosition(.BottomLeft)
     }
     
     @IBAction func bottomMiddleAction() {
-        print("Board Action \(7)")
+        game.takeTurnAtPosition(.BottomMiddle)
     }
     
     @IBAction func bottomRightAction() {
-        print("Board Action \(8)")
+        game.takeTurnAtPosition(.BottomRight)
     }
     
-    
+    func renderBoard() {
+        for (index, marker) in gameBoard.board.enumerate() {
+            let button = buttons[index]
+            let imageName = "\(marker)"
+            button.setBackgroundImageNamed(imageName)
+        }
+    }
 
 
 

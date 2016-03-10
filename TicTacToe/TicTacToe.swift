@@ -1,13 +1,19 @@
 import Foundation
 
-enum GameType {
-    case HumanVersusHuman, HumanVersusComputer, ComputerVersusHuman
+typealias GameTypeValue = String
+
+enum GameType: GameTypeValue {
+    
+    case HumanVersusHuman = "HumanVersusHuman"
+    case HumanVersusComputer = "HumanVersusComputer"
+    case ComputerVersusHuman = "ComputerVersusHuman"
     
     static var allValues: [GameType] {
         get {
             return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
         }
     }
+    
 }
 
 enum GameStatus {
@@ -27,7 +33,6 @@ protocol GameBoard {
 }
 
 protocol GameView: class {
-    var gameTypes: [GameType] { get set }
     var gameStatus: GameStatus { get set }
     var gameBoard: GameBoard! { get set }
 }
@@ -40,24 +45,19 @@ protocol TicTacToeBot {
 public class TicTacToe {
 
     let view: GameView
+    var board: TicTacToeBoard
     
-    var board = TicTacToeBoard()
     lazy var state:TicTacToeState = TicTacToeNewGame(game: self)
     lazy var bot: TicTacToeBot = { TicTacToeGameTreeBot() }()
     
     init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
-        
         self.view = view
         self.board = board
-        view.gameTypes = GameType.allValues
     }
     
     func newGame(type: GameType) {
-        
         state.setGameType(type, game: self)
-        
         view.gameBoard = board
-        
     }
 
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {

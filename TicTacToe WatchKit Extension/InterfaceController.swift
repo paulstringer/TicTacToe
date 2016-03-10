@@ -1,29 +1,26 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController, GameView {
+class InterfaceController: WKInterfaceController, GameChooserView {
 
-    var game: TicTacToe!
+    var gameChooser: TicTacToeGameChooser!
     
     //MARK: Interface
     @IBOutlet var picker: WKInterfacePicker!
     
-    //MARK:- GameView
-    
-    var selectedGameType: GameType!
+    //MARK:- GameChooserView
     var gameTypes = [GameType]() {
         didSet {
             selectedGameType = gameTypes.first
         }
     }
-    var gameStatus: GameStatus = .None
-    var gameBoard: GameBoard!
+
+    var selectedGameType: GameType!
     
     override init() {
         super.init()
-        game = TicTacToe(view: self)
+        gameChooser = TicTacToeGameChooser(view: self)
     }
-    
     
     //MARK:- Interface Controller Lifecyle
     
@@ -41,8 +38,9 @@ class InterfaceController: WKInterfaceController, GameView {
     }
     
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-        game.newGame(selectedGameType)
-        return game
+        
+        return selectedGameType.rawValue
+        
     }
     
     //MARK:- Game Picker Interface

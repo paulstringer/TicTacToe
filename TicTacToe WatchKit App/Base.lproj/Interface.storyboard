@@ -37,57 +37,55 @@
                             <items>
                                 <group width="1" alignment="left" id="k8X-Ba-Ax0" userLabel="Top">
                                     <items>
-                                        <button width="43" height="43" alignment="left" title="Button" id="AE5-p5-JsR">
+                                        <button width="0.33000000000000002" alignment="left" id="AE5-p5-JsR">
                                             <connections>
                                                 <action selector="topLeftAction" destination="eq8-p5-c0S" id="ZaT-Uu-aB4"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="sdj-mN-O3T">
+                                        <button width="0.33000000000000002" alignment="left" id="sdj-mN-O3T">
                                             <connections>
                                                 <action selector="topMiddleAction" destination="eq8-p5-c0S" id="dVn-qA-DlZ"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="zFr-e0-vqc">
+                                        <button width="0.33000000000000002" alignment="left" id="zFr-e0-vqc">
                                             <connections>
                                                 <action selector="topRightAction" destination="eq8-p5-c0S" id="Ynr-j3-9ci"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <separator alignment="left" id="ZeW-AZ-aeM"/>
                                 <group width="1" alignment="left" id="EIa-Qv-nem" userLabel="Middle">
                                     <items>
-                                        <button width="43" height="43" alignment="left" title="Button" id="PwC-Xn-Yl3">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="PwC-Xn-Yl3">
                                             <connections>
                                                 <action selector="middleLeftAction" destination="eq8-p5-c0S" id="FK1-z0-ih2"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="AhK-cK-LQ2">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="AhK-cK-LQ2">
                                             <connections>
                                                 <action selector="middleAction" destination="eq8-p5-c0S" id="2qs-Ez-G6D"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="4gc-7z-ozx">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="4gc-7z-ozx">
                                             <connections>
                                                 <action selector="middleRightAction" destination="eq8-p5-c0S" id="XaD-Hj-Eta"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <separator alignment="left" id="ody-nr-SfQ"/>
                                 <group width="1" alignment="left" id="6VO-xC-OXG" userLabel="Bottom">
                                     <items>
-                                        <button width="43" height="43" alignment="left" title="Button" id="QgO-IY-w77">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="QgO-IY-w77">
                                             <connections>
                                                 <action selector="bottomLeftAction" destination="eq8-p5-c0S" id="V1D-Gh-EDK"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="YcU-qN-tKM">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="YcU-qN-tKM">
                                             <connections>
                                                 <action selector="bottomMiddleAction" destination="eq8-p5-c0S" id="VIe-3X-gXO"/>
                                             </connections>
                                         </button>
-                                        <button width="43" height="43" alignment="left" title="Button" id="fan-E2-AgJ">
+                                        <button width="0.33000000000000002" height="43" alignment="left" id="fan-E2-AgJ">
                                             <connections>
                                                 <action selector="bottomRightAction" destination="eq8-p5-c0S" id="7jq-6q-5DY"/>
                                             </connections>
@@ -98,7 +96,15 @@
                         </group>
                     </items>
                     <connections>
-                        <outlet property="board" destination="Q61-Xs-CWF" id="aQU-EX-rgp"/>
+                        <outlet property="bottomLeftButton" destination="QgO-IY-w77" id="V2O-Hn-7W0"/>
+                        <outlet property="bottomMiddleButton" destination="YcU-qN-tKM" id="RQy-qm-JtN"/>
+                        <outlet property="bottomRightButton" destination="fan-E2-AgJ" id="uCv-Q6-xZs"/>
+                        <outlet property="middleButton" destination="AhK-cK-LQ2" id="BCp-cC-Bgr"/>
+                        <outlet property="middleLeftButton" destination="PwC-Xn-Yl3" id="wTl-wG-zIA"/>
+                        <outlet property="middleRightButton" destination="4gc-7z-ozx" id="WqR-JY-UKc"/>
+                        <outlet property="topLeftButton" destination="AE5-p5-JsR" id="cwd-3b-FNO"/>
+                        <outlet property="topMiddleButton" destination="sdj-mN-O3T" id="cG9-eh-orD"/>
+                        <outlet property="topRightButton" destination="zFr-e0-vqc" id="fOj-rq-bfO"/>
                     </connections>
                 </controller>
             </objects>

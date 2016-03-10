@@ -3,7 +3,8 @@ import XCTest
 
 class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
     
-    var view: GameView!
+    var view: protocol<GameView,GameChooserView>!
+    var gameChooser: TicTacToeGameChooser!
     var game: TicTacToe!
     var bot: TicTacToeBot?
     var type: GameType!

@@ -3,7 +3,8 @@ import XCTest
 @testable import TicTacToe
 
 protocol TicTacToeTestCase: class {
-    var view: GameView! { get set }
+    var view: protocol<GameView,GameChooserView>! { get set }
+    var gameChooser: TicTacToeGameChooser! { get set }
     var game: TicTacToe! { get set }
     var bot: TicTacToeBot? { get }
     var type: GameType! { get }
@@ -21,6 +22,8 @@ extension TicTacToeTestCase {
     }
 
     private func prepareGame(markers: [BoardMarker]?) {
+        
+        self.gameChooser = TicTacToeGameChooser(view: view)
         
         if let markers = markers {
             let board = TicTacToeBoard(board:markers)
