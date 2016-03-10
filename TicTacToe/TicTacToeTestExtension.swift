@@ -36,7 +36,7 @@ extension TicTacToeTestCase {
         
     }
     
-    func playGamesAssertingComputersSuperiority(type: GameType) -> Bool {
+    func playGamesAssertingComputersSuperiority() -> Bool {
         
         var computerWinCount = 0
         var stalemateCount = 0

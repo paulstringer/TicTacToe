@@ -85,7 +85,9 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
     
-    func testGivenGame_WhenTakingTurnsHumanMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
+    //Mark:- Various Win / Draw Scenario Tests
+    
+    func testGivenGame_WhenHumanMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
         game.takeTurnAtPosition(.TopLeft)
         game.takeTurnAtPosition(.BottomRight)
         game.takeTurnAtPosition(.BottomMiddle)
@@ -111,7 +113,7 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
     }
     
-    func testGivenGame_WhenTakingTurnsHumanTrysTopEdgeThenBlocksSuccessfully_ThenGameIsStalemate() {
+    func testGivenGame_WhenHumanTrysEdgesThenBlocksSuccessfully_ThenGameIsStalemate() {
         game.takeTurnAtPosition(.TopLeft)
         game.takeTurnAtPosition(.TopMiddle)
         XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
@@ -154,16 +156,16 @@ class HumanVersusHeuristicBotTests: XCTestCase, TicTacToeTestCase {
     func testGivenGame_WhenTakingTurnsHumanStartsMiddle_ThenGameIsDraw() {
         game.takeTurnAtPosition(.Middle)
         game.takeTurnAtPosition(.BottomRight)
-        game.takeTurnAtPosition(.TopRight)
+        game.takeTurnAtPosition(.TopMiddle)
         game.takeTurnAtPosition(.BottomLeft)
         game.takeTurnAtPosition(.MiddleRight)
-        XCTAssertNotEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
     
     //MARK: Play 100 Random Game Test
     
     func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
-        XCTAssertTrue(playGamesAssertingComputersSuperiority(.HumanVersusComputer))
+        XCTAssertTrue(playGamesAssertingComputersSuperiority())
     }
     
 }

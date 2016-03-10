@@ -57,8 +57,7 @@ class HumanVersusGameTreeBotTests: XCTestCase, TicTacToeTestCase {
     
     //Mark:- Perfect Strategic Human V Computer Game
     
-    func testGivenGame_WhenHumanPlaysBestMovesAndComputerRespondsPerfectly_ThenGameIsStalemate() {
-
+    func testGivenGame_WhenHumanPlaysBestMoves_ThenComputerPlaysPerfectMoves() {
         game.takeTurnAtPosition(.TopLeft)
         XCTAssertEqual(view.gameBoard.lastTurn, .Middle)
         game.takeTurnAtPosition(.BottomRight)
@@ -71,7 +70,9 @@ class HumanVersusGameTreeBotTests: XCTestCase, TicTacToeTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
     
-    func testGivenGame_WhenTakingTurnsHumanMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
+      //Mark:- Various Win / Draw Scenario Tests
+    
+    func testGivenGame_WhenHumanMissesBlockTopRightToBottomLeftDiagonal_ThenComputerPlaysTopRightAndWins() {
         
         let markers: [BoardMarker] = [
             .Cross, .Nought , .None,
@@ -84,5 +85,85 @@ class HumanVersusGameTreeBotTests: XCTestCase, TicTacToeTestCase {
         game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
         XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsButHumanMissesBlockAtBottomMiddle_ThenComputerPlaysBottomMiddleAndWins() {
+        
+        let markers: [BoardMarker] = [
+            .Cross, .Nought , .None,
+            .None , .Nought , .None ,
+            .None , .None , .Cross ,
+        ]
+        
+        setUpGame(markers)
+        game.takeTurnAtPosition(.TopRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomMiddle)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsHumanTrysLeftEdgeLine_ThenComputerPlaysDiagonalAndWins() {
+        
+        let markers: [BoardMarker] = [
+            .Cross, .None , .None,
+            .None, .Nought , .None ,
+            .Cross, .None , .None ,
+        ]
+        
+        setUpGame(markers)
+        
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+    }
+    
+    func testGivenGame_WhenHumanTrysEdgesThenBlocksSuccessfully_ThenGameIsStalemate() {
+        game.takeTurnAtPosition(.TopLeft)
+        game.takeTurnAtPosition(.TopMiddle)
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
+        game.takeTurnAtPosition(.BottomLeft)
+        XCTAssertEqual(view.gameBoard.lastTurn, .MiddleLeft)
+        game.takeTurnAtPosition(.MiddleRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomMiddle)
+        game.takeTurnAtPosition(.BottomRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
+    }
+    
+    func testGivenGame_WhenTakingTurnsHumanStartsMiddleAndFirstEmptyPositions_ThenComputerPlaysCornerFirstAndWins() {
+        
+        game.takeTurnAtPosition(.Middle)
+        XCTAssertTrue(view.gameBoard.lastTurn!.isCorner)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomMiddle)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomLeft)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameBoard.lastTurn, .BottomRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsComputerWinsAndHumanTriesToTakeTurn_ThenComputerStillWins() {
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+        game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)
+        XCTAssertEqual(view.gameStatus, GameStatus.ComputerWins)
+    }
+    
+    func testGivenGame_WhenTakingTurnsHumanPlaysMiddleThenBottomRight_ThenComputerBlocksTopRight() {
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(.BottomRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
+    }
+    
+    func testGivenGame_WhenTakingTurnsHumanStartsMiddle_ThenGameIsStalemate() {
+        game.takeTurnAtPosition(.Middle)
+        game.takeTurnAtPosition(.BottomRight)
+        game.takeTurnAtPosition(.TopMiddle)
+        game.takeTurnAtPosition(.BottomLeft)
+        game.takeTurnAtPosition(.MiddleRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
 }

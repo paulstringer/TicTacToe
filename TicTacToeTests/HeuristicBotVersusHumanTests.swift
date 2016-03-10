@@ -98,7 +98,7 @@ class HeuristicBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
     //MARK: Play 100 Random Game Tests
     
     func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
-        XCTAssertTrue(playGamesAssertingComputersSuperiority(.ComputerVersusHuman))
+        XCTAssertTrue(playGamesAssertingComputersSuperiority())
     }
     
 }
