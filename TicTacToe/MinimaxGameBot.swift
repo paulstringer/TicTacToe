@@ -77,13 +77,13 @@ struct TicTacToeNode {
     }
 }
 
-struct TicTacToeGameTreeBot: TicTacToeBot {
+struct MinimaxGameBot: GameBot {
 
     mutating func turnTakenAtBoardPosition(position: BoardPosition) {
         // NOTHING TO DO
     }
     
-    mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
+    mutating func nextMove(board: GameBoard) -> BoardPosition {
         
         guard board.lastTurn != nil else {
             return .TopLeft
@@ -93,7 +93,7 @@ struct TicTacToeGameTreeBot: TicTacToeBot {
         
     }
 
-    func bestMove(board: TicTacToeBoard) -> BoardPosition {
+    func bestMove(board: GameBoard) -> BoardPosition {
         var move = BoardPosition.TopLeft
         let rootNode = TicTacToeNode(board: board)
         _ = minimax(rootNode, outMove: &move)

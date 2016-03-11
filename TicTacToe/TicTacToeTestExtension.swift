@@ -7,7 +7,7 @@ protocol GameTestCase: class {
     var view: GameView! { get set }
     var game: TicTacToe! { get set }
     
-    var bot: TicTacToeBot? { get }
+    var bot: GameBot? { get }
     var type: GameType { get }
 }
 

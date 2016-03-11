@@ -1,12 +1,12 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusGameTreeBotTests: XCTestCase, GameTestCase {
+class HumanVersusMinimaxGameBotTests: XCTestCase, GameTestCase {
 
     var view: GameView!
     var game: TicTacToe!
     
-    let bot: TicTacToeBot? = TicTacToeGameTreeBot()
+    let bot: GameBot? = MinimaxGameBot()
     let type: GameType = .HumanVersusComputer
     
     override func setUp() {

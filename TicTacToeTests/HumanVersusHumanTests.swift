@@ -6,7 +6,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     var view: GameView!
     var game: TicTacToe!
     
-    var bot: TicTacToeBot? = nil
+    var bot: GameBot? = nil
     var type: GameType = .HumanVersusHuman
     
     override func setUp() {

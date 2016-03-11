@@ -4,7 +4,7 @@ protocol GameChooserView: class {
     var gameTypes: [GameType] { get set }
 }
 
-class TicTacToeGameChooser {
+class GameChooser {
     
     let view: GameChooserView
     
@@ -12,4 +12,6 @@ class TicTacToeGameChooser {
         self.view = view
         self.view.gameTypes = GameType.allValues
     }
+    
+    
 }

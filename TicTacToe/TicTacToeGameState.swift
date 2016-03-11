@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TicTacToeState {
+protocol GameState {
     
     func setGameType(type: GameType, game: TicTacToe)
     
@@ -14,7 +14,7 @@ protocol TicTacToeState {
     
 }
 
-extension TicTacToeState {
+extension GameState {
     
     //MARK: No-Op Default Implementations
     
@@ -59,16 +59,16 @@ extension TicTacToeState {
     }
     
     private func declareStalemate(game: TicTacToe) {
-        TicTacToeStalemate.performTransition(game)
+        Stalemate.performTransition(game)
     }
 }
 
 //MARK:- Stalemate
 
-struct TicTacToeStalemate: TicTacToeState {
+struct Stalemate: GameState {
     
     static func performTransition(game: TicTacToe) {
-        game.state = TicTacToeStalemate(game: game)
+        game.state = Stalemate(game: game)
     }
 
     init(game: TicTacToe) {
@@ -79,10 +79,10 @@ struct TicTacToeStalemate: TicTacToeState {
 
 //MARK:- New Game
 
-struct TicTacToeNewGame: TicTacToeState {
+struct NewGame: GameState {
     
     static func performTransition(game: TicTacToe) {
-        game.state = TicTacToeNewGame(game: game)
+        game.state = NewGame(game: game)
     }
     
     init(game: TicTacToe) {
@@ -95,17 +95,17 @@ struct TicTacToeNewGame: TicTacToeState {
         
         switch type {
         case .HumanVersusHuman:
-            TicTacToeHumanOneUp.performTransition(game)
+            HumanOneUp.performTransition(game)
             
         case .HumanVersusComputer where isFirstPlayersTurn:
-            TicTacToeHumanOneAgainstComputerUp.performTransition(game)
+            HumanOneAgainstComputerUp.performTransition(game)
         case .HumanVersusComputer where !isFirstPlayersTurn:
-            TicTacToeComputerUp.performTransition(game)
+            ComputerUp.performTransition(game)
             
         case .ComputerVersusHuman where isFirstPlayersTurn:
-            TicTacToeComputerUp.performTransition(game)
+            ComputerUp.performTransition(game)
         case .ComputerVersusHuman where !isFirstPlayersTurn:
-            TicTacToeHumanOneAgainstComputerUp.performTransition(game)
+            HumanOneAgainstComputerUp.performTransition(game)
             
         default:
             break
@@ -115,10 +115,10 @@ struct TicTacToeNewGame: TicTacToeState {
 
 //MARK:- Human One
 
-struct TicTacToeHumanOneUp: TicTacToeState  {
+struct HumanOneUp: GameState  {
     
     static func performTransition(game: TicTacToe) {
-        game.state = TicTacToeHumanOneUp(game: game)
+        game.state = HumanOneUp(game: game)
     }
     
     init(game: TicTacToe) {
@@ -126,20 +126,20 @@ struct TicTacToeHumanOneUp: TicTacToeState  {
     }
     
     func finishTurn(game: TicTacToe) {
-        TicTacToeHumanTwoUp.performTransition(game)
+        HumanTwoUp.performTransition(game)
     }
     
     func declareVictory(game: TicTacToe) {
-        TicTacToeGameOver.performTransition(game, gameStatus: .PlayerOneWins)
+        GameOver.performTransition(game, gameStatus: .PlayerOneWins)
     }
 }
 
 //MARK:- Human One V Computer
 
-struct TicTacToeHumanOneAgainstComputerUp: TicTacToeState {
+struct HumanOneAgainstComputerUp: GameState {
     
     static func performTransition(game: TicTacToe) {
-        game.state = TicTacToeHumanOneAgainstComputerUp(game: game)
+        game.state = HumanOneAgainstComputerUp(game: game)
     }
     
     init(game: TicTacToe) {
@@ -147,7 +147,7 @@ struct TicTacToeHumanOneAgainstComputerUp: TicTacToeState {
     }
     
     func finishTurn(game: TicTacToe) {
-        TicTacToeComputerUp.performTransition(game)
+        ComputerUp.performTransition(game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -158,10 +158,10 @@ struct TicTacToeHumanOneAgainstComputerUp: TicTacToeState {
 
 //MARK:- Human Two
 
-struct TicTacToeHumanTwoUp: TicTacToeState {
+struct HumanTwoUp: GameState {
     
     static func performTransition(game: TicTacToe) {
-        game.state = TicTacToeHumanTwoUp(game: game)
+        game.state = HumanTwoUp(game: game)
     }
     
     init(game: TicTacToe) {
@@ -169,36 +169,38 @@ struct TicTacToeHumanTwoUp: TicTacToeState {
     }
     
     func finishTurn(game: TicTacToe) {
-        TicTacToeHumanOneUp.performTransition(game)
+        HumanOneUp.performTransition(game)
     }
     
     func declareVictory(game: TicTacToe) {
-        TicTacToeGameOver.performTransition(game, gameStatus: .PlayerTwoWins)
+        GameOver.performTransition(game, gameStatus: .PlayerTwoWins)
     }
     
 }
 
 //MARK:- Computer
 
-struct TicTacToeComputerUp: TicTacToeState {
+struct ComputerUp: GameState {
     
     static func performTransition(game: TicTacToe) {
         
-        let computer = TicTacToeComputerUp()
+        let computer = ComputerUp()
         computer.takeComputersTurn(game)
     }
     
     func finishTurn(game: TicTacToe) {
-        TicTacToeHumanOneAgainstComputerUp.performTransition(game)
+        HumanOneAgainstComputerUp.performTransition(game)
     }
     
     func declareVictory(game: TicTacToe) {
-        TicTacToeGameOver.performTransition(game, gameStatus: .ComputerWins)
+        GameOver.performTransition(game, gameStatus: .ComputerWins)
     }
     
     func takeComputersTurn(game: TicTacToe) {
         
-        let position = game.bot.nextMove(game.board)
+        let board = game.board
+        
+        let position = game.bot.nextMove(board)
         
         takeTurn(game, position: position)
 
@@ -210,10 +212,10 @@ struct TicTacToeComputerUp: TicTacToeState {
 
 //MARK:- Game Over
 
-struct TicTacToeGameOver: TicTacToeState {
+struct GameOver: GameState {
     
     static func performTransition(game: TicTacToe,  gameStatus: GameStatus) {
-        game.state = TicTacToeGameOver()
+        game.state = GameOver()
         game.view.gameStatus = gameStatus
     }
     

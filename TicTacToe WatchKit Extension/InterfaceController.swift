@@ -3,7 +3,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController, GameChooserView {
 
-    var gameChooser: TicTacToeGameChooser!
+    var gameChooser: GameChooser!
     
     //MARK: Interface
     @IBOutlet var picker: WKInterfacePicker!
@@ -19,7 +19,7 @@ class InterfaceController: WKInterfaceController, GameChooserView {
     
     override init() {
         super.init()
-        gameChooser = TicTacToeGameChooser(view: self)
+        gameChooser = GameChooser(view: self)
     }
     
     //MARK:- Interface Controller Lifecyle

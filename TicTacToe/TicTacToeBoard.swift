@@ -103,32 +103,11 @@ typealias BoardLine = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
+    private static let newMarkers: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    
     var board: [BoardMarker]
     
-    static private let lines: [BoardLine]  = {
-        
-        var result = [ [BoardPosition] ]()
-        
-        // Diagonals
-        result.append([.TopLeft,.Middle,.BottomRight])
-        result.append([.TopRight,.Middle, .BottomLeft])
-        
-        // Columns
-        result.append([.TopLeft,.MiddleLeft,.BottomLeft])
-        result.append([.TopMiddle,.Middle,.BottomMiddle])
-        result.append([.TopRight,.MiddleRight,.BottomRight])
-        
-        // Rows
-        result.append([.TopLeft,.TopMiddle,.TopRight])
-        result.append([.MiddleLeft,.Middle,.MiddleRight])
-        result.append([.BottomLeft,.BottomMiddle,.BottomRight])
-        
-        return result
-        
-        
-    }()
-    
-    init(board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]) {
+    init(board: [BoardMarker] = TicTacToeBoard.newMarkers) {
         self.board = board
         self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
     }
@@ -136,7 +115,6 @@ struct TicTacToeBoard: GameBoard {
     //MARK: Game Board
     
     var lastTurn: BoardPosition?
-    
     
     //MARK: Board Operations
     
@@ -151,41 +129,6 @@ struct TicTacToeBoard: GameBoard {
         board[position.rawValue] = marker
     }
     
-    //MARK: Board Analysis
-    
-//    func linesForContigousMarkerCount(count: Int) -> [BoardLine] {
-//        
-//        var result = [BoardLine]()
-//        
-//        for line in TicTacToeBoard.lines {
-//            
-//            var marker: BoardMarker?
-//            var contigousMarkerCount = 0
-//            
-//            for position in line {
-//                
-//                let aMarker = board[position.rawValue]
-//                
-//                if marker == nil && aMarker != .None {
-//                    marker = aMarker
-//                }
-//                
-//                if marker == aMarker {
-//                    contigousMarkerCount++
-//                }
-//                
-//            }
-//            
-//            if contigousMarkerCount == count {
-//                result.append(line)
-//            }
-//            
-//        }
-//        
-//        return result
-//        
-//    }
-
     //MARK: Private Helpers
     
     private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
@@ -198,13 +141,5 @@ struct TicTacToeBoard: GameBoard {
             throw BoardError.InvalidMove
         }
     }
-    
-//    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
-////        guard let lastTurn = lastTurn else { return true }
-////        return marker != board[lastTurn.rawValue]
-//        return marker == BoardAnalyzer.nextMarker(self)
-//    }
-    
- 
 
 }

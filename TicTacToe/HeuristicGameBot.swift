@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct TicTacToeHeuristicBot: TicTacToeBot {
+struct HeuristicGameBot: GameBot {
     
     private var didTakeFirstTurn = false
     private var myTurns = [BoardPosition]()
@@ -13,7 +13,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         myTurns.append(position)
     }
     
-    mutating func nextMove(board: TicTacToeBoard) -> BoardPosition {
+    mutating func nextMove(board: GameBoard) -> BoardPosition {
         
         guard let _ = board.lastTurn else {
             didTakeFirstTurn = true
@@ -48,7 +48,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         
     }
 
-    private func hint(board: TicTacToeBoard) -> BoardPosition? {
+    private func hint(board: GameBoard) -> BoardPosition? {
         
         let didCaptureCenterGround = myTurns.contains(.Middle)
         
@@ -64,7 +64,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         return nil
     }
     
-    private func emptyCorner(board: TicTacToeBoard) -> BoardPosition? {
+    private func emptyCorner(board: GameBoard) -> BoardPosition? {
 
         let emptyCorners = BoardAnalyzer.emptyPositions(board).filter({ (position) -> Bool in
             return position.isCorner
@@ -73,7 +73,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         return emptyCorners.first
     }
     
-    private func emptyOppositeCorner(board: TicTacToeBoard) -> BoardPosition? {
+    private func emptyOppositeCorner(board: GameBoard) -> BoardPosition? {
         
         var result: BoardPosition?
         let empties = BoardAnalyzer.emptyPositions(board)
@@ -118,7 +118,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
     
     // BOARD ANALZER FEATURE ENVY
     
-    private func emptyPositionForNextWinningLine(board: TicTacToeBoard) -> BoardPosition? {
+    private func emptyPositionForNextWinningLine(board: GameBoard) -> BoardPosition? {
         
         let lines = BoardAnalyzer.linesForMarkerCount(2, forBoard: board)
         
@@ -133,10 +133,10 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         }
         
         candidates.sortInPlace() { (a, b) -> Bool in
-            var virtualBoard = board
+            var tryOutBoard = TicTacToeBoard(board: board.board)
             do {
-                try virtualBoard.takeTurnAtPosition(a)
-                return BoardAnalyzer.victory(virtualBoard)
+                try tryOutBoard.takeTurnAtPosition(a)
+                return BoardAnalyzer.victory(tryOutBoard)
             } catch {
                 return false
             }

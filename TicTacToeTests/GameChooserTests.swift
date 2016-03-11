@@ -4,11 +4,11 @@ import XCTest
 class GameChooserTests: XCTestCase {
     
     let view = GameChooserViewSpy()
-    var gameChooser:TicTacToeGameChooser!
+    var gameChooser: GameChooser!
     
     override func setUp() {
         super.setUp()
-        gameChooser = TicTacToeGameChooser(view: view)
+        gameChooser = GameChooser(view: view)
     }
     
     func testGivenView_WhenInitialised_ThenViewsGameTypesContainsAllGamesTypes() {

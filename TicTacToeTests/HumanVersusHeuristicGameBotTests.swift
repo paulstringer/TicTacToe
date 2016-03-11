@@ -6,7 +6,7 @@ class HumanVersusHeuristicBotTests: XCTestCase, GameTestCase {
     var view: GameView!
     var game: TicTacToe!
     
-    var bot:TicTacToeBot? = TicTacToeHeuristicBot()
+    var bot:GameBot? = HeuristicGameBot()
     var type:GameType = .HumanVersusComputer
     
     override func setUp() {
