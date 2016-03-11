@@ -1,15 +1,12 @@
 import Foundation
 
 class TicTacToeNodeGameView: GameView {
-    var gameTypes = [GameType]()
     var gameStatus: GameStatus!
     var gameBoard: GameBoard!
 }
 
 struct TicTacToeNode {
     
-
-
     let position: BoardPosition?
     
     var gameOver: Bool {
@@ -25,9 +22,8 @@ struct TicTacToeNode {
     }
     
     let gameBoard: GameBoard
-    lazy var gameView: GameView = self.runGame()
+    lazy var gameView: GameView = self.createGame()
     lazy var children: [TicTacToeNode] = self.generateChildren()
-    
     
     init(board: GameBoard, move: BoardPosition? = nil) {
         self.position = move
@@ -40,7 +36,6 @@ struct TicTacToeNode {
         let board = gameView.gameBoard
         let remainingMoves = BoardAnalyzer.emptyPositions(board)
 
-        // Generate Children for each remaining move
         for move in remainingMoves {
             let child = TicTacToeNode(board: board, move: move)
             nodes.append(child)
@@ -50,7 +45,7 @@ struct TicTacToeNode {
         
     }
     
-    func runGame() -> GameView {
+    func createGame() -> GameView {
         
         let view = TicTacToeNodeGameView()
         let board = TicTacToeBoard(markers: gameBoard.markers)

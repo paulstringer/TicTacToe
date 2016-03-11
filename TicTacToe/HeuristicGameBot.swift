@@ -10,7 +10,6 @@ struct HeuristicGameBot: GameBot {
             return .TopLeft
         }
         
-
         if let position = BoardAnalyzer.emptyWinningPosition(board) {
             return position
         }

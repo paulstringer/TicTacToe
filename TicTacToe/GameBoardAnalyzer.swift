@@ -2,6 +2,8 @@ import Foundation
 
 struct BoardAnalyzer {
     
+    //MARK: Board Rules
+    
     static func victory(board: GameBoard) -> Bool {
         return BoardAnalyzerMetrics.hasCompleteLine(board)
     }
@@ -10,14 +12,16 @@ struct BoardAnalyzer {
         return board.markers.contains(.None) == false
     }
     
-    static func isEmpty(board: GameBoard, position: BoardPosition) -> Bool {
-        let marker = board.markers[position.rawValue]
-        return marker == .None
-    }
-    
     static func nextMarker(board: GameBoard) -> BoardMarker {
         let even = emptyPositions(board).count % 2  == 0
         return even ? .Nought : .Cross
+    }
+    
+    //MARK: - Positions
+    
+    static func isEmpty(board: GameBoard, position: BoardPosition) -> Bool {
+        let marker = board.markers[position.rawValue]
+        return marker == .None
     }
     
     static func nextPlayersMarkedPositions(board: GameBoard) -> [BoardPosition] {
@@ -59,10 +63,7 @@ struct BoardAnalyzer {
         
     }
     
-    static func linesForMarkerCount(markerCount: Int, forBoard board: GameBoard) -> [BoardLine] {
-        return BoardAnalyzerMetrics.linesContainingSameMarkerCount(markerCount, board: board)
-    }
-    
+
     static func emptyPositions(board: GameBoard) -> [BoardPosition]{
         
         var positions = [BoardPosition]()
@@ -78,7 +79,7 @@ struct BoardAnalyzer {
     
     static func emptyWinningPosition(board: GameBoard) -> BoardPosition? {
         
-        let lines = linesForMarkerCount(2, forBoard: board)
+        let lines = BoardAnalyzerMetrics.linesForMarkerCount(2, forBoard: board)
         
         var candidates = [BoardPosition]()
         
@@ -107,6 +108,8 @@ struct BoardAnalyzer {
     
 }
 
+//MARK: - Private Functions
+
 private struct BoardAnalyzerMetrics {
     
     static private let lines: [BoardLine]  = {
@@ -134,6 +137,10 @@ private struct BoardAnalyzerMetrics {
     
     static private func hasCompleteLine(board: GameBoard) -> Bool{
         return linesContainingSameMarkerCount(3, board: board).isEmpty == false
+    }
+    
+    static func linesForMarkerCount(markerCount: Int, forBoard board: GameBoard) -> [BoardLine] {
+        return linesContainingSameMarkerCount(markerCount, board: board)
     }
     
     static private func linesContainingSameMarkerCount(count: Int, board: GameBoard) -> [BoardLine] {
@@ -168,7 +175,7 @@ private struct BoardAnalyzerMetrics {
         return result
         
     }
-    
+
 
     
 }
