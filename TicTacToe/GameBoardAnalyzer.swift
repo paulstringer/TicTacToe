@@ -10,7 +10,7 @@ struct BoardAnalyzer {
         return board.board.contains(.None) == false
     }
     
-    static func board(board: GameBoard, positionEmpty position: BoardPosition) -> Bool {
+    static func isEmpty(board: GameBoard, position: BoardPosition) -> Bool {
         let marker = board.board[position.rawValue]
         return marker == .None
     }
@@ -18,6 +18,23 @@ struct BoardAnalyzer {
     static func nextMarker(board: GameBoard) -> BoardMarker {
         let even = emptyPositions(board).count % 2  == 0
         return even ? .Nought : .Cross
+    }
+    
+    static func nextPlayersMarkedPositions(board: GameBoard) -> [BoardPosition] {
+        
+        let playersMarker = nextMarker(board)
+        
+        var positions = [BoardPosition]()
+        
+        for (index, marker) in board.board.enumerate() {
+
+            if marker == playersMarker {
+                let position = BoardPosition(rawValue: index)!
+                positions.append(position)
+            }
+            
+        }
+        return positions
     }
     
     static func lastPlayedPosition(board: GameBoard) -> BoardPosition? {
@@ -58,6 +75,35 @@ struct BoardAnalyzer {
         return positions
         
     }
+    
+    static func emptyWinningPosition(board: GameBoard) -> BoardPosition? {
+        
+        let lines = linesForMarkerCount(2, forBoard: board)
+        
+        var candidates = [BoardPosition]()
+        
+        for line in lines {
+            for position in line {
+                if isEmpty(board, position: position) == true {
+                    candidates.append(position)
+                }
+            }
+        }
+        
+        candidates.sortInPlace() { (a, b) -> Bool in
+            var tryOutBoard = TicTacToeBoard(board: board.board)
+            do {
+                try tryOutBoard.takeTurnAtPosition(a)
+                return BoardAnalyzer.victory(tryOutBoard)
+            } catch {
+                return false
+            }
+            
+        }
+        
+        return candidates.first
+    }
+    
     
 }
 

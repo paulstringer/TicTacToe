@@ -12,86 +12,22 @@ public enum BoardPosition: Int {
     case BottomRight = 8
 }
 
-extension BoardPosition {
-    
-    var isCorner: Bool {
-        get {
-            return [ TopLeft, TopRight, BottomLeft, BottomRight].contains(self)
-        }
-    }
-    
-    var isEdge: Bool {
-        get {
-            return [ MiddleLeft, TopMiddle, MiddleRight, BottomMiddle].contains(self)
-        }
-    }
-    
-    var isMiddle: Bool {
-        get {
-            return self == Middle
-        }
-    }
-    
-    var diagonalOpposite: BoardPosition?{
-        
-        get {
-            switch (self) {
-            case .TopLeft:
-                return .BottomRight
-            case .BottomRight:
-                return .TopLeft
-            case .TopRight:
-                return .BottomLeft
-            case .BottomLeft:
-                return .TopRight
-            default:
-                return nil
-            }
-        }
-    }
-    
-    var verticalOppositeCorner: BoardPosition?{
-        
-        get {
-            switch (self) {
-            case .TopLeft:
-                return .BottomLeft
-            case .TopRight:
-                return .BottomRight
-            case .BottomLeft:
-                return .TopLeft
-            case .BottomRight:
-                return .TopRight
-            default:
-                return nil
-            }
-        }
-    }
-    
-    var horizontalOppositeCorner: BoardPosition?{
-        
-        get {
-            switch (self) {
-            case .TopLeft:
-                return .TopRight
-            case .TopRight:
-                return .TopLeft
-            case .BottomLeft:
-                return .BottomRight
-            case .BottomRight:
-                return .BottomLeft
-            default:
-                return nil
-            }
-        }
-    }
-    
-}
-
 enum BoardMarker {
     case None
     case Nought
     case Cross
+    
+    func opponent() -> BoardMarker {
+        
+        switch self {
+        case .None:
+            return .None
+        case .Nought:
+            return .Cross
+        case .Cross:
+            return .Nought
+        }
+    }
 }
 
 enum BoardError: ErrorType {
@@ -133,7 +69,7 @@ struct TicTacToeBoard: GameBoard {
     
     private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
         
-        guard BoardAnalyzer.board(self, positionEmpty: position) else {
+        guard BoardAnalyzer.isEmpty(self, position: position) else {
             throw BoardError.BoardPositionTaken
         }
         

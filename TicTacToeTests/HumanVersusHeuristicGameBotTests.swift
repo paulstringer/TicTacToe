@@ -1,7 +1,7 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusHeuristicBotTests: XCTestCase, GameTestCase {
+class HumanVersusHeuristicGameBotTests: XCTestCase, GameTestCase {
 
     var view: GameView!
     var game: TicTacToe!

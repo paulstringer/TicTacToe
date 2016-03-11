@@ -4,9 +4,9 @@ typealias GameTypeValue = String
 
 enum GameType: GameTypeValue {
     
-    case HumanVersusHuman = "HumanVersusHuman"
-    case HumanVersusComputer = "HumanVersusComputer"
-    case ComputerVersusHuman = "ComputerVersusHuman"
+    case HumanVersusHuman       = "HumanVersusHuman"
+    case HumanVersusComputer    = "HumanVersusComputer"
+    case ComputerVersusHuman    = "ComputerVersusHuman"
     
     static var allValues: [GameType] {
         get {
@@ -38,8 +38,7 @@ protocol GameView: class {
 }
 
 protocol GameBot {
-    mutating func turnTakenAtBoardPosition(position: BoardPosition)
-    mutating func nextMove(board: GameBoard) -> BoardPosition
+    func nextMove(board: GameBoard) -> BoardPosition
 }
 
 public class TicTacToe {

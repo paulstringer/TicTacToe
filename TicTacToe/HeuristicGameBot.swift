@@ -1,26 +1,17 @@
-//
-//  Copyright © 2016 stringerstheory. All rights reserved.
-//
-
 import Foundation
 
+typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
+
 struct HeuristicGameBot: GameBot {
-    
-    private var didTakeFirstTurn = false
-    private var myTurns = [BoardPosition]()
-    
-    mutating func turnTakenAtBoardPosition(position: BoardPosition) {
-        myTurns.append(position)
-    }
-    
-    mutating func nextMove(board: GameBoard) -> BoardPosition {
-        
-        guard let _ = board.lastTurn else {
-            didTakeFirstTurn = true
+
+    func nextMove(board: GameBoard) -> BoardPosition {
+
+        if board.lastTurn == nil {
             return .TopLeft
         }
         
-        if let position = emptyPositionForNextWinningLine(board) {
+
+        if let position = BoardAnalyzer.emptyWinningPosition(board) {
             return position
         }
         
@@ -28,29 +19,26 @@ struct HeuristicGameBot: GameBot {
             return position
         }
         
-        if didTakeFirstTurn == true, let position = emptyCorner(board) {
-            return position
-        }
-        
-        if BoardAnalyzer.board(board, positionEmpty: .Middle) {
+        if BoardAnalyzer.isEmpty(board, position: .Middle) {
             return .Middle
         }
-    
+            
         if let position = emptyOppositeCorner(board) {
             return position
         }
-        
-        if let position = hint(board) {
+            
+        if let position = bestEmptyPosition(board) {
             return position
         }
-        
+            
         return BoardAnalyzer.emptyPositions(board).first!
         
-    }
-
-    private func hint(board: GameBoard) -> BoardPosition? {
         
-        let didCaptureCenterGround = myTurns.contains(.Middle)
+    }
+    
+    private func bestEmptyPosition(board: GameBoard) -> BoardPosition? {
+        
+        let didCaptureCenterGround =  BoardAnalyzer.nextPlayersMarkedPositions(board).contains(.Middle)
         
         for position in BoardAnalyzer.emptyPositions(board) {
             
@@ -75,39 +63,32 @@ struct HeuristicGameBot: GameBot {
     
     private func emptyOppositeCorner(board: GameBoard) -> BoardPosition? {
         
-        var result: BoardPosition?
-        let empties = BoardAnalyzer.emptyPositions(board)
+        if let result = emptyOppositePosition(board, transform: { (position) in return position.diagonalOpposite } ) {
+            return result
+        }
         
-        myTurns.forEach { (turn) -> () in
-            if let opposite = turn.diagonalOpposite {
+        if let result = emptyOppositePosition(board, transform: { (position) in return position.horizontalOpposite } ) {
+            return result
+        }
+        
+        if let result = emptyOppositePosition(board, transform: { (position) in return position.verticalOpposite } ) {
+            return result
+        }
+        
+        return nil
+    }
+    
+    
+    private func emptyOppositePosition(board: GameBoard, transform: BoardPositionTransform ) -> BoardPosition? {
+        
+        let myPositions = BoardAnalyzer.nextPlayersMarkedPositions(board)
+        let empties = BoardAnalyzer.emptyPositions(board)
+        var result: BoardPosition?
+        
+        myPositions.forEach { (position) -> () in
+            if let opposite = transform(position) {
                 if empties.contains(opposite)  {
                     result = opposite
-                    return
-                }
-            }
-        }
-        
-        if result == nil {
-        
-            myTurns.forEach { (turn) -> () in
-                if let opposite = turn.horizontalOppositeCorner {
-                    if empties.contains(opposite)  {
-                        result = opposite
-                        return
-                    }
-                }
-            }
-        
-        }
-        
-        if result == nil {
-
-            myTurns.forEach { (turn) -> () in
-                if let opposite = turn.verticalOppositeCorner {
-                    if empties.contains(opposite)  {
-                        result = opposite
-                        return
-                    }
                 }
             }
         }
@@ -115,35 +96,81 @@ struct HeuristicGameBot: GameBot {
         return result
     }
     
+
+}
+
+extension BoardPosition {
     
-    // BOARD ANALZER FEATURE ENVY
+    var isCorner: Bool {
+        get {
+            return [ TopLeft, TopRight, BottomLeft, BottomRight].contains(self)
+        }
+    }
     
-    private func emptyPositionForNextWinningLine(board: GameBoard) -> BoardPosition? {
+    var isEdge: Bool {
+        get {
+            return [ MiddleLeft, TopMiddle, MiddleRight, BottomMiddle].contains(self)
+        }
+    }
+    
+    var isMiddle: Bool {
+        get {
+            return self == Middle
+        }
+    }
+    
+    var diagonalOpposite: BoardPosition?{
         
-        let lines = BoardAnalyzer.linesForMarkerCount(2, forBoard: board)
-        
-        var candidates = [BoardPosition]()
-        
-        for line in lines {
-            for position in line {
-                if BoardAnalyzer.board(board, positionEmpty: position) == true {
-                    candidates.append(position)
-                }
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .BottomRight
+            case .BottomRight:
+                return .TopLeft
+            case .TopRight:
+                return .BottomLeft
+            case .BottomLeft:
+                return .TopRight
+            default:
+                return nil
             }
         }
+    }
+    
+    var verticalOpposite: BoardPosition?{
         
-        candidates.sortInPlace() { (a, b) -> Bool in
-            var tryOutBoard = TicTacToeBoard(board: board.board)
-            do {
-                try tryOutBoard.takeTurnAtPosition(a)
-                return BoardAnalyzer.victory(tryOutBoard)
-            } catch {
-                return false
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .BottomLeft
+            case .TopRight:
+                return .BottomRight
+            case .BottomLeft:
+                return .TopLeft
+            case .BottomRight:
+                return .TopRight
+            default:
+                return nil
             }
-            
         }
+    }
+    
+    var horizontalOpposite: BoardPosition?{
         
-        return candidates.first
+        get {
+            switch (self) {
+            case .TopLeft:
+                return .TopRight
+            case .TopRight:
+                return .TopLeft
+            case .BottomLeft:
+                return .BottomRight
+            case .BottomRight:
+                return .BottomLeft
+            default:
+                return nil
+            }
+        }
     }
     
 }

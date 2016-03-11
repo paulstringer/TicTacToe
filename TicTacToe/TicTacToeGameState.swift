@@ -203,8 +203,6 @@ struct ComputerUp: GameState {
         let position = game.bot.nextMove(board)
         
         takeTurn(game, position: position)
-
-        game.bot.turnTakenAtBoardPosition(position)
         
     }
     
