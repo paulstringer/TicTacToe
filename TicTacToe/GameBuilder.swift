@@ -20,7 +20,7 @@ class GameBuilder {
     
     var gameType: GameType
     
-    init(gameType: GameType = GameBuilder.GameTypes.first!) {
+    init(gameType: GameType = .ComputerVersusHuman) {
         self.gameType = gameType
     }
     
@@ -33,15 +33,8 @@ class GameBuilder {
         }
     }
     
-    private func newGameWithView(view: GameView) -> TicTacToe {
-        
-        let game: TicTacToe = TicTacToe(view: view)
-        startGameAndRenderInitialView(game)
-        
-        return game
-    }
     
-    func restoredGameWithView(view: GameView, markers: [BoardMarker]) -> TicTacToe {
+    private func restoredGameWithView(view: GameView, markers: [BoardMarker]) -> TicTacToe {
 
         let board = TicTacToeBoard(markers: markers)
         let game = TicTacToe(view: view, board: board)
@@ -49,6 +42,14 @@ class GameBuilder {
         
         return game
        
+    }
+    
+    private func newGameWithView(view: GameView) -> TicTacToe {
+        
+        let game: TicTacToe = TicTacToe(view: view)
+        startGameAndRenderInitialView(game)
+        
+        return game
     }
     
     private func startGameAndRenderInitialView(game: TicTacToe) -> TicTacToe {

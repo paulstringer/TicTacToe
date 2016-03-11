@@ -1,10 +1,13 @@
 import WatchKit
 import Foundation
 
+protocol GameContext {
+    func gameWithView(view: GameView) -> Game
+}
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
-    var game: Game!
+    var game: Game?
     
     //MARK: GameView
     var gameStatus: GameStatus! {
@@ -34,16 +37,8 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
-        // Configure interface objects here.
-        buttons = [
-            topLeftButton, topMiddleButton, topRightButton,
-            middleLeftButton, middleButton, middleRightButton,
-            bottomLeftButton, bottomMiddleButton, bottomRightButton]
-        
-        if let gameBuilder = context as? GameBuilder {
-            game = gameBuilder.gameWithView(self)
-        }
+        configureButtons()
+        startGame(context)
     }
 
     override func willActivate() {
@@ -56,50 +51,64 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         super.didDeactivate()
     }
     
+    func startGame(context: AnyObject?) {
+        if let gameBuilder = context as? GameContext {
+            game = gameBuilder.gameWithView(self)
+        }
+    }
+    
+    func configureButtons() {
+        buttons = [
+            topLeftButton, topMiddleButton, topRightButton,
+            middleLeftButton, middleButton, middleRightButton,
+            bottomLeftButton, bottomMiddleButton, bottomRightButton]
+    }
+    
     //MARK: - Board Button Actions
     
     @IBAction func topLeftAction() {
-        game.takeTurnAtPosition(.TopLeft)
+        game?.takeTurnAtPosition(.TopLeft)
     }
     
     @IBAction func topMiddleAction() {
-        game.takeTurnAtPosition(.TopMiddle)
+        game?.takeTurnAtPosition(.TopMiddle)
     }
     
     @IBAction func topRightAction() {
-        game.takeTurnAtPosition(.TopRight)
+        game?.takeTurnAtPosition(.TopRight)
     }
     
     
     
     @IBAction func middleLeftAction() {
         
-        game.takeTurnAtPosition(.MiddleLeft)
+        game?.takeTurnAtPosition(.MiddleLeft)
     }
     
     @IBAction func middleAction() {
         
-        game.takeTurnAtPosition(.Middle)
+        game?.takeTurnAtPosition(.Middle)
     }
     
     @IBAction func middleRightAction() {
-        game.takeTurnAtPosition(.MiddleRight)
+        game?.takeTurnAtPosition(.MiddleRight)
     }
-    
     
     
     
     @IBAction func bottomLeftAction() {
-        game.takeTurnAtPosition(.BottomLeft)
+        game?.takeTurnAtPosition(.BottomLeft)
     }
     
     @IBAction func bottomMiddleAction() {
-        game.takeTurnAtPosition(.BottomMiddle)
+        game?.takeTurnAtPosition(.BottomMiddle)
     }
     
     @IBAction func bottomRightAction() {
-        game.takeTurnAtPosition(.BottomRight)
+        game?.takeTurnAtPosition(.BottomRight)
     }
+    
+    //MARK: - Board Updates
     
     func renderBoard() {
         
@@ -112,18 +121,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     func renderStatus() {
         
-        var color: UIColor = UIColor.whiteColor()
-        
-        switch gameStatus! {
-        case .ComputerWins:
-            color = .redColor()
-        case .PlayerOneWins, .PlayerTwoWins:
-            color = .greenColor()
-        case .Stalemate:
-            color = .yellowColor()
-        default:
-            return
-        }
+        let color = colorForGameStatus()
         
         for button in buttons {
             button.setBackgroundColor(color)
@@ -132,6 +130,20 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         renderBoard()
     }
 
+    func colorForGameStatus() -> UIColor {
+        
+        switch gameStatus! {
+        case .ComputerWins:
+            return .redColor()
+        case .PlayerOneWins, .PlayerTwoWins:
+            return .greenColor()
+        case .Stalemate:
+            return .yellowColor()
+        default:
+            return  .whiteColor()
+        }
+        
+    }
 
 
 }

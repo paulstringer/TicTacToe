@@ -150,7 +150,7 @@ private struct BoardAnalyzerMetrics {
         for line in BoardAnalyzerMetrics.lines {
             
             var marker: BoardMarker?
-            var contigousMarkerCount = 0
+            var numberOfMarkers = 0
             
             for position in line {
                 
@@ -161,12 +161,12 @@ private struct BoardAnalyzerMetrics {
                 }
                 
                 if marker == aMarker {
-                    contigousMarkerCount++
+                    numberOfMarkers++
                 }
                 
             }
             
-            if contigousMarkerCount == count {
+            if numberOfMarkers == count {
                 result.append(line)
             }
             

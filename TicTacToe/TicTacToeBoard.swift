@@ -16,18 +16,6 @@ enum BoardMarker {
     case None
     case Nought
     case Cross
-    
-    func opponent() -> BoardMarker {
-        
-        switch self {
-        case .None:
-            return .None
-        case .Nought:
-            return .Cross
-        case .Cross:
-            return .Nought
-        }
-    }
 }
 
 enum BoardError: ErrorType {
