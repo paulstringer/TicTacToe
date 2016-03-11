@@ -5,87 +5,117 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Select Game-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TicTacToe_WatchKit_App" customModuleProvider="target">
+                <controller title="Select Game" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TicTacToe_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <picker height="116" alignment="left" id="8g0-7a-vri">
+                        <picker width="1" height="0.75" alignment="left" id="8g0-7a-vri">
                             <connections>
                                 <action selector="pickerAction:" destination="AgC-eL-Hgc" id="5Wd-n0-2Hu"/>
                             </connections>
                         </picker>
-                        <button width="1" alignment="left" title="New Game" id="UoS-XV-rUd">
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="New Game" id="UoS-XV-rUd">
                             <connections>
-                                <segue destination="eq8-p5-c0S" kind="modal" id="LCc-Hg-9Bp"/>
+                                <segue destination="eq8-p5-c0S" kind="push" id="LCc-Hg-9Bp"/>
                             </connections>
                         </button>
                     </items>
+                    <variation key="default">
+                        <mask key="items">
+                            <exclude reference="8g0-7a-vri"/>
+                            <exclude reference="UoS-XV-rUd"/>
+                        </mask>
+                    </variation>
+                    <variation key="device=watch42mm">
+                        <mask key="items">
+                            <include reference="8g0-7a-vri"/>
+                            <include reference="UoS-XV-rUd"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="picker" destination="8g0-7a-vri" id="BPI-mI-DvZ"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="186" y="658"/>
+            <point key="canvasLocation" x="185.69230769230771" y="657.76923076923083"/>
         </scene>
-        <!--Board Interface Controller-->
+        <!--Tic Tac Toe-->
         <scene sceneID="Uek-0z-zxM">
             <objects>
-                <controller id="eq8-p5-c0S" customClass="BoardInterfaceController" customModule="TicTacToe_WatchKit_Extension">
+                <controller title="Tic Tac Toe" id="eq8-p5-c0S" customClass="BoardInterfaceController" customModule="TicTacToe_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Q61-Xs-CWF" userLabel="Board">
+                        <group width="0.90000000000000002" height="0.90000000000000002" alignment="center" verticalAlignment="center" layout="vertical" id="Q61-Xs-CWF" userLabel="Board">
                             <items>
-                                <group width="1" alignment="left" id="k8X-Ba-Ax0" userLabel="Top">
+                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="k8X-Ba-Ax0" userLabel="Top">
                                     <items>
-                                        <button width="0.33000000000000002" alignment="left" id="AE5-p5-JsR">
+                                        <button width="0.33000000000000002" height="1" alignment="left" id="AE5-p5-JsR">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="topLeftAction" destination="eq8-p5-c0S" id="ZaT-Uu-aB4"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" alignment="left" id="sdj-mN-O3T">
+                                        <button width="0.33000000000000002" height="1" alignment="center" id="sdj-mN-O3T">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="topMiddleAction" destination="eq8-p5-c0S" id="dVn-qA-DlZ"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" alignment="left" id="zFr-e0-vqc">
+                                        <button width="0.33000000000000002" height="1" alignment="right" id="zFr-e0-vqc">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="topRightAction" destination="eq8-p5-c0S" id="Ynr-j3-9ci"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" alignment="left" id="EIa-Qv-nem" userLabel="Middle">
+                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="EIa-Qv-nem" userLabel="Middle">
                                     <items>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="PwC-Xn-Yl3">
+                                        <button width="0.33000000000000002" height="1" alignment="left" id="PwC-Xn-Yl3">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="middleLeftAction" destination="eq8-p5-c0S" id="FK1-z0-ih2"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="AhK-cK-LQ2">
+                                        <button width="0.33000000000000002" height="1" alignment="center" id="AhK-cK-LQ2">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="middleAction" destination="eq8-p5-c0S" id="2qs-Ez-G6D"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="4gc-7z-ozx">
+                                        <button width="0.33000000000000002" height="1" alignment="right" id="4gc-7z-ozx">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="middleRightAction" destination="eq8-p5-c0S" id="XaD-Hj-Eta"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" alignment="left" id="6VO-xC-OXG" userLabel="Bottom">
+                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="6VO-xC-OXG" userLabel="Bottom">
                                     <items>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="QgO-IY-w77">
+                                        <button width="0.33000000000000002" height="1" alignment="left" id="QgO-IY-w77">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="bottomLeftAction" destination="eq8-p5-c0S" id="V1D-Gh-EDK"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="YcU-qN-tKM">
+                                        <button width="0.33000000000000002" height="1" alignment="center" id="YcU-qN-tKM">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="bottomMiddleAction" destination="eq8-p5-c0S" id="VIe-3X-gXO"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33000000000000002" height="43" alignment="left" id="fan-E2-AgJ">
+                                        <button width="0.33000000000000002" height="1" alignment="right" id="fan-E2-AgJ">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="bottomRightAction" destination="eq8-p5-c0S" id="7jq-6q-5DY"/>
                                             </connections>

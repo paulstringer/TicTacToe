@@ -1,18 +1,15 @@
 import XCTest
 @testable import TicTacToe
 
-class GameTreeBotVersusHumanTests: XCTestCase, TicTacToeTestCase {
+class GameTreeBotVersusHumanTests: XCTestCase, GameTestCase {
 
-    var view: protocol<GameView,GameChooserView>!
+    var view: GameView!
     var game: TicTacToe!
-    var gameChooser: TicTacToeGameChooser!
-    var bot: TicTacToeBot?
-    var type: GameType!
+    var bot: TicTacToeBot? = TicTacToeGameTreeBot()
+    var type: GameType = .ComputerVersusHuman
     
     override func setUp() {
         super.setUp()
-        bot = TicTacToeGameTreeBot()
-        type = .ComputerVersusHuman
         setUpGame()
     }
     

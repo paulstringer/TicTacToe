@@ -33,7 +33,7 @@ protocol GameBoard {
 }
 
 protocol GameView: class {
-    var gameStatus: GameStatus { get set }
+    var gameStatus: GameStatus! { get set }
     var gameBoard: GameBoard! { get set }
 }
 

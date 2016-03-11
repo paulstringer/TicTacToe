@@ -7,7 +7,13 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     var game: TicTacToe!
     
     //MARK: GameView
-    var gameStatus: GameStatus = .None
+    var gameStatus: GameStatus! {
+        didSet {
+            if let _ = gameStatus {
+            renderStatus()
+            }
+        }
+    }
     var gameBoard: GameBoard! {
         didSet {
             renderBoard()
@@ -97,11 +103,34 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     }
     
     func renderBoard() {
+        
         for (index, marker) in gameBoard.board.enumerate() {
             let button = buttons[index]
             let imageName = "\(marker)"
             button.setBackgroundImageNamed(imageName)
         }
+    }
+    
+    func renderStatus() {
+        
+        var color: UIColor = UIColor.whiteColor()
+        
+        switch gameStatus! {
+        case .ComputerWins:
+            color = .redColor()
+        case .PlayerOneWins, .PlayerTwoWins:
+            color = .greenColor()
+        case .Stalemate:
+            color = .yellowColor()
+        default:
+            return
+        }
+        
+        for button in buttons {
+            button.setBackgroundColor(color)
+        }
+        
+        renderBoard()
     }
 
 

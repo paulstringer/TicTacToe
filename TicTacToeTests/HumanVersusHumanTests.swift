@@ -1,26 +1,21 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusHumanTests: XCTestCase, TicTacToeTestCase  {
+class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     
-    var view: protocol<GameView,GameChooserView>!
-    var gameChooser: TicTacToeGameChooser!
+    var view: GameView!
     var game: TicTacToe!
-    var bot: TicTacToeBot?
-    var type: GameType!
+    
+    var bot: TicTacToeBot? = nil
+    var type: GameType = .HumanVersusHuman
     
     override func setUp() {
         super.setUp()
-        type = .HumanVersusHuman
         setUpGame()
     }
     
     //MARK:- Humam V Human Tests
 
-    func testGivenView_WhenTicTacToeInitialised_ThenViewsGameTypesContainsHumanHuman() {
-        XCTAssertTrue(view.gameTypes.contains(.HumanVersusHuman))
-    }
-    
     func testGivenView_WhenNewHumanVersusHumanGameStarted_ThenPlayerOneUp() {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
     }

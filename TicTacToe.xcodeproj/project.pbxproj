@@ -35,6 +35,8 @@
 		8CE9990D1C9197250003F170 /* BoardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9990C1C9197250003F170 /* BoardInterfaceController.swift */; };
 		8CE9990F1C91EC2C0003F170 /* TicTacToeGameChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9990E1C91EC2C0003F170 /* TicTacToeGameChooser.swift */; };
 		8CE999101C91FE1F0003F170 /* TicTacToeGameChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9990E1C91EC2C0003F170 /* TicTacToeGameChooser.swift */; };
+		8CE999121C92BE820003F170 /* GameChooserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE999111C92BE820003F170 /* GameChooserTests.swift */; };
+		8CE999141C92BEF10003F170 /* GameChooserViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE999131C92BEF10003F170 /* GameChooserViewSpy.swift */; };
 		8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */; };
 		8CF851801C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */; };
 		8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */; };
@@ -119,6 +121,8 @@
 		8CE9990A1C9191CD0003F170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		8CE9990C1C9197250003F170 /* BoardInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardInterfaceController.swift; sourceTree = "<group>"; };
 		8CE9990E1C91EC2C0003F170 /* TicTacToeGameChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameChooser.swift; sourceTree = "<group>"; };
+		8CE999111C92BE820003F170 /* GameChooserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameChooserTests.swift; path = TicTacToeTests/GameChooserTests.swift; sourceTree = SOURCE_ROOT; };
+		8CE999131C92BEF10003F170 /* GameChooserViewSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameChooserViewSpy.swift; sourceTree = "<group>"; };
 		8CF8517A1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTreeBotVersusHumanTests.swift; path = TicTacToeTests/GameTreeBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8CF8517F1C90A8F60030AAA0 /* HumanVersusGameTreeBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusGameTreeBotTests.swift; path = TicTacToeTests/HumanVersusGameTreeBotTests.swift; sourceTree = SOURCE_ROOT; };
 		8CFE59231C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeuristicBotVersusHumanTests.swift; path = TicTacToeTests/HeuristicBotVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
@@ -216,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */,
+				8CE999131C92BEF10003F170 /* GameChooserViewSpy.swift */,
 			);
 			name = "Game Type Tests";
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 			children = (
 				8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */,
 				8CE9990E1C91EC2C0003F170 /* TicTacToeGameChooser.swift */,
+				8CE999111C92BE820003F170 /* GameChooserTests.swift */,
 				8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */,
 				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
@@ -447,7 +453,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */,
+				8CE999121C92BE820003F170 /* GameChooserTests.swift in Sources */,
 				8C2C19911C7E2AA700A4FA27 /* HumanVersusHeuristicBotTests.swift in Sources */,
+				8CE999141C92BEF10003F170 /* GameChooserViewSpy.swift in Sources */,
 				8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */,
 				8CF8517B1C902C200030AAA0 /* GameTreeBotVersusHumanTests.swift in Sources */,
 				8CFE59241C8DC14400A38EAB /* HeuristicBotVersusHumanTests.swift in Sources */,

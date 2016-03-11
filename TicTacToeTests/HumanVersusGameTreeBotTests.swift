@@ -1,26 +1,20 @@
 import XCTest
 @testable import TicTacToe
 
-class HumanVersusGameTreeBotTests: XCTestCase, TicTacToeTestCase {
+class HumanVersusGameTreeBotTests: XCTestCase, GameTestCase {
 
-    var view: protocol<GameView,GameChooserView>!
+    var view: GameView!
     var game: TicTacToe!
-    var gameChooser: TicTacToeGameChooser!
-    var bot: TicTacToeBot?
-    var type: GameType!
+    
+    let bot: TicTacToeBot? = TicTacToeGameTreeBot()
+    let type: GameType = .HumanVersusComputer
     
     override func setUp() {
         super.setUp()
-        type = .HumanVersusComputer
-        bot = TicTacToeGameTreeBot()
         setUpGame()
     }
     
     //MARK:- Human V Computer Basic Setup Tests
-    
-    func testGivenView_WhenInitialised_ThenViewsGameTypesContainsHumanVersusComputer() {
-        XCTAssertTrue(view.gameTypes.contains(.HumanVersusComputer))
-    }
     
     func testGivenView_WhenNewHumanVersusComputerGameStarted_ThenPlayerOneUp() {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)

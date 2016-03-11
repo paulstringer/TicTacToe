@@ -2,15 +2,16 @@ import XCTest
 
 @testable import TicTacToe
 
-protocol TicTacToeTestCase: class {
-    var view: protocol<GameView,GameChooserView>! { get set }
-    var gameChooser: TicTacToeGameChooser! { get set }
+protocol GameTestCase: class {
+    
+    var view: GameView! { get set }
     var game: TicTacToe! { get set }
+    
     var bot: TicTacToeBot? { get }
-    var type: GameType! { get }
+    var type: GameType { get }
 }
 
-extension TicTacToeTestCase {
+extension GameTestCase {
 
     func setUpGame(markers: [BoardMarker]? = nil) {
 
@@ -23,15 +24,12 @@ extension TicTacToeTestCase {
 
     private func prepareGame(markers: [BoardMarker]?) {
         
-        self.gameChooser = TicTacToeGameChooser(view: view)
-        
         if let markers = markers {
             let board = TicTacToeBoard(board:markers)
             self.game = TicTacToe(view: view, board: board)
         } else {
             self.game = TicTacToe(view: view)
         }
-        
         
         if let bot = self.bot {
             game.bot = bot
@@ -54,7 +52,7 @@ extension TicTacToeTestCase {
                 game.takeTurnAtPosition(position)
             }
             
-            switch view.gameStatus{
+            switch view.gameStatus!{
             case .ComputerWins:
                 computerWinCount++
             case .Stalemate:
@@ -75,6 +73,22 @@ extension TicTacToeTestCase {
         
         return humanWinCount == 0
 
+    }
+    
+}
+
+extension GameBoard {
+    
+    var noughts: Int {
+        get {
+            return board.filter { (marker) in return marker == .Nought }.count
+        }
+    }
+    
+    var crosses: Int {
+        get {
+            return board.filter { (marker) in return marker == .Cross }.count
+        }
     }
     
 }
