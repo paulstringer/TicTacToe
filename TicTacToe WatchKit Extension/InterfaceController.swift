@@ -1,26 +1,21 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController, GameChooserView {
+class InterfaceController: WKInterfaceController {
 
-    var gameChooser: GameChooser!
+    var gameBuilder = GameBuilder()
     
     //MARK: Interface
     @IBOutlet var picker: WKInterfacePicker!
     
-    //MARK:- GameChooserView
-    var gameTypes = [GameType]() {
-        didSet {
-            selectedGameType = gameTypes.first
-        }
-    }
+//    //MARK:- GameChooserView
+//    var gameTypes = [GameType]() {
+//        didSet {
+//            selectedGameType = gameTypes.first
+//        }
+//    }
 
-    var selectedGameType: GameType!
-    
-    override init() {
-        super.init()
-        gameChooser = GameChooser(view: self)
-    }
+//    var selectedGameType: GameType!
     
     //MARK:- Interface Controller Lifecyle
     
@@ -39,14 +34,14 @@ class InterfaceController: WKInterfaceController, GameChooserView {
     
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
         
-        return selectedGameType.rawValue
+        return gameBuilder.gameType.rawValue
         
     }
     
     //MARK:- Game Picker Interface
     
     func configureNewGamePicker() {
-        let items = gameTypes.map { (type) -> WKPickerItem in
+        let items = GameBuilder.GameTypes.map { (type) -> WKPickerItem in
             return pickerItemForGameType(type)
         }
         picker.setItems(items)
@@ -59,7 +54,7 @@ class InterfaceController: WKInterfaceController, GameChooserView {
     }
     
     @IBAction func pickerAction(value: Int) {
-        selectedGameType = gameTypes[value]
+        gameBuilder.gameType = GameBuilder.GameTypes[value]
     }
     
 }

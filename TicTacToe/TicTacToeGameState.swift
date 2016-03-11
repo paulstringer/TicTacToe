@@ -25,7 +25,7 @@ extension GameState {
     func setGameType(type: GameType, game: TicTacToe) {
     }
     
-    //MARK: Shared Game State Mechanics
+    //MARK: Turn Taking
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
 

@@ -1,10 +1,9 @@
 import Foundation
 @testable import TicTacToe
 
-class GameViewSpy: GameView, GameChooserView {
+class GameViewSpy: GameView {
     
-    var gameTypes = [GameType]()
-    var gameStatus: GameStatus! = .None
+    var gameStatus: GameStatus!
     var gameBoard: GameBoard!
     
 }

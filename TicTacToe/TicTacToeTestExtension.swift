@@ -16,22 +16,16 @@ extension GameTestCase {
     func setUpGame(markers: [BoardMarker]? = nil) {
 
         self.view = GameViewSpy()
-        prepareGame(markers)
-        game.newGame(type)
+        self.game = newGame(markers)
     }
 
-    private func prepareGame(markers: [BoardMarker]?) {
+    private func newGame(markers: [BoardMarker]?) -> TicTacToe {
         
-        if let markers = markers {
-            let board = TicTacToeBoard(markers: markers)
-            self.game = TicTacToe(view: view, board: board)
-        } else {
-            self.game = TicTacToe(view: view)
-        }
+        let gameBuilder = GameBuilder(gameType: type)
+        let game = gameBuilder.gameWithView(view, markers: markers)
+        if let bot = self.bot { game.bot = bot }
         
-        if let bot = self.bot {
-            game.bot = bot
-        }
+        return game
         
     }
     

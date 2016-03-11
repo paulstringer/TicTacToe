@@ -44,6 +44,7 @@ protocol GameBot {
 public class TicTacToe {
 
     let view: GameView
+    
     var board: TicTacToeBoard
     
     lazy var state:GameState = NewGame(game: self)
