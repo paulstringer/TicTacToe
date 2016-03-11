@@ -1,5 +1,18 @@
 import Foundation
 
+enum GameType {
+    
+    case HumanVersusHuman
+    case HumanVersusComputer
+    case ComputerVersusHuman
+    
+    static var allValues: [GameType] {
+        get {
+            return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
+        }
+    }
+    
+}
 
 class GameBuilder {
     
@@ -73,18 +86,3 @@ class GameBuilder {
 }
 
 
-typealias GameTypeValue = String
-
-enum GameType: GameTypeValue {
-    
-    case HumanVersusHuman       = "HumanVersusHuman"
-    case HumanVersusComputer    = "HumanVersusComputer"
-    case ComputerVersusHuman    = "ComputerVersusHuman"
-    
-    static var allValues: [GameType] {
-        get {
-            return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
-        }
-    }
-    
-}

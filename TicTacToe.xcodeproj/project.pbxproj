@@ -267,8 +267,8 @@
 		8C2C198B1C7B3E5F00A4FA27 /* Tic Tac Toe */ = {
 			isa = PBXGroup;
 			children = (
-				8C1ABFBC1C9326AA00C81CE9 /* Game Builder */,
 				8CF8517D1C90A8250030AAA0 /* Game */,
+				8C1ABFBC1C9326AA00C81CE9 /* Game Builder */,
 				8C1ABFBD1C9326C500C81CE9 /* Game Board */,
 				8CF8517E1C90A8340030AAA0 /* Game Bots */,
 			);
