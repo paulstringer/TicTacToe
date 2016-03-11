@@ -31,7 +31,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
             return position
         }
         
-        if board.boardPositionIsEmpty(.Middle) {
+        if BoardAnalyzer.board(board, positionEmpty: .Middle) {
             return .Middle
         }
     
@@ -119,13 +119,17 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
     
     private func emptyPositionForNextWinningLine(board: TicTacToeBoard) -> BoardPosition? {
         
+//        BoardAnalyzer.lines(markersCount: 2)
         let lines = board.linesForContigousMarkerCount(2)
         
         var candidates = [BoardPosition]()
         
         for line in lines {
             for position in line {
-                if board.boardPositionIsEmpty(position) {
+                let positionAvailable = BoardAnalyzer.board(board, positionEmpty: position)
+//                let positionAvailable =  board.boardPositionIsEmpty(position) //position)
+//                _ = positionAvailableAnalzer
+                if positionAvailable == true {
                     candidates.append(position)
                 }
             }
@@ -135,7 +139,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
             var virtualBoard = board
             do {
                 try virtualBoard.takeTurnAtPosition(a)
-                return virtualBoard.hasCompleteLine()
+                return BoardAnalyzer.victory(virtualBoard)
             } catch {
                 return false
             }

@@ -153,10 +153,6 @@ struct TicTacToeBoard: GameBoard {
     
     //MARK: Board Analysis
     
-    func hasCompleteLine() -> Bool{
-        return linesForContigousMarkerCount(3).isEmpty == false
-    }
-    
     func linesForContigousMarkerCount(count: Int) -> [BoardLine] {
         
         var result = [BoardLine]()
@@ -189,15 +185,7 @@ struct TicTacToeBoard: GameBoard {
         return result
         
     }
-    
-    func isFull() -> Bool {
-        return board.contains(.None) == false
-    }
-    
-    func boardPositionIsEmpty(position: BoardPosition) -> Bool {
-        return board[position.rawValue] == .None
-    }
-    
+
     func lastPlayersBoardPosition() -> BoardPosition? {
         
         let nextMarker = nextPlayersMarker()
@@ -228,7 +216,7 @@ struct TicTacToeBoard: GameBoard {
     
     private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
         
-        guard boardPositionIsEmpty(position) else {
+        guard BoardAnalyzer.board(self, positionEmpty: position) else {
             throw BoardError.BoardPositionTaken
         }
         
