@@ -24,7 +24,7 @@ extension GameState {
     
     func setGameType(type: GameType, game: TicTacToe) {
     }
-    
+//
     //MARK: Turn Taking
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {

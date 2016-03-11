@@ -43,7 +43,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         
         if let gameTypeValue = context as? GameTypeValue, let gameType = GameType(rawValue: gameTypeValue) {
             game = TicTacToe(view: self)
-            game.newGame(gameType)
+//            game.newGame(gameType)
         }
     }
 

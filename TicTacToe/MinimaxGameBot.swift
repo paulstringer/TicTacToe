@@ -7,22 +7,10 @@ class TicTacToeNodeGameView: GameView {
 
 struct TicTacToeNode {
     
-    let position: BoardPosition?
-    
-    var gameOver: Bool {
-        mutating get {
-
-            switch gameView.gameStatus! {
-            case .PlayerOneUp, .PlayerTwoUp:
-                return false
-            default:
-                return true
-            }
-        }
-    }
-    
     let gameBoard: GameBoard
-    lazy var gameView: GameView = self.createGame()
+    let position: BoardPosition?
+
+    lazy var gameView: GameView = self.createGameView()
     lazy var children: [TicTacToeNode] = self.generateChildren()
     
     init(board: GameBoard, move: BoardPosition? = nil) {
@@ -45,13 +33,10 @@ struct TicTacToeNode {
         
     }
     
-    func createGame() -> GameView {
+    func createGameView() -> GameView {
         
         let view = TicTacToeNodeGameView()
-        let board = TicTacToeBoard(markers: gameBoard.markers)
-        let game = TicTacToe(view: view, board: board)
-        
-        game.newGame(.HumanVersusHuman)
+        let game = GameBuilder(gameType: .HumanVersusHuman).gameWithView(view, markers: gameBoard.markers)
         
         if let position = position {
             game.takeTurnAtPosition(position)
@@ -68,6 +53,18 @@ struct TicTacToeNode {
             return -10
         default:
             return 0
+        }
+    }
+    
+    
+    var gameOver: Bool {
+        mutating get {
+            switch gameView.gameStatus! {
+            case .PlayerOneUp, .PlayerTwoUp:
+                return false
+            default:
+                return true
+            }
         }
     }
 }

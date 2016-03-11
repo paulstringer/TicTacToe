@@ -55,11 +55,6 @@ public class TicTacToe {
         self.board = board
     }
     
-    func newGame(type: GameType) {
-        state.setGameType(type, game: self)
-        view.gameBoard = board
-    }
-
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
         
         guard let position = BoardPosition(rawValue: rawValue) else {
