@@ -31,7 +31,7 @@ enum BoardMarker {
 }
 
 enum BoardError: ErrorType {
-    case BoardPositionTaken
+    case PositionTaken
     case InvalidMove
 }
 
@@ -41,16 +41,16 @@ struct TicTacToeBoard: GameBoard {
     
     private static let newMarkers: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
-    var board: [BoardMarker]
-    
-    init(board: [BoardMarker] = TicTacToeBoard.newMarkers) {
-        self.board = board
-        self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
-    }
-    
     //MARK: Game Board
     
+    var markers: [BoardMarker]
+    
     var lastTurn: BoardPosition?
+    
+    init(markers: [BoardMarker] = TicTacToeBoard.newMarkers) {
+        self.markers = markers
+        self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
+    }
     
     //MARK: Board Operations
     
@@ -58,19 +58,19 @@ struct TicTacToeBoard: GameBoard {
 
         let marker = BoardAnalyzer.nextMarker(self)
 
-        try checkAddMarker(marker, atPosition: position)
+        try canAddMarker(marker, atPosition: position)
         
         lastTurn = position
         
-        board[position.rawValue] = marker
+        markers[position.rawValue] = marker
     }
     
     //MARK: Private Helpers
     
-    private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
+    private func canAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
         
         guard BoardAnalyzer.isEmpty(self, position: position) else {
-            throw BoardError.BoardPositionTaken
+            throw BoardError.PositionTaken
         }
         
         guard BoardAnalyzer.nextMarker(self) == marker else {

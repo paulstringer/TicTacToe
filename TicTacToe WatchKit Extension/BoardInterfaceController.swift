@@ -104,7 +104,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     func renderBoard() {
         
-        for (index, marker) in gameBoard.board.enumerate() {
+        for (index, marker) in gameBoard.markers.enumerate() {
             let button = buttons[index]
             let imageName = "\(marker)"
             button.setBackgroundImageNamed(imageName)

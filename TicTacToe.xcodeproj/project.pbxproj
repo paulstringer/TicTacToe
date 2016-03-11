@@ -118,7 +118,7 @@
 		8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
 		8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeBoard.swift; sourceTree = "<group>"; };
 		8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusHeuristicGameBotTests.swift; path = TicTacToeTests/HumanVersusHeuristicGameBotTests.swift; sourceTree = SOURCE_ROOT; };
-		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeTestExtension.swift; sourceTree = "<group>"; };
+		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacToeTestExtension.swift; path = ../TicTacToe/TicTacToeTestExtension.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeuristicGameBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameState.swift; sourceTree = "<group>"; };
 		8CE9990A1C9191CD0003F170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -157,6 +157,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C1ABFBC1C9326AA00C81CE9 /* Game Chooser */ = {
+			isa = PBXGroup;
+			children = (
+				8CE9990E1C91EC2C0003F170 /* GameChooser.swift */,
+				8CE999111C92BE820003F170 /* GameChooserTests.swift */,
+			);
+			name = "Game Chooser";
+			sourceTree = "<group>";
+		};
+		8C1ABFBD1C9326C500C81CE9 /* Game Board */ = {
+			isa = PBXGroup;
+			children = (
+				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
+				8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */,
+			);
+			name = "Game Board";
+			sourceTree = "<group>";
+		};
+		8C1ABFBE1C93275900C81CE9 /* Heuristic Bot */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */,
+				8CFE59231C8DC14400A38EAB /* HeuristicGameBotVersusHumanTests.swift */,
+				8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */,
+			);
+			name = "Heuristic Bot";
+			sourceTree = "<group>";
+		};
+		8C1ABFBF1C93276100C81CE9 /* Minimax Bot */ = {
+			isa = PBXGroup;
+			children = (
+				8CFE59291C8ECF2900A38EAB /* MinimaxGameBot.swift */,
+				8CF8517A1C902C200030AAA0 /* MinimaxGameBotVersusHumanTests.swift */,
+				8CF8517F1C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift */,
+			);
+			name = "Minimax Bot";
+			sourceTree = "<group>";
+		};
 		8C2C19371C7B389E00A4FA27 = {
 			isa = PBXGroup;
 			children = (
@@ -182,8 +220,8 @@
 		8C2C19421C7B389F00A4FA27 /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				8C2C198B1C7B3E5F00A4FA27 /* Tic Tac Toe */,
 				8CF8517C1C90A7A90030AAA0 /* App */,
-				8C2C198B1C7B3E5F00A4FA27 /* Game */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -192,7 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2C195A1C7B389F00A4FA27 /* Info.plist */,
-				8C2C198A1C7B3D8F00A4FA27 /* Game Type Tests */,
+				8C2C198A1C7B3D8F00A4FA27 /* Tests Support */,
 			);
 			path = TicTacToeTests;
 			sourceTree = "<group>";
@@ -219,22 +257,25 @@
 			path = "TicTacToe WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		8C2C198A1C7B3D8F00A4FA27 /* Game Type Tests */ = {
+		8C2C198A1C7B3D8F00A4FA27 /* Tests Support */ = {
 			isa = PBXGroup;
 			children = (
 				8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */,
 				8CE999131C92BEF10003F170 /* GameChooserViewSpy.swift */,
+				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
 			);
-			name = "Game Type Tests";
+			name = "Tests Support";
 			sourceTree = "<group>";
 		};
-		8C2C198B1C7B3E5F00A4FA27 /* Game */ = {
+		8C2C198B1C7B3E5F00A4FA27 /* Tic Tac Toe */ = {
 			isa = PBXGroup;
 			children = (
-				8CF8517D1C90A8250030AAA0 /* Tic Tac Toe Game */,
-				8CF8517E1C90A8340030AAA0 /* Tic Tac Toe Game Bots */,
+				8C1ABFBC1C9326AA00C81CE9 /* Game Chooser */,
+				8CF8517D1C90A8250030AAA0 /* Game */,
+				8C1ABFBD1C9326C500C81CE9 /* Game Board */,
+				8CF8517E1C90A8340030AAA0 /* Game Bots */,
 			);
-			name = Game;
+			name = "Tic Tac Toe";
 			sourceTree = "<group>";
 		};
 		8CF8517C1C90A7A90030AAA0 /* App */ = {
@@ -251,32 +292,23 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		8CF8517D1C90A8250030AAA0 /* Tic Tac Toe Game */ = {
+		8CF8517D1C90A8250030AAA0 /* Game */ = {
 			isa = PBXGroup;
 			children = (
 				8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */,
-				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
 				8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
-				8CE9990E1C91EC2C0003F170 /* GameChooser.swift */,
-				8CE999111C92BE820003F170 /* GameChooserTests.swift */,
-				8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */,
 			);
-			name = "Tic Tac Toe Game";
+			name = Game;
 			sourceTree = "<group>";
 		};
-		8CF8517E1C90A8340030AAA0 /* Tic Tac Toe Game Bots */ = {
+		8CF8517E1C90A8340030AAA0 /* Game Bots */ = {
 			isa = PBXGroup;
 			children = (
-				8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */,
-				8CFE59231C8DC14400A38EAB /* HeuristicGameBotVersusHumanTests.swift */,
-				8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */,
-				8CFE59291C8ECF2900A38EAB /* MinimaxGameBot.swift */,
-				8CF8517A1C902C200030AAA0 /* MinimaxGameBotVersusHumanTests.swift */,
-				8CF8517F1C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift */,
-				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
+				8C1ABFBE1C93275900C81CE9 /* Heuristic Bot */,
+				8C1ABFBF1C93276100C81CE9 /* Minimax Bot */,
 			);
-			name = "Tic Tac Toe Game Bots";
+			name = "Game Bots";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

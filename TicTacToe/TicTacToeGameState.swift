@@ -6,8 +6,6 @@ protocol GameState {
     
     func takeTurn(game: TicTacToe, position: BoardPosition)
     
-    // PRIVATE
-    
     func finishTurn(game:TicTacToe)
     
     func declareVictory(game: TicTacToe)
@@ -16,7 +14,7 @@ protocol GameState {
 
 extension GameState {
     
-    //MARK: No-Op Default Implementations
+    //MARK: No-Op Defaults
     
     func finishTurn(game: TicTacToe) {
     }
@@ -27,7 +25,7 @@ extension GameState {
     func setGameType(type: GameType, game: TicTacToe) {
     }
     
-    //MARK: Game Mechanics
+    //MARK: Shared Game State Mechanics
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
 
@@ -132,6 +130,7 @@ struct HumanOneUp: GameState  {
     func declareVictory(game: TicTacToe) {
         GameOver.performTransition(game, gameStatus: .PlayerOneWins)
     }
+    
 }
 
 //MARK:- Human One V Computer

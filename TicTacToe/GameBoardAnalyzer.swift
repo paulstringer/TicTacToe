@@ -7,11 +7,11 @@ struct BoardAnalyzer {
     }
     
     static func stalemate(board: GameBoard) -> Bool {
-        return board.board.contains(.None) == false
+        return board.markers.contains(.None) == false
     }
     
     static func isEmpty(board: GameBoard, position: BoardPosition) -> Bool {
-        let marker = board.board[position.rawValue]
+        let marker = board.markers[position.rawValue]
         return marker == .None
     }
     
@@ -26,7 +26,7 @@ struct BoardAnalyzer {
         
         var positions = [BoardPosition]()
         
-        for (index, marker) in board.board.enumerate() {
+        for (index, marker) in board.markers.enumerate() {
 
             if marker == playersMarker {
                 let position = BoardPosition(rawValue: index)!
@@ -51,7 +51,7 @@ struct BoardAnalyzer {
             lastMarker = nil
         }
         
-        if let lastMarker = lastMarker, indexOfLastMarker = board.board.indexOf(lastMarker) {
+        if let lastMarker = lastMarker, indexOfLastMarker = board.markers.indexOf(lastMarker) {
             return BoardPosition(rawValue: indexOfLastMarker)!
         } else {
             return nil
@@ -66,7 +66,7 @@ struct BoardAnalyzer {
     static func emptyPositions(board: GameBoard) -> [BoardPosition]{
         
         var positions = [BoardPosition]()
-        for (index, marker) in board.board.enumerate() {
+        for (index, marker) in board.markers.enumerate() {
             if marker == .None {
                 let position = BoardPosition(rawValue: index)!
                 positions.append(position)
@@ -91,7 +91,7 @@ struct BoardAnalyzer {
         }
         
         candidates.sortInPlace() { (a, b) -> Bool in
-            var tryOutBoard = TicTacToeBoard(board: board.board)
+            var tryOutBoard = TicTacToeBoard(markers: board.markers)
             do {
                 try tryOutBoard.takeTurnAtPosition(a)
                 return BoardAnalyzer.victory(tryOutBoard)
@@ -147,7 +147,7 @@ private struct BoardAnalyzerMetrics {
             
             for position in line {
                 
-                let aMarker = board.board[position.rawValue]
+                let aMarker = board.markers[position.rawValue]
                 
                 if marker == nil && aMarker != .None {
                     marker = aMarker

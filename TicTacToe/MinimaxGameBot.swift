@@ -53,7 +53,7 @@ struct TicTacToeNode {
     func runGame() -> GameView {
         
         let view = TicTacToeNodeGameView()
-        let board = TicTacToeBoard(board: gameBoard.board)
+        let board = TicTacToeBoard(markers: gameBoard.markers)
         let game = TicTacToe(view: view, board: board)
         
         game.newGame(.HumanVersusHuman)

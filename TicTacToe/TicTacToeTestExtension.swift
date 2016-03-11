@@ -23,7 +23,7 @@ extension GameTestCase {
     private func prepareGame(markers: [BoardMarker]?) {
         
         if let markers = markers {
-            let board = TicTacToeBoard(board:markers)
+            let board = TicTacToeBoard(markers: markers)
             self.game = TicTacToe(view: view, board: board)
         } else {
             self.game = TicTacToe(view: view)
@@ -41,13 +41,13 @@ extension GameBoard {
     
     var noughts: Int {
         get {
-            return board.filter { (marker) in return marker == .Nought }.count
+            return markers.filter { (marker) in return marker == .Nought }.count
         }
     }
     
     var crosses: Int {
         get {
-            return board.filter { (marker) in return marker == .Cross }.count
+            return markers.filter { (marker) in return marker == .Cross }.count
         }
     }
     
