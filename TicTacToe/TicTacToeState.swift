@@ -92,20 +92,20 @@ struct TicTacToeNewGame: TicTacToeState {
     
     func setGameType(type: GameType, game: TicTacToe) {
         
-        let odd = game.board.emptyPositions.count % 2 == 1
+        let isFirstPlayersTurn = game.board.emptyPositions.count % 2 == 1
         
         switch type {
         case .HumanVersusHuman:
             TicTacToeHumanOneUp.performTransition(game)
             
-        case .HumanVersusComputer where odd:
+        case .HumanVersusComputer where isFirstPlayersTurn:
             TicTacToeHumanOneAgainstComputerUp.performTransition(game)
-        case .HumanVersusComputer where !odd:
+        case .HumanVersusComputer where !isFirstPlayersTurn:
             TicTacToeComputerUp.performTransition(game)
             
-        case .ComputerVersusHuman where odd:
+        case .ComputerVersusHuman where isFirstPlayersTurn:
             TicTacToeComputerUp.performTransition(game)
-        case .ComputerVersusHuman where !odd:
+        case .ComputerVersusHuman where !isFirstPlayersTurn:
             TicTacToeHumanOneAgainstComputerUp.performTransition(game)
             
         default:
@@ -217,7 +217,7 @@ struct TicTacToeGameOver: TicTacToeState {
     }
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
-        // NO-OP
+        //NO-OP
     }
     
 }
