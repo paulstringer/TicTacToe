@@ -1,21 +1,5 @@
 import Foundation
 
-typealias GameTypeValue = String
-
-enum GameType: GameTypeValue {
-    
-    case HumanVersusHuman       = "HumanVersusHuman"
-    case HumanVersusComputer    = "HumanVersusComputer"
-    case ComputerVersusHuman    = "ComputerVersusHuman"
-    
-    static var allValues: [GameType] {
-        get {
-            return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
-        }
-    }
-    
-}
-
 enum GameStatus {
     case None
     case PlayerOneUp
@@ -44,15 +28,14 @@ protocol GameBot {
 public class TicTacToe {
 
     let view: GameView
-    
     var board: TicTacToeBoard
-    
-    lazy var state:GameState = NewGame(game: self)
+    var state: GameInternalState!
     lazy var bot: GameBot = { MinimaxGameBot() }()
     
     init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
         self.view = view
         self.board = board
+        NewGame.performTransition(self)
     }
     
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {

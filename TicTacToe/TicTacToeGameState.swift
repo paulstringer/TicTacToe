@@ -1,8 +1,6 @@
 import Foundation
 
-protocol GameState {
-    
-    func setGameType(type: GameType, game: TicTacToe)
+protocol GameInternalState {
     
     func takeTurn(game: TicTacToe, position: BoardPosition)
     
@@ -12,7 +10,7 @@ protocol GameState {
     
 }
 
-extension GameState {
+extension GameInternalState {
     
     //MARK: No-Op Defaults
     
@@ -22,9 +20,6 @@ extension GameState {
     func declareVictory(game: TicTacToe) {
     }
     
-    func setGameType(type: GameType, game: TicTacToe) {
-    }
-//
     //MARK: Turn Taking
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
@@ -63,7 +58,7 @@ extension GameState {
 
 //MARK:- Stalemate
 
-struct Stalemate: GameState {
+struct Stalemate: GameInternalState {
     
     static func performTransition(game: TicTacToe) {
         game.state = Stalemate(game: game)
@@ -77,7 +72,7 @@ struct Stalemate: GameState {
 
 //MARK:- New Game
 
-struct NewGame: GameState {
+struct NewGame: GameInternalState {
     
     static func performTransition(game: TicTacToe) {
         game.state = NewGame(game: game)
@@ -86,34 +81,12 @@ struct NewGame: GameState {
     init(game: TicTacToe) {
         game.view.gameStatus = .None
     }
-    
-    func setGameType(type: GameType, game: TicTacToe) {
-        
-        let isFirstPlayersTurn = BoardAnalyzer.emptyPositions(game.board).count % 2 == 1
-        
-        switch type {
-        case .HumanVersusHuman:
-            HumanOneUp.performTransition(game)
-            
-        case .HumanVersusComputer where isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.performTransition(game)
-        case .HumanVersusComputer where !isFirstPlayersTurn:
-            ComputerUp.performTransition(game)
-            
-        case .ComputerVersusHuman where isFirstPlayersTurn:
-            ComputerUp.performTransition(game)
-        case .ComputerVersusHuman where !isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.performTransition(game)
-            
-        default:
-            break
-        }
-    }
+
 }
 
 //MARK:- Human One
 
-struct HumanOneUp: GameState  {
+struct HumanOneUp: GameInternalState  {
     
     static func performTransition(game: TicTacToe) {
         game.state = HumanOneUp(game: game)
@@ -135,7 +108,7 @@ struct HumanOneUp: GameState  {
 
 //MARK:- Human One V Computer
 
-struct HumanOneAgainstComputerUp: GameState {
+struct HumanOneAgainstComputerUp: GameInternalState {
     
     static func performTransition(game: TicTacToe) {
         game.state = HumanOneAgainstComputerUp(game: game)
@@ -157,7 +130,7 @@ struct HumanOneAgainstComputerUp: GameState {
 
 //MARK:- Human Two
 
-struct HumanTwoUp: GameState {
+struct HumanTwoUp: GameInternalState {
     
     static func performTransition(game: TicTacToe) {
         game.state = HumanTwoUp(game: game)
@@ -179,7 +152,7 @@ struct HumanTwoUp: GameState {
 
 //MARK:- Computer
 
-struct ComputerUp: GameState {
+struct ComputerUp: GameInternalState {
     
     static func performTransition(game: TicTacToe) {
         
@@ -209,7 +182,7 @@ struct ComputerUp: GameState {
 
 //MARK:- Game Over
 
-struct GameOver: GameState {
+struct GameOver: GameInternalState {
     
     static func performTransition(game: TicTacToe,  gameStatus: GameStatus) {
         game.state = GameOver()
