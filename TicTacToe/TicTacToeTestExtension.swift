@@ -51,4 +51,10 @@ extension GameBoard {
         }
     }
     
+    var emptyPositions: [BoardPosition] {
+        
+        return BoardAnalyzer.emptyPositions(self)
+        
+    }
+    
 }

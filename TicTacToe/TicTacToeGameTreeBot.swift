@@ -38,7 +38,7 @@ struct TicTacToeNode {
         
         var nodes = [TicTacToeNode]()
         let board = gameView.gameBoard
-        let remainingMoves = board.emptyPositions
+        let remainingMoves = BoardAnalyzer.emptyPositions(board)
 
         // Generate Children for each remaining move
         for move in remainingMoves {

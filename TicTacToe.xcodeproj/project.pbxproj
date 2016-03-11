@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C1ABFBA1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */; };
+		8C1ABFBB1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */; };
 		8C2C19441C7B389F00A4FA27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */; };
 		8C2C19461C7B389F00A4FA27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19451C7B389F00A4FA27 /* ViewController.swift */; };
 		8C2C19491C7B389F00A4FA27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19471C7B389F00A4FA27 /* Main.storyboard */; };
@@ -93,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardAnalyzer.swift; sourceTree = "<group>"; };
 		8C2C19401C7B389F00A4FA27 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TicTacToe/AppDelegate.swift; sourceTree = "<group>"; };
 		8C2C19451C7B389F00A4FA27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = TicTacToe/ViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 				8CB9841F1C85F0AC005BA4F0 /* TicTacToeState.swift */,
 				8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */,
 				8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */,
+				8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */,
 			);
 			name = "Tic Tac Toe Game";
 			sourceTree = "<group>";
@@ -444,6 +448,7 @@
 				8CB9841E1C85ACB7005BA4F0 /* TicTacToeHeuristicBot.swift in Sources */,
 				8CE999051C918AEE0003F170 /* TicTacToeState.swift in Sources */,
 				8CE999061C918AEE0003F170 /* TicTacToeBoard.swift in Sources */,
+				8C1ABFBA1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */,
 				8CE999041C918AEE0003F170 /* TicTacToe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +475,7 @@
 			files = (
 				8CE999101C91FE1F0003F170 /* TicTacToeGameChooser.swift in Sources */,
 				8CE999021C918AD30003F170 /* TicTacToeState.swift in Sources */,
+				8C1ABFBB1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */,
 				8CE999031C918AD30003F170 /* TicTacToeBoard.swift in Sources */,
 				8C2C19741C7B389F00A4FA27 /* ExtensionDelegate.swift in Sources */,
 				8CE999071C918AFA0003F170 /* TicTacToeHeuristicBot.swift in Sources */,

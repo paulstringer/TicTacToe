@@ -5,6 +5,7 @@
 import Foundation
 
 struct TicTacToeHeuristicBot: TicTacToeBot {
+    
     private var didTakeFirstTurn = false
     private var myTurns = [BoardPosition]()
     
@@ -43,7 +44,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
             return position
         }
         
-        return board.emptyPositions[0]
+        return BoardAnalyzer.emptyPositions(board).first!
         
     }
 
@@ -51,7 +52,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         
         let didCaptureCenterGround = myTurns.contains(.Middle)
         
-        for position in board.emptyPositions {
+        for position in BoardAnalyzer.emptyPositions(board) {
             
             if didCaptureCenterGround && position.isEdge {
                 return position
@@ -65,13 +66,9 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
     
     private func emptyCorner(board: TicTacToeBoard) -> BoardPosition? {
 
-        let emptyCorners = board.emptyPositions.filter({ (position) -> Bool in
+        let emptyCorners = BoardAnalyzer.emptyPositions(board).filter({ (position) -> Bool in
             return position.isCorner
         })
-        
-        if board.emptyPositions.contains(.Middle) == false {
-            return emptyCorners.first
-        }
         
         return emptyCorners.first
     }
@@ -79,10 +76,11 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
     private func emptyOppositeCorner(board: TicTacToeBoard) -> BoardPosition? {
         
         var result: BoardPosition?
+        let empties = BoardAnalyzer.emptyPositions(board)
         
         myTurns.forEach { (turn) -> () in
             if let opposite = turn.diagonalOpposite {
-                if board.emptyPositions.contains(opposite)  {
+                if empties.contains(opposite)  {
                     result = opposite
                     return
                 }
@@ -93,7 +91,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         
             myTurns.forEach { (turn) -> () in
                 if let opposite = turn.horizontalOppositeCorner {
-                    if board.emptyPositions.contains(opposite)  {
+                    if empties.contains(opposite)  {
                         result = opposite
                         return
                     }
@@ -106,7 +104,7 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
 
             myTurns.forEach { (turn) -> () in
                 if let opposite = turn.verticalOppositeCorner {
-                    if board.emptyPositions.contains(opposite)  {
+                    if empties.contains(opposite)  {
                         result = opposite
                         return
                     }
@@ -117,19 +115,18 @@ struct TicTacToeHeuristicBot: TicTacToeBot {
         return result
     }
     
+    
+    // BOARD ANALZER FEATURE ENVY
+    
     private func emptyPositionForNextWinningLine(board: TicTacToeBoard) -> BoardPosition? {
         
-//        BoardAnalyzer.lines(markersCount: 2)
-        let lines = board.linesForContigousMarkerCount(2)
+        let lines = BoardAnalyzer.linesForMarkerCount(2, forBoard: board)
         
         var candidates = [BoardPosition]()
         
         for line in lines {
             for position in line {
-                let positionAvailable = BoardAnalyzer.board(board, positionEmpty: position)
-//                let positionAvailable =  board.boardPositionIsEmpty(position) //position)
-//                _ = positionAvailableAnalzer
-                if positionAvailable == true {
+                if BoardAnalyzer.board(board, positionEmpty: position) == true {
                     candidates.append(position)
                 }
             }

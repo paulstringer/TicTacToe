@@ -130,7 +130,7 @@ struct TicTacToeBoard: GameBoard {
     
     init(board: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]) {
         self.board = board
-        self.lastTurn = lastPlayersBoardPosition()
+        self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
     }
     
     //MARK: Game Board
@@ -142,7 +142,7 @@ struct TicTacToeBoard: GameBoard {
     
     mutating func takeTurnAtPosition(position:BoardPosition) throws {
 
-        let marker = nextPlayersMarker()
+        let marker = BoardAnalyzer.nextMarker(self)
 
         try checkAddMarker(marker, atPosition: position)
         
@@ -153,66 +153,40 @@ struct TicTacToeBoard: GameBoard {
     
     //MARK: Board Analysis
     
-    func linesForContigousMarkerCount(count: Int) -> [BoardLine] {
-        
-        var result = [BoardLine]()
-        
-        for line in TicTacToeBoard.lines {
-            
-            var marker: BoardMarker?
-            var contigousMarkerCount = 0
-            
-            for position in line {
-                
-                let aMarker = board[position.rawValue]
-                
-                if marker == nil && aMarker != .None {
-                    marker = aMarker
-                }
-                
-                if marker == aMarker {
-                    contigousMarkerCount++
-                }
-                
-            }
-            
-            if contigousMarkerCount == count {
-                result.append(line)
-            }
-            
-        }
-        
-        return result
-        
-    }
+//    func linesForContigousMarkerCount(count: Int) -> [BoardLine] {
+//        
+//        var result = [BoardLine]()
+//        
+//        for line in TicTacToeBoard.lines {
+//            
+//            var marker: BoardMarker?
+//            var contigousMarkerCount = 0
+//            
+//            for position in line {
+//                
+//                let aMarker = board[position.rawValue]
+//                
+//                if marker == nil && aMarker != .None {
+//                    marker = aMarker
+//                }
+//                
+//                if marker == aMarker {
+//                    contigousMarkerCount++
+//                }
+//                
+//            }
+//            
+//            if contigousMarkerCount == count {
+//                result.append(line)
+//            }
+//            
+//        }
+//        
+//        return result
+//        
+//    }
 
-    func lastPlayersBoardPosition() -> BoardPosition? {
-        
-        let nextMarker = nextPlayersMarker()
-        var lastMarker: BoardMarker?
-        
-        switch nextMarker {
-        case .Nought:
-            lastMarker = .Cross
-        case .Cross:
-            lastMarker = .Nought
-        case .None:
-            lastMarker = nil
-        }
-        
-        if let lastMarker = lastMarker, indexOfLastMarker = board.indexOf(lastMarker) {
-            return BoardPosition(rawValue: indexOfLastMarker)!
-        } else {
-            return nil
-        }
-    }
-    
     //MARK: Private Helpers
-    
-    private func nextPlayersMarker() -> BoardMarker {
-        let even = emptyPositions.count % 2  == 0
-        return even ? .Nought : .Cross
-    }
     
     private func checkAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
         
@@ -220,15 +194,16 @@ struct TicTacToeBoard: GameBoard {
             throw BoardError.BoardPositionTaken
         }
         
-        guard markerIsExpectedNextMarker(marker) else {
+        guard BoardAnalyzer.nextMarker(self) == marker else {
             throw BoardError.InvalidMove
         }
     }
     
-    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
-        guard let lastTurn = lastTurn else { return true }
-        return marker != board[lastTurn.rawValue]
-    }
+//    private func markerIsExpectedNextMarker(marker: BoardMarker) -> Bool {
+////        guard let lastTurn = lastTurn else { return true }
+////        return marker != board[lastTurn.rawValue]
+//        return marker == BoardAnalyzer.nextMarker(self)
+//    }
     
  
 
