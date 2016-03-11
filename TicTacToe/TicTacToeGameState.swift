@@ -1,8 +1,10 @@
 import Foundation
 
-protocol GameInternalState {
+//MARK:- Game Player Strategy
+
+private protocol GamePlayerStrategy {
     
-    func takeTurn(game: TicTacToe, position: BoardPosition)
+    static func beginTurn(game: TicTacToe)
     
     func finishTurn(game:TicTacToe)
     
@@ -10,20 +12,39 @@ protocol GameInternalState {
     
 }
 
-extension GameInternalState {
-    
-    //MARK: No-Op Defaults
+extension GamePlayerStrategy {
     
     func finishTurn(game: TicTacToe) {
     }
-    
+
     func declareVictory(game: TicTacToe) {
     }
     
-    //MARK: Turn Taking
+}
+
+
+//MARK:- Game States
+
+extension GameState {
+    
+    func takeTurn(game: TicTacToe, position: BoardPosition) {}
+    
+}
+
+struct NewGame: GameState {
+    
+    init(game: TicTacToe) {
+        game.view.gameStatus = .None
+    }
+
+}
+
+struct Player: GameState {
+    
+    private let strategy: GamePlayerStrategy
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
-
+        
         do {
             try game.board.takeTurnAtPosition(position)
             game.view.gameBoard = game.board
@@ -31,17 +52,22 @@ extension GameInternalState {
             return
         }
         
-        if victory(game) {
-            declareVictory(game)
-        } else if stalemate(game) {
-            declareStalemate(game)
-        } else {
-            finishTurn(game)
-        }
+        advanceGame(game)
+        
         
     }
     
-    // MARK: End Game Operations
+    private func advanceGame(game: TicTacToe) {
+        
+        if victory(game) {
+            strategy.declareVictory(game)
+        } else if stalemate(game) {
+            declareStalemate(game)
+        } else {
+            strategy.finishTurn(game)
+        }
+        
+    }
     
     private func victory(game: TicTacToe) -> Bool{
         return BoardAnalyzer.victory(game.board)
@@ -52,145 +78,120 @@ extension GameInternalState {
     }
     
     private func declareStalemate(game: TicTacToe) {
-        Stalemate.performTransition(game)
-    }
-}
-
-//MARK:- Stalemate
-
-struct Stalemate: GameInternalState {
-    
-    static func performTransition(game: TicTacToe) {
         game.state = Stalemate(game: game)
     }
+    
+}
 
+struct Stalemate: GameState {
+    
     init(game: TicTacToe) {
         game.view.gameStatus = .Stalemate
     }
     
 }
 
-//MARK:- New Game
+struct GameOver: GameState {
 
-struct NewGame: GameInternalState {
-    
-    static func performTransition(game: TicTacToe) {
-        game.state = NewGame(game: game)
-    }
-    
-    init(game: TicTacToe) {
-        game.view.gameStatus = .None
-    }
-
-}
-
-//MARK:- Human One
-
-struct HumanOneUp: GameInternalState  {
-    
-    static func performTransition(game: TicTacToe) {
-        game.state = HumanOneUp(game: game)
-    }
-    
-    init(game: TicTacToe) {
-        game.view.gameStatus = .PlayerOneUp
-    }
-    
-    func finishTurn(game: TicTacToe) {
-        HumanTwoUp.performTransition(game)
-    }
-    
-    func declareVictory(game: TicTacToe) {
-        GameOver.performTransition(game, gameStatus: .PlayerOneWins)
-    }
-    
-}
-
-//MARK:- Human One V Computer
-
-struct HumanOneAgainstComputerUp: GameInternalState {
-    
-    static func performTransition(game: TicTacToe) {
-        game.state = HumanOneAgainstComputerUp(game: game)
-    }
-    
-    init(game: TicTacToe) {
-        game.view.gameStatus = .PlayerOneUp
-    }
-    
-    func finishTurn(game: TicTacToe) {
-        ComputerUp.performTransition(game)
-    }
-    
-    func declareVictory(game: TicTacToe) {
-        game.view.gameStatus = .ComputerWins // Looks like a bug?
-    }
-    
-}
-
-//MARK:- Human Two
-
-struct HumanTwoUp: GameInternalState {
-    
-    static func performTransition(game: TicTacToe) {
-        game.state = HumanTwoUp(game: game)
-    }
-    
-    init(game: TicTacToe) {
-        game.view.gameStatus = .PlayerTwoUp
-    }
-    
-    func finishTurn(game: TicTacToe) {
-        HumanOneUp.performTransition(game)
-    }
-    
-    func declareVictory(game: TicTacToe) {
-        GameOver.performTransition(game, gameStatus: .PlayerTwoWins)
-    }
-    
-}
-
-//MARK:- Computer
-
-struct ComputerUp: GameInternalState {
-    
-    static func performTransition(game: TicTacToe) {
-        
-        let computer = ComputerUp()
-        computer.takeComputersTurn(game)
-    }
-    
-    func finishTurn(game: TicTacToe) {
-        HumanOneAgainstComputerUp.performTransition(game)
-    }
-    
-    func declareVictory(game: TicTacToe) {
-        GameOver.performTransition(game, gameStatus: .ComputerWins)
-    }
-    
-    func takeComputersTurn(game: TicTacToe) {
-        
-        let board = game.board
-        
-        let position = game.bot.nextMove(board)
-        
-        takeTurn(game, position: position)
-        
-    }
-    
-}
-
-//MARK:- Game Over
-
-struct GameOver: GameInternalState {
-    
-    static func performTransition(game: TicTacToe,  gameStatus: GameStatus) {
-        game.state = GameOver()
+    init(game: TicTacToe, gameStatus: GameStatus) {
         game.view.gameStatus = gameStatus
     }
     
-    func takeTurn(game: TicTacToe, position: BoardPosition) {
+}
+
+
+//MARK:- Game Players
+//MARK: Human One
+
+struct HumanOneUp: GamePlayerStrategy  {
+
+    static func beginTurn(game: TicTacToe) {
+        game.state = Player( strategy: HumanOneUp(game: game) )
+    }
+
+    func finishTurn(game: TicTacToe) {
+        HumanTwoUp.beginTurn(game)
+    }
+    
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerOneUp
+    }
+    
+    func declareVictory(game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .PlayerOneWins)
+    }
+
+}
+
+//MARK: Human One V Computer
+
+struct HumanOneAgainstComputerUp: GamePlayerStrategy {
+    
+    static func beginTurn(game: TicTacToe) {
+        game.state = Player( strategy: HumanOneAgainstComputerUp(game: game) )
+    }
+    
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerOneUp
+    }
+    
+    func finishTurn(game: TicTacToe) {
+        ComputerUp.beginTurn(game)
+    }
+    
+    func declareVictory(game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .PlayerOneWins)
     }
     
 }
+
+//MARK: Human Two
+
+struct HumanTwoUp: GamePlayerStrategy {
+
+    static func beginTurn(game: TicTacToe) {
+        game.state = Player( strategy: HumanTwoUp(game: game) )
+    }
+
+    init(game: TicTacToe) {
+        game.view.gameStatus = .PlayerTwoUp
+    }
+
+    func finishTurn(game: TicTacToe) {
+        HumanOneUp.beginTurn(game)
+    }
+
+    func declareVictory(game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .PlayerTwoWins)
+    }
+
+}
+
+
+//MARK: Computer
+
+struct ComputerUp: GamePlayerStrategy {
+    
+    let turn: BoardPosition
+    
+    static func beginTurn(game: TicTacToe) {
+        let computer = ComputerUp(game: game)
+        let state = Player( strategy: computer )
+        state.takeTurn(game, position: computer.turn)
+    }
+    
+    init(game: TicTacToe) {
+        self.turn = game.bot.nextMove(game.board)
+    }
+    
+    func finishTurn(game: TicTacToe) {
+        HumanOneAgainstComputerUp.beginTurn(game)
+    }
+    
+    func declareVictory(game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .ComputerWins)
+    }
+    
+}
+
 

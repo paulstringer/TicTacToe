@@ -50,17 +50,19 @@ class GameBuilder {
         
         switch gameType {
         case .HumanVersusHuman:
-            HumanOneUp.performTransition(game)
+            HumanOneUp.beginTurn(game)
             
         case .HumanVersusComputer where isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.performTransition(game)
+            HumanOneAgainstComputerUp.beginTurn(game)
+            
         case .HumanVersusComputer where !isFirstPlayersTurn:
-            ComputerUp.performTransition(game)
+            ComputerUp.beginTurn(game)
             
         case .ComputerVersusHuman where isFirstPlayersTurn:
-            ComputerUp.performTransition(game)
+            ComputerUp.beginTurn(game)
+            
         case .ComputerVersusHuman where !isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.performTransition(game)
+            HumanOneAgainstComputerUp.beginTurn(game)
             
         default:
             break

@@ -25,17 +25,20 @@ protocol GameBot {
     func nextMove(board: GameBoard) -> BoardPosition
 }
 
+protocol GameState {
+    func takeTurn(game: TicTacToe, position: BoardPosition)
+}
+
 public class TicTacToe {
 
     let view: GameView
     var board: TicTacToeBoard
-    var state: GameInternalState!
+    lazy var state: GameState = NewGame(game: self)
     lazy var bot: GameBot = { MinimaxGameBot() }()
     
     init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
         self.view = view
         self.board = board
-        NewGame.performTransition(self)
     }
     
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
