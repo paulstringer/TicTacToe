@@ -90,10 +90,4 @@ class HeuristicBotVersusHumanTests: XCTestCase, GameTestCase {
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
     
-    //MARK: Play 100 Random Game Tests
-    
-    func testGivenView_WhenPlayingManyRandomGames_ThenComputerAlwaysWinsOrTies(){
-        XCTAssertTrue(playGamesAssertingComputersSuperiority())
-    }
-    
 }

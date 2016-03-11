@@ -303,7 +303,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         
     }
     
-    func testGivenGame_WhenStalemateAndPlayerOneTrysToCheat_ThenIsStalemate() {
+    func testGivenStalemate_WhenPlayerOneTrysToCheat_ThenGameRemainsStalemate() {
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(2)
         game.takeTurnAtPosition(1)
@@ -319,4 +319,11 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         
     }
 
+    func testGivenCompletedGame_WhenAttemptingToTakingTurn_ThenBoardDoesNotChange() {
+        let markers: [BoardMarker] = [.Cross, .Cross, .None,  .Nought, .Nought, .None,  .None, .None, .None]
+        setUpGame(markers)
+        game.takeTurnAtPosition(.TopRight)
+        game.takeTurnAtPosition(.MiddleRight)
+        XCTAssertEqual(game.board.lastTurn, .TopRight)
+    }
 }

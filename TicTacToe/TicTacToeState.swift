@@ -2,8 +2,6 @@ import Foundation
 
 protocol TicTacToeState {
     
-    static func performTransition(game: TicTacToe)
-    
     func setGameType(type: GameType, game: TicTacToe)
     
     func takeTurn(game: TicTacToe, position: BoardPosition)
@@ -99,14 +97,17 @@ struct TicTacToeNewGame: TicTacToeState {
         switch type {
         case .HumanVersusHuman:
             TicTacToeHumanOneUp.performTransition(game)
+            
         case .HumanVersusComputer where odd:
             TicTacToeHumanOneAgainstComputerUp.performTransition(game)
-        case .ComputerVersusHuman where odd:
-            TicTacToeComputerUp.performTransition(game)
         case .HumanVersusComputer where !odd:
+            TicTacToeComputerUp.performTransition(game)
+            
+        case .ComputerVersusHuman where odd:
             TicTacToeComputerUp.performTransition(game)
         case .ComputerVersusHuman where !odd:
             TicTacToeHumanOneAgainstComputerUp.performTransition(game)
+            
         default:
             break
         }
@@ -130,7 +131,7 @@ struct TicTacToeHumanOneUp: TicTacToeState  {
     }
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameStatus = .PlayerOneWins
+        TicTacToeGameOver.performTransition(game, gameStatus: .PlayerOneWins)
     }
 }
 
@@ -173,7 +174,7 @@ struct TicTacToeHumanTwoUp: TicTacToeState {
     }
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameStatus = .PlayerTwoWins
+        TicTacToeGameOver.performTransition(game, gameStatus: .PlayerTwoWins)
     }
     
 }
@@ -193,7 +194,7 @@ struct TicTacToeComputerUp: TicTacToeState {
     }
     
     func declareVictory(game: TicTacToe) {
-        game.view.gameStatus = .ComputerWins
+        TicTacToeGameOver.performTransition(game, gameStatus: .ComputerWins)
     }
     
     func takeComputersTurn(game: TicTacToe) {
@@ -204,6 +205,19 @@ struct TicTacToeComputerUp: TicTacToeState {
 
         game.bot.turnTakenAtBoardPosition(position)
         
+    }
+    
+}
+
+struct TicTacToeGameOver: TicTacToeState {
+    
+    static func performTransition(game: TicTacToe,  gameStatus: GameStatus) {
+        game.state = TicTacToeGameOver()
+        game.view.gameStatus = gameStatus
+    }
+    
+    func takeTurn(game: TicTacToe, position: BoardPosition) {
+        // NO-OP
     }
     
 }
