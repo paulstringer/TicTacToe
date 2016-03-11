@@ -4,7 +4,7 @@ import Foundation
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
-    var game: TicTacToe!
+    var game: Game!
     
     //MARK: GameView
     var gameStatus: GameStatus! {
@@ -41,9 +41,8 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             middleLeftButton, middleButton, middleRightButton,
             bottomLeftButton, bottomMiddleButton, bottomRightButton]
         
-        if let gameTypeValue = context as? GameTypeValue, let gameType = GameType(rawValue: gameTypeValue) {
-            game = TicTacToe(view: self)
-//            game.newGame(gameType)
+        if let gameBuilder = context as? GameBuilder {
+            game = gameBuilder.gameWithView(self)
         }
     }
 

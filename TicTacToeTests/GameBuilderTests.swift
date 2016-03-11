@@ -4,7 +4,7 @@ import XCTest
 class GameBuilderTests: XCTestCase {
 
     let gameView = GameViewSpy()
-    var game: TicTacToe!
+    var game: Game!
     var builder: GameBuilder!
     
     override func setUp() {

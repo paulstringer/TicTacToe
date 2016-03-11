@@ -6,16 +6,9 @@ class InterfaceController: WKInterfaceController {
     var gameBuilder = GameBuilder()
     
     //MARK: Interface
+    
     @IBOutlet var picker: WKInterfacePicker!
     
-//    //MARK:- GameChooserView
-//    var gameTypes = [GameType]() {
-//        didSet {
-//            selectedGameType = gameTypes.first
-//        }
-//    }
-
-//    var selectedGameType: GameType!
     
     //MARK:- Interface Controller Lifecyle
     
@@ -34,7 +27,7 @@ class InterfaceController: WKInterfaceController {
     
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
         
-        return gameBuilder.gameType.rawValue
+        return gameBuilder
         
     }
     

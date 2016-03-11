@@ -4,7 +4,7 @@ import XCTest
 class HumanVersusHeuristicGameBotTests: XCTestCase, GameTestCase {
 
     var view: GameView!
-    var game: TicTacToe!
+    var game: Game!
     
     var bot:GameBot? = HeuristicGameBot()
     var type:GameType = .HumanVersusComputer

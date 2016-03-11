@@ -4,7 +4,7 @@ import XCTest
 class HumanVersusMinimaxGameBotTests: XCTestCase, GameTestCase {
 
     var view: GameView!
-    var game: TicTacToe!
+    var game: Game!
     
     let bot: GameBot? = MinimaxGameBot()
     let type: GameType = .HumanVersusComputer

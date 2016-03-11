@@ -4,7 +4,7 @@ import XCTest
 class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     
     var view: GameView!
-    var game: TicTacToe!
+    var game: Game!
     
     var bot: GameBot? = nil
     var type: GameType = .HumanVersusHuman
@@ -324,6 +324,6 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         setUpGame(markers)
         game.takeTurnAtPosition(.TopRight)
         game.takeTurnAtPosition(.MiddleRight)
-        XCTAssertEqual(game.board.lastTurn, .TopRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
     }
 }

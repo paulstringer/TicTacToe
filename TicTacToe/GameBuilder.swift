@@ -11,7 +11,7 @@ class GameBuilder {
         self.gameType = gameType
     }
     
-    func gameWithView(view: GameView, markers: [BoardMarker]? = nil) -> TicTacToe {
+    func gameWithView(view: GameView, markers: [BoardMarker]? = nil) -> Game {
         
         if let markers = markers {
             return restoredGameWithView(view, markers: markers)

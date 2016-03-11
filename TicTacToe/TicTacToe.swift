@@ -11,6 +11,12 @@ enum GameStatus {
     case Stalemate
 }
 
+protocol Game {
+    
+    func takeTurnAtPosition(position: BoardPosition)
+    func takeTurnAtPosition(rawValue: BoardPosition.RawValue)
+    
+}
 protocol GameBoard {
     var lastTurn: BoardPosition? { get }
     var markers: [BoardMarker] { get }
@@ -29,7 +35,7 @@ protocol GameState {
     func takeTurn(game: TicTacToe, position: BoardPosition)
 }
 
-public class TicTacToe {
+public class TicTacToe: Game {
 
     let view: GameView
     var board: TicTacToeBoard
@@ -37,6 +43,7 @@ public class TicTacToe {
     lazy var bot: GameBot = { MinimaxGameBot() }()
     
     init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
+        
         self.view = view
         self.board = board
     }
