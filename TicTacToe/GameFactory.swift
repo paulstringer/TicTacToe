@@ -90,7 +90,7 @@ class GameFactory {
     
     private func startGame(game: TicTacToe, againstComputer computer: Player) {
         game.state = computer
-        computer.takeTurn(game)
+        computer.takeBotTurn(game)
     }
     
 }

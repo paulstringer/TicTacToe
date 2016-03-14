@@ -125,6 +125,15 @@
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="zyo-FK-kfA">
+                        <items>
+                            <menuItem title="New Game" icon="play" id="dAD-ig-S6H">
+                                <connections>
+                                    <action selector="createGame" destination="eq8-p5-c0S" id="OZN-Hz-HzM"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="bottomLeftButton" destination="QgO-IY-w77" id="V2O-Hn-7W0"/>
                         <outlet property="bottomMiddleButton" destination="YcU-qN-tKM" id="RQy-qm-JtN"/>

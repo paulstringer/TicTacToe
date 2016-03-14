@@ -7,25 +7,23 @@ protocol GameContext {
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
-//    lazy var updateBoardDelayTimer: NSTimer = {
-//        return NSTimer(timeInterval: 1, target: self, selector: "updateBoardMarkers", userInfo: nil, repeats: false)
-//    }()
-    
+    var context: GameFactory?
     var game: Game?
     
     //MARK: GameView
     
     var gameStatus: GameStatus! {
-        didSet {
+        didSet {            
+            guard needsColorUpdate() else {
+                return
+            }
             updateBoardColor()
         }
     }
     
     var gameBoard: GameBoard! {
         didSet {
-//            if !updateBoardDelayTimer.valid {
-                updateBoardMarkers()
-//            }
+            updateBoardMarkers()
         }
     }
     
@@ -51,8 +49,9 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     }
     
     private func startGame(context: AnyObject?) {
-        if let gameBuilder = context as? GameFactory {
-            game = gameBuilder.gameWithView(self)
+        if let context = context as? GameFactory {
+            self.context = context
+            createGame()
         } else {
             fatalError("Unexpected Context")
         }
@@ -71,6 +70,10 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     //MARK: - Board Button Actions
     
+    @IBAction func createGame() {
+        game = context?.gameWithView(self)
+        updateBoardColor()
+    }
     
     //TOP
     
@@ -117,16 +120,18 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     //Button Action
     
     private func takeTurnAtPosition(position: BoardPosition) {
-//        NSRunLoop.currentRunLoop().addTimer(updateBoardDelayTimer, forMode: NSRunLoopCommonModes)
         game?.takeTurnAtPosition(position)
     }
     
     //MARK: - Board View Updates
     
     private func updateBoardColor() {
+        let color = colorForGameStatus()
         buttons.forEach { (button) -> () in
-            updateButtonColor(button)
+            button.setBackgroundColor(color)
         }
+        
+        updateBoardMarkers()
     }
     
     func updateBoardMarkers() {
@@ -154,11 +159,6 @@ class BoardInterfaceController: WKInterfaceController, GameView {
 
     }
     
-    private func updateButtonColor(button: WKInterfaceButton) {
-        let color = colorForGameStatus()
-        button.setBackgroundColor(color)
-    }
-    
     private func colorForGameStatus() -> UIColor {
        
         guard let gameStatus = gameStatus else {
@@ -176,6 +176,20 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             return .whiteColor()
         }
         
+    }
+    
+    private func needsColorUpdate() -> Bool {
+        
+        guard let gameStatus = gameStatus else {
+            return false
+        }
+        
+        switch gameStatus {
+        case .ComputerWins, .PlayerOneWins, .PlayerTwoWins, .Stalemate:
+            return true
+        default:
+            return false
+        }
     }
 
 

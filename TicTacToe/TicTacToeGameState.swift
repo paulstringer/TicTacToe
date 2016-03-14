@@ -12,7 +12,7 @@ private protocol GamePlayerStrategy {
 
 extension GamePlayerStrategy {
     
-    // Default Impl
+    // Default Implementation
     
     func finishTurn(game: TicTacToe) {}
 
@@ -42,9 +42,7 @@ class TicTacToeGamePlayerStateFactory: GamePlayerStateFactory {
     }
     
     func humanOneUp(game: TicTacToe) -> Player {
-        let state = Player(strategy: HumanOneUp( game: game, factory: self)  )
-        game.state = state
-        return state
+        return Player(strategy: HumanOneUp( game: game, factory: self)  )
     }
     
     func humanTwoUp(game: TicTacToe) -> Player {
@@ -96,7 +94,7 @@ struct Player: GameState {
         
     }
     
-    func takeTurn(game: TicTacToe) {
+    func takeBotTurn(game: TicTacToe) {
         
         guard let bot = strategy as? GameBotStrategy else {
             return
@@ -192,7 +190,7 @@ struct HumanOneAgainstComputerUp: GamePlayerStrategy {
     func finishTurn(game: TicTacToe) {
         let computerPlayer = factory.computerUp(game)
         game.state = computerPlayer
-        computerPlayer.takeTurn(game)
+        computerPlayer.takeBotTurn(game)
     }
     
     func declareVictory(game: TicTacToe) {
