@@ -3,7 +3,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    var gameBuilder = GameFactory()
+    var gameFactory = GameFactory()
     
     //MARK: Interface
     
@@ -26,8 +26,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-        
-        return gameBuilder
+        return gameFactory
         
     }
     
@@ -47,7 +46,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func pickerAction(value: Int) {
-        gameBuilder.gameType = GameFactory.GameTypes[value]
+        gameFactory.gameType = GameFactory.GameTypes[value]
     }
     
 }

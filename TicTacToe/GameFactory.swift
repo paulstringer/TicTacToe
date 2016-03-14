@@ -24,15 +24,13 @@ class GameFactory {
         self.gameType = gameType
     }
     
-    func gameWithView(view: GameView, markers: [BoardMarker]? = nil) -> Game {
-        
-        if let markers = markers {
-            return restoredGameWithView(view, markers: markers)
-        } else {
-            return newGameWithView(view)
-        }
+    func gameWithView(view: GameView) -> Game {
+        return newGameWithView(view)
     }
     
+    func gameWithView(view: GameView, markers: [BoardMarker]) -> Game {
+        return restoredGameWithView(view, markers: markers)
+    }
     
     private func restoredGameWithView(view: GameView, markers: [BoardMarker]) -> TicTacToe {
 

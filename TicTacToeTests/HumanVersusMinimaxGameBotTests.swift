@@ -125,7 +125,6 @@ class HumanVersusMinimaxGameBotTests: XCTestCase, GameTestCase {
     }
     
     func testGivenGame_WhenTakingTurnsHumanStartsMiddleAndFirstEmptyPositions_ThenComputerPlaysCornerFirstAndWins() {
-        
         game.takeTurnAtPosition(.Middle)
         XCTAssertTrue(view.gameBoard.lastTurn!.isCorner)
         game.takeTurnAtPosition(view.gameBoard.emptyPositions.first!)

@@ -21,6 +21,8 @@ class MinixmaxGameBotVersusHumanTests: XCTestCase, GameTestCase {
         }
     }
     
+    // MARK:- Initial Game State Tests
+    
     func testGivenView_WhenNewComputerVersusHumanGameStarted_ThenPlayerOneUp() {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
     }

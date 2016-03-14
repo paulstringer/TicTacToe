@@ -7,19 +7,19 @@ protocol GameContext {
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
+    var updateBoardDelayTimer: NSTimer?
     var game: Game?
     
     //MARK: GameView
+    
     var gameStatus: GameStatus! {
         didSet {
-            if let _ = gameStatus {
-            renderStatus()
-            }
+            updateBoardColor()
         }
     }
     var gameBoard: GameBoard! {
         didSet {
-            renderBoard()
+            updateBoardMarkers()
         }
     }
     
@@ -44,88 +44,121 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         startGame(context)
     }
     
-    func startGame(context: AnyObject?) {
-        if let gameBuilder = context as? GameContext {
+    private func startGame(context: AnyObject?) {
+        if let gameBuilder = context as? GameFactory {
             game = gameBuilder.gameWithView(self)
+        } else {
+            fatalError("Unexpected Context")
         }
     }
     
-    func configureButtons() {
+    private func configureButtons() {
         buttons = [
             topLeftButton, topMiddleButton, topRightButton,
             middleLeftButton, middleButton, middleRightButton,
             bottomLeftButton, bottomMiddleButton, bottomRightButton]
+        
+        buttons.forEach { (button) -> () in
+            button.setBackgroundImage(nil)
+        }
     }
     
     //MARK: - Board Button Actions
     
+    
+    //TOP
+    
     @IBAction func topLeftAction() {
-        game?.takeTurnAtPosition(.TopLeft)
+        takeTurnAtPosition(.TopLeft)
     }
     
     @IBAction func topMiddleAction() {
-        game?.takeTurnAtPosition(.TopMiddle)
+        takeTurnAtPosition(.TopMiddle)
     }
     
     @IBAction func topRightAction() {
-        game?.takeTurnAtPosition(.TopRight)
+        takeTurnAtPosition(.TopRight)
     }
     
-    
+    //MIDDLE
     
     @IBAction func middleLeftAction() {
-        
-        game?.takeTurnAtPosition(.MiddleLeft)
+        takeTurnAtPosition(.MiddleLeft)
     }
     
     @IBAction func middleAction() {
-        
-        game?.takeTurnAtPosition(.Middle)
+        takeTurnAtPosition(.Middle)
     }
     
     @IBAction func middleRightAction() {
-        game?.takeTurnAtPosition(.MiddleRight)
+        takeTurnAtPosition(.MiddleRight)
     }
     
-    
+    //BOTTOM
     
     @IBAction func bottomLeftAction() {
-        game?.takeTurnAtPosition(.BottomLeft)
+        takeTurnAtPosition(.BottomLeft)
     }
     
     @IBAction func bottomMiddleAction() {
-        game?.takeTurnAtPosition(.BottomMiddle)
+        takeTurnAtPosition(.BottomMiddle)
     }
     
     @IBAction func bottomRightAction() {
-        game?.takeTurnAtPosition(.BottomRight)
+        takeTurnAtPosition(.BottomRight)
     }
     
-    //MARK: - Board Updates
+    //Button Action
     
-    func renderBoard() {
-        
+    private func takeTurnAtPosition(position: BoardPosition) {
+        game?.takeTurnAtPosition(position)
+    }
+    
+    //MARK: - Board View Updates
+    
+    private func updateBoardColor() {
+        buttons.forEach { (button) -> () in
+            updateButtonColor(button)
+        }
+    }
+    
+    private func updateBoardMarkers() {
         for (index, marker) in gameBoard.markers.enumerate() {
-            let button = buttons[index]
-            let imageName = "\(marker)"
-            button.setBackgroundImageNamed(imageName)
+            updateButtonAtIndex(index, forMarker: marker)
         }
     }
     
-    func renderStatus() {
+    private func updateButtonAtIndex(index: Int, forMarker marker: BoardMarker) {
+        let button = buttons[index]
+        updateButton(button, backgroundImageWithMarker: marker)
+    }
+    
+    private func updateButton(button: WKInterfaceButton, backgroundImageWithMarker marker: BoardMarker) {
+        var imageName: String? = nil
         
-        let color = colorForGameStatus()
-        
-        for button in buttons {
-            button.setBackgroundColor(color)
+        switch marker {
+        case .Cross, .Nought:
+            imageName = "\(marker)"
+        default:
+            imageName = nil
         }
         
-        renderBoard()
-    }
+        button.setBackgroundImageNamed(imageName)
 
-    func colorForGameStatus() -> UIColor {
+    }
+    
+    private func updateButtonColor(button: WKInterfaceButton) {
+        let color = colorForGameStatus()
+        button.setBackgroundColor(color)
+    }
+    
+    private func colorForGameStatus() -> UIColor {
+       
+        guard let gameStatus = gameStatus else {
+            return .whiteColor()
+        }
         
-        switch gameStatus! {
+        switch gameStatus {
         case .ComputerWins:
             return .redColor()
         case .PlayerOneWins, .PlayerTwoWins:
@@ -133,7 +166,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         case .Stalemate:
             return .yellowColor()
         default:
-            return  .whiteColor()
+            return .whiteColor()
         }
         
     }
