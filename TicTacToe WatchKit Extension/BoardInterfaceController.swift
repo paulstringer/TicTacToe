@@ -7,7 +7,10 @@ protocol GameContext {
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
-    var updateBoardDelayTimer: NSTimer?
+//    lazy var updateBoardDelayTimer: NSTimer = {
+//        return NSTimer(timeInterval: 1, target: self, selector: "updateBoardMarkers", userInfo: nil, repeats: false)
+//    }()
+    
     var game: Game?
     
     //MARK: GameView
@@ -17,9 +20,12 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             updateBoardColor()
         }
     }
+    
     var gameBoard: GameBoard! {
         didSet {
-            updateBoardMarkers()
+//            if !updateBoardDelayTimer.valid {
+                updateBoardMarkers()
+//            }
         }
     }
     
@@ -111,6 +117,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     //Button Action
     
     private func takeTurnAtPosition(position: BoardPosition) {
+//        NSRunLoop.currentRunLoop().addTimer(updateBoardDelayTimer, forMode: NSRunLoopCommonModes)
         game?.takeTurnAtPosition(position)
     }
     
@@ -122,7 +129,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         }
     }
     
-    private func updateBoardMarkers() {
+    func updateBoardMarkers() {
         for (index, marker) in gameBoard.markers.enumerate() {
             updateButtonAtIndex(index, forMarker: marker)
         }
