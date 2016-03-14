@@ -12,40 +12,51 @@ private protocol GamePlayerStrategy {
 
 extension GamePlayerStrategy {
     
-    func finishTurn(game: TicTacToe) {
-    }
-
-    func declareVictory(game: TicTacToe) {
-    }
+    // Default Impl
     
+    func finishTurn(game: TicTacToe) {}
+
+    func declareVictory(game: TicTacToe) {}
+    
+}
+
+private protocol GameBotStrategy: GamePlayerStrategy {
+    func botsPosition(completion: GameBotCompletion)
 }
 
 //MARK:- Game Player Factory
 
 protocol GamePlayerStateFactory {
-    func humanOneUp(game: TicTacToe) -> GameState
-    func humanTwoUp(game: TicTacToe) -> GameState
-    func humanAgainstComputerUp(game: TicTacToe) -> GameState
-    func computerUp(game: TicTacToe) -> (GameState, BoardPosition)
+    func humanOneUp(game: TicTacToe) -> Player
+    func humanTwoUp(game: TicTacToe) -> Player
+    func humanAgainstComputerUp(game: TicTacToe) -> Player
+    func computerUp(game: TicTacToe) -> Player
 }
 
 class TicTacToeGamePlayerStateFactory: GamePlayerStateFactory {
     
-    func humanOneUp(game: TicTacToe) -> GameState {
-        return Player(strategy: HumanOneUp( game: game, factory: self)  )
+    let gameBot: GameBot
+    
+    init(gameBot: GameBot) {
+        self.gameBot = gameBot
     }
     
-    func humanTwoUp(game: TicTacToe) -> GameState {
+    func humanOneUp(game: TicTacToe) -> Player {
+        let state = Player(strategy: HumanOneUp( game: game, factory: self)  )
+        game.state = state
+        return state
+    }
+    
+    func humanTwoUp(game: TicTacToe) -> Player {
         return Player( strategy: HumanTwoUp(game: game, factory: self) )
     }
 
-    func humanAgainstComputerUp(game: TicTacToe) -> GameState {
+    func humanAgainstComputerUp(game: TicTacToe) -> Player {
         return Player( strategy: HumanOneAgainstComputerUp(game: game, factory: self) )
     }
     
-    func computerUp(game: TicTacToe) -> (GameState, BoardPosition ) {
-        let computer = ComputerUp(game: game, factory: self)
-        return ( Player( strategy: computer ) , computer.computersTurn() )
+    func computerUp(game: TicTacToe) -> Player {
+        return Player( strategy: ComputerUp(game: game, gameBot:gameBot, factory: self) )
     }
     
 }
@@ -70,6 +81,8 @@ struct Player: GameState {
     
     private let strategy: GamePlayerStrategy
     
+    //MARK: - Game State API
+    
     func takeTurn(game: TicTacToe, position: BoardPosition) {
         
         do {
@@ -82,6 +95,18 @@ struct Player: GameState {
         advanceGame(game)
         
     }
+    
+    func takeTurn(game: TicTacToe) {
+        
+        guard let bot = strategy as? GameBotStrategy else {
+            return
+        }
+
+        bot.botsPosition { (position) -> Void in
+            self.takeTurn(game, position: position)
+        }
+    }
+    
     
     private func updateView(game: TicTacToe) {
         game.view.gameBoard = game.board
@@ -165,9 +190,9 @@ struct HumanOneAgainstComputerUp: GamePlayerStrategy {
     }
     
     func finishTurn(game: TicTacToe) {
-        let (player, turn) = factory.computerUp(game)
-        game.state = player
-        player.takeTurn(game, position: turn)
+        let computerPlayer = factory.computerUp(game)
+        game.state = computerPlayer
+        computerPlayer.takeTurn(game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -200,13 +225,15 @@ struct HumanTwoUp: GamePlayerStrategy {
 
 //MARK: Computer
 
-class ComputerUp: GamePlayerStrategy {
+class ComputerUp: GameBotStrategy {
 
     let factory: GamePlayerStateFactory
     let game: TicTacToe
+    let gameBot: GameBot
     
-    init(game: TicTacToe, factory: GamePlayerStateFactory) {
+    init(game: TicTacToe, gameBot: GameBot, factory: GamePlayerStateFactory) {
         self.factory = factory
+        self.gameBot = gameBot
         self.game = game
     }
     
@@ -217,27 +244,11 @@ class ComputerUp: GamePlayerStrategy {
     func declareVictory(game: TicTacToe) {
         game.state = GameOver(game: game, gameStatus: .ComputerWins)
     }
-
-    func computersTurn() -> BoardPosition  {
-        return game.bot.nextMove(self.game.board)
-    }
     
-//    func computersTurn( block: (BoardPosition) -> Void )  {
-//        block(.TopLeft)
-//    }
-//    func takeTurnSync(player: Player) {
-//        let turn = self.game.bot.nextMove(self.game.board)
-//        player.takeTurn(self.game, position: turn)
-//    }
-//    
-//    func takeTurnAsync(player: Player) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-//            let turn = self.game.bot.nextMove(self.game.board)
-//            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//                player.takeTurn(self.game, position: turn)
-//            }
-//        }
-//    }
+    func botsPosition(completion: GameBotCompletion )  {
+        gameBot.nextMove(game.board, completion: completion)
+    }
+
     
 }
 

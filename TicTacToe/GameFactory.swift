@@ -18,10 +18,12 @@ class GameFactory {
     
     static let GameTypes = GameType.allValues
     
+    let bot: GameBot
     var gameType: GameType
     
-    init(gameType: GameType = .ComputerVersusHuman) {
+    init(gameType: GameType = .ComputerVersusHuman, bot: GameBot = MinimaxGameBot()) {
         self.gameType = gameType
+        self.bot = bot
     }
     
     func gameWithView(view: GameView, markers: [BoardMarker]? = nil) -> Game {
@@ -58,7 +60,7 @@ class GameFactory {
     
     private func startGame(game: TicTacToe) {
         
-        let factory = TicTacToeGamePlayerStateFactory()
+        let factory = TicTacToeGamePlayerStateFactory(gameBot: bot)
         
         let isFirstPlayersTurn = BoardAnalyzer.emptyPositions(game.board).count % 2 == 1
         
@@ -70,12 +72,12 @@ class GameFactory {
             game.state = factory.humanAgainstComputerUp(game)
             
         case .HumanVersusComputer where !isFirstPlayersTurn:
-            let (player, turn) = factory.computerUp(game)
-            player.takeTurn(game, position: turn)
+            let computer = factory.computerUp(game)
+            startGame(game, againstComputer: computer)
             
         case .ComputerVersusHuman where isFirstPlayersTurn:
-            let (player, turn) = factory.computerUp(game)
-            player.takeTurn(game, position: turn)
+            let computer = factory.computerUp(game)
+            startGame(game, againstComputer: computer)
             
         case .ComputerVersusHuman where !isFirstPlayersTurn:
             game.state = factory.humanAgainstComputerUp(game)
@@ -84,6 +86,11 @@ class GameFactory {
             break
         }
         
+    }
+    
+    private func startGame(game: TicTacToe, againstComputer computer: Player) {
+        game.state = computer
+        computer.takeTurn(game)
     }
     
 }

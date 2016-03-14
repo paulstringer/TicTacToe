@@ -4,34 +4,33 @@ typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
 
 struct HeuristicGameBot: GameBot {
 
-    func nextMove(board: GameBoard) -> BoardPosition {
+    func nextMove(board: GameBoard, completion:GameBotCompletion) {
 
         if board.lastTurn == nil {
-            return .TopLeft
+            return completion(.TopLeft)
         }
         
         if let position = BoardAnalyzer.emptyWinningPosition(board) {
-            return position
+            return completion(position)
         }
         
         if let position = emptyOppositeCorner(board) {
-            return position
+            return completion(position)
         }
         
         if BoardAnalyzer.isEmpty(board, position: .Middle) {
-            return .Middle
+            return completion(.Middle)
         }
             
         if let position = emptyOppositeCorner(board) {
-            return position
+            return completion(position)
         }
             
         if let position = bestEmptyPosition(board) {
-            return position
+            return completion(position)
         }
             
-        return BoardAnalyzer.emptyPositions(board).first!
-        
+        completion(BoardAnalyzer.emptyPositions(board).first!)
         
     }
     

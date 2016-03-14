@@ -27,8 +27,10 @@ protocol GameView: class {
     var gameBoard: GameBoard! { get set }
 }
 
+typealias GameBotCompletion = (BoardPosition) -> Void
+
 protocol GameBot {
-    func nextMove(board: GameBoard) -> BoardPosition
+    func nextMove(board: GameBoard, completion: GameBotCompletion)
 }
 
 protocol GameState {
@@ -38,10 +40,11 @@ protocol GameState {
 public class TicTacToe: Game {
 
     let view: GameView
+//    let bot: GameBot?
     var board: TicTacToeBoard
-    lazy var state: GameState = NewGame(game: self)
-    lazy var bot: GameBot = { MinimaxGameBot() }()
     
+    lazy var state: GameState = NewGame(game: self)
+
     init(view: GameView, board: TicTacToeBoard = TicTacToeBoard()) {
         
         self.view = view

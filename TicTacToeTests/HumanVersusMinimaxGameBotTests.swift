@@ -6,7 +6,7 @@ class HumanVersusMinimaxGameBotTests: XCTestCase, GameTestCase {
     var view: GameView!
     var game: Game!
     
-    let bot: GameBot? = MinimaxGameBot()
+    let bot: GameBot? = MinimaxGameBot(testable: true)
     let type: GameType = .HumanVersusComputer
     
     override func setUp() {

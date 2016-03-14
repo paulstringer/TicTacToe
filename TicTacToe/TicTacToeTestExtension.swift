@@ -21,13 +21,8 @@ extension GameTestCase {
 
     private func newGame(markers: [BoardMarker]?) -> Game {
         
-        let gameBuilder = GameFactory(gameType: type)
-        let game = gameBuilder.gameWithView(view, markers: markers)
-        
-        if let game = game as? TicTacToe, let bot = self.bot {
-            game.bot = bot
-        }
-        
+        let gameFactory = (self.bot != nil) ? GameFactory(gameType: type, bot: bot!) : GameFactory(gameType: type)
+        let game = gameFactory.gameWithView(view, markers: markers)
         return game
         
     }
