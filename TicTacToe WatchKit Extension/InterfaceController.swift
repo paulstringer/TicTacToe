@@ -9,7 +9,6 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet var picker: WKInterfacePicker!
     
-    
     //MARK:- Interface Controller Lifecyle
     
     override func awakeWithContext(context: AnyObject?) {
@@ -32,16 +31,19 @@ class InterfaceController: WKInterfaceController {
     
     //MARK:- Game Picker Interface
     
-    func configureNewGamePicker() {
+    private func configureNewGamePicker() {
         let items = GameFactory.GameTypes.map { (type) -> WKPickerItem in
             return pickerItemForGameType(type)
         }
         picker.setItems(items)
     }
     
-    func pickerItemForGameType(type: GameType) -> WKPickerItem {
+    private func pickerItemForGameType(type: GameType) -> WKPickerItem {
         let item = WKPickerItem()
-        item.title = "\(type)"
+        let imageName = "\(type)"
+        let image = WKImage(imageName: imageName)
+        item.contentImage = image
+        item.title = "Game Type"
         return item
     }
     

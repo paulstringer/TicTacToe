@@ -8,7 +8,7 @@ enum GameType {
     
     static var allValues: [GameType] {
         get {
-            return [.HumanVersusHuman, .HumanVersusComputer, .ComputerVersusHuman]
+            return [.HumanVersusComputer, .ComputerVersusHuman, .HumanVersusHuman]
         }
     }
     
