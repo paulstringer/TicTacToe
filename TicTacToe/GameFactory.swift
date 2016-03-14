@@ -58,23 +58,27 @@ class GameFactory {
     
     private func startGame(game: TicTacToe) {
         
+        let factory = TicTacToeGamePlayerStateFactory()
+        
         let isFirstPlayersTurn = BoardAnalyzer.emptyPositions(game.board).count % 2 == 1
         
         switch gameType {
         case .HumanVersusHuman:
-            HumanOneUp.beginTurn(game)
+            game.state = factory.humanOneUp(game)
             
         case .HumanVersusComputer where isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.beginTurn(game)
+            game.state = factory.humanAgainstComputerUp(game)
             
         case .HumanVersusComputer where !isFirstPlayersTurn:
-            ComputerUp.beginTurn(game)
+            let (player, turn) = factory.computerUp(game)
+            player.takeTurn(game, position: turn)
             
         case .ComputerVersusHuman where isFirstPlayersTurn:
-            ComputerUp.beginTurn(game)
+            let (player, turn) = factory.computerUp(game)
+            player.takeTurn(game, position: turn)
             
         case .ComputerVersusHuman where !isFirstPlayersTurn:
-            HumanOneAgainstComputerUp.beginTurn(game)
+            game.state = factory.humanAgainstComputerUp(game)
             
         default:
             break
