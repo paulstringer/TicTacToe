@@ -14,7 +14,7 @@ enum GameType {
     
 }
 
-class GameBuilder {
+class GameFactory {
     
     static let GameTypes = GameType.allValues
     

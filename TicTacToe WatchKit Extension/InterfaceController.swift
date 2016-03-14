@@ -3,7 +3,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    var gameBuilder = GameBuilder()
+    var gameBuilder = GameFactory()
     
     //MARK: Interface
     
@@ -34,7 +34,7 @@ class InterfaceController: WKInterfaceController {
     //MARK:- Game Picker Interface
     
     func configureNewGamePicker() {
-        let items = GameBuilder.GameTypes.map { (type) -> WKPickerItem in
+        let items = GameFactory.GameTypes.map { (type) -> WKPickerItem in
             return pickerItemForGameType(type)
         }
         picker.setItems(items)
@@ -47,7 +47,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func pickerAction(value: Int) {
-        gameBuilder.gameType = GameBuilder.GameTypes[value]
+        gameBuilder.gameType = GameFactory.GameTypes[value]
     }
     
 }

@@ -24,6 +24,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     }
     
     //MARK: Game Buttons
+    
     var buttons: [WKInterfaceButton]!
     @IBOutlet var topLeftButton: WKInterfaceButton!
     @IBOutlet var topMiddleButton: WKInterfaceButton!
@@ -35,20 +36,12 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     @IBOutlet var bottomMiddleButton: WKInterfaceButton!
     @IBOutlet var bottomRightButton: WKInterfaceButton!
     
+    //MARK: - Life Cycle
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         configureButtons()
         startGame(context)
-    }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
     }
     
     func startGame(context: AnyObject?) {

@@ -36,7 +36,7 @@ struct TicTacToeNode {
     func createGameView() -> GameView {
         
         let view = TicTacToeNodeGameView()
-        let game = GameBuilder(gameType: .HumanVersusHuman).gameWithView(view, markers: gameBoard.markers)
+        let game = GameFactory(gameType: .HumanVersusHuman).gameWithView(view, markers: gameBoard.markers)
         
         if let position = position {
             game.takeTurnAtPosition(position)
