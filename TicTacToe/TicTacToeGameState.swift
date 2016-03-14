@@ -252,4 +252,10 @@ class ComputerUp: GameBotStrategy {
     
 }
 
+typealias GameBotCompletion = (BoardPosition) -> Void
+
+protocol GameBot {
+    func nextMove(board: GameBoard, completion: GameBotCompletion)
+}
+
 

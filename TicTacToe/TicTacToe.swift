@@ -12,11 +12,10 @@ enum GameStatus {
 }
 
 protocol Game {
-    
     func takeTurnAtPosition(position: BoardPosition)
     func takeTurnAtPosition(rawValue: BoardPosition.RawValue)
-    
 }
+
 protocol GameBoard {
     var lastTurn: BoardPosition? { get }
     var markers: [BoardMarker] { get }
@@ -27,12 +26,6 @@ protocol GameView: class {
     var gameBoard: GameBoard! { get set }
 }
 
-typealias GameBotCompletion = (BoardPosition) -> Void
-
-protocol GameBot {
-    func nextMove(board: GameBoard, completion: GameBotCompletion)
-}
-
 protocol GameState {
     func takeTurn(game: TicTacToe, position: BoardPosition)
 }
@@ -40,7 +33,6 @@ protocol GameState {
 public class TicTacToe: Game {
 
     let view: GameView
-//    let bot: GameBot?
     var board: TicTacToeBoard
     
     lazy var state: GameState = NewGame(game: self)
