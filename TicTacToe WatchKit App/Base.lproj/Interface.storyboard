@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Select Game-->
+        <!--Tic Tac Toe-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Select Game" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TicTacToe_WatchKit_App" customModuleProvider="target">
+                <controller title="Tic Tac Toe" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TicTacToe_WatchKit_App" customModuleProvider="target">
                     <items>
                         <picker width="1" height="100" alignment="left" style="stack" focusStyle="sequence" id="8g0-7a-vri">
                             <variation key="device=watch42mm" height="131.5"/>
@@ -41,12 +41,12 @@
             </objects>
             <point key="canvasLocation" x="185.69230769230771" y="657.76923076923083"/>
         </scene>
-        <!--Tic Tac Toe-->
+        <!--Board Interface Controller-->
         <scene sceneID="Uek-0z-zxM">
             <objects>
-                <controller title="Tic Tac Toe" id="eq8-p5-c0S" customClass="BoardInterfaceController" customModule="TicTacToe_WatchKit_Extension">
+                <controller id="eq8-p5-c0S" customClass="BoardInterfaceController" customModule="TicTacToe_WatchKit_Extension">
                     <items>
-                        <group width="0.90000000000000002" height="0.90000000000000002" alignment="center" verticalAlignment="center" layout="vertical" id="Q61-Xs-CWF" userLabel="Board">
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" backgroundImage="Board" layout="vertical" id="Q61-Xs-CWF" userLabel="Board">
                             <items>
                                 <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="k8X-Ba-Ax0" userLabel="Top">
                                     <items>
@@ -73,7 +73,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="EIa-Qv-nem" userLabel="Middle">
+                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" radius="0.0" id="EIa-Qv-nem" userLabel="Middle">
                                     <items>
                                         <button width="0.33000000000000002" height="1" alignment="left" id="PwC-Xn-Yl3">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,7 +98,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" id="6VO-xC-OXG" userLabel="Bottom">
+                                <group width="1" height="0.33000000000000002" alignment="center" verticalAlignment="center" radius="0.0" id="6VO-xC-OXG" userLabel="Bottom">
                                     <items>
                                         <button width="0.33000000000000002" height="1" alignment="left" id="QgO-IY-w77">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -148,7 +148,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="428" y="658"/>
+            <point key="canvasLocation" x="426.30769230769232" y="657.76923076923083"/>
         </scene>
     </scenes>
 </document>

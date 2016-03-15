@@ -32,7 +32,7 @@ class InterfaceController: WKInterfaceController {
     //MARK:- Game Picker Interface
     
     private func configureNewGamePicker() {
-        let items = GameFactory.GameTypes.map { (type) -> WKPickerItem in
+        let items = GameType.allValues.map { (type) -> WKPickerItem in
             return pickerItemForGameType(type)
         }
         picker.setItems(items)
@@ -40,15 +40,12 @@ class InterfaceController: WKInterfaceController {
     
     private func pickerItemForGameType(type: GameType) -> WKPickerItem {
         let item = WKPickerItem()
-        let imageName = "\(type)"
-        let image = WKImage(imageName: imageName)
-        item.contentImage = image
-        item.title = "Game Type"
+        item.contentImage = WKImage(imageName: "\(type)")
         return item
     }
     
     @IBAction func pickerAction(value: Int) {
-        gameFactory.gameType = GameFactory.GameTypes[value]
+        gameFactory.gameType = GameType.allValues[value]
     }
     
 }

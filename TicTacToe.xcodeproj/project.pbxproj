@@ -219,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2C198B1C7B3E5F00A4FA27 /* Tic Tac Toe */,
-				8CF8517C1C90A7A90030AAA0 /* App */,
+				8CF8517C1C90A7A90030AAA0 /* iOS App */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 			name = "Tic Tac Toe";
 			sourceTree = "<group>";
 		};
-		8CF8517C1C90A7A90030AAA0 /* App */ = {
+		8CF8517C1C90A7A90030AAA0 /* iOS App */ = {
 			isa = PBXGroup;
 			children = (
 				8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */,
@@ -285,7 +285,7 @@
 				8C2C194C1C7B389F00A4FA27 /* LaunchScreen.storyboard */,
 				8C2C194F1C7B389F00A4FA27 /* Info.plist */,
 			);
-			name = App;
+			name = "iOS App";
 			path = ..;
 			sourceTree = "<group>";
 		};

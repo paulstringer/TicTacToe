@@ -16,12 +16,10 @@ enum GameType {
 
 class GameFactory {
     
-    static let GameTypes = GameType.allValues
-    
     let bot: GameBot
     var gameType: GameType
     
-    init(gameType: GameType = .ComputerVersusHuman, bot: GameBot = MinimaxGameBot()) {
+    init(gameType: GameType = GameType.allValues.first!, bot: GameBot = MinimaxGameBot()) {
         self.gameType = gameType
         self.bot = bot
     }
