@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct MinimaxGameBot: GameBot {
     
     let testable: Bool
@@ -20,14 +19,16 @@ struct MinimaxGameBot: GameBot {
     }
 
     private func calculateMove(board: GameBoard, completion: GameBotCompletion) {
+        
         if testable {
             completion( minimaxPositionForBoard(board) )
         } else {
-            dispatchBackground(board, completion: completion)
+            dispatchMoveCalculation(board, completion: completion)
         }
     }
     
-    private func dispatchBackground(board: GameBoard, completion: GameBotCompletion) {
+    private func dispatchMoveCalculation(board: GameBoard, completion: GameBotCompletion) {
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
             let position = self.minimaxPositionForBoard(board)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -37,11 +38,16 @@ struct MinimaxGameBot: GameBot {
     }
     
     private func minimaxPositionForBoard(board: GameBoard) -> BoardPosition{
+        
+        var turnCount = 0
+        let timeInterval = NSDate().timeIntervalSince1970
+        
         let rootNode = TicTacToeNode(board: board)
         var position = BoardPosition.TopLeft
-        var turnCount = 0
         _ = self.minimax(rootNode, outMove: &position, turnCount: &turnCount)
-        print("Calculating Position using Minimax took \(turnCount) turns")
+        
+        let timeTakenInterval = NSDate().timeIntervalSince1970 - timeInterval
+        print("Calculating bot's position took \(turnCount) calculations (\(Int(timeTakenInterval)) seconds)")
         return position
     }
     
@@ -67,29 +73,27 @@ struct MinimaxGameBot: GameBot {
             }
         }
         
-        if maximise {
-            let max = scores.maxElement()!
-            let indexOfMove = scores.indexOf(max)!
-            move = moves[indexOfMove]
-            return max
-        } else {
-            let min = scores.minElement()!
-            let indexOfMove = scores.indexOf(min)!
-            move = moves[indexOfMove]
-            return min
-        }
-
+        return bestScore(maximise, inMinimaxResult: (scores,moves), bestMove: &move )
         
+    }
+    
+    func bestScore(maximise: Bool, inMinimaxResult result: (scores: [Int], moves: [BoardPosition]), inout bestMove: BoardPosition ) -> Int {
+        
+        let bestScore =  maximise ? result.scores.maxElement()! : result.scores.minElement()!
+        let indexOfBestMove = result.scores.indexOf(bestScore)!
+        bestMove = result.moves[indexOfBestMove]
+        return bestScore
     }
 
 }
 
 
 class TicTacToeNodeGameView: GameView {
+    
     var gameStatus: GameStatus!
     var gameBoard: GameBoard!
-    var gameWinningLine: BoardLine?
 }
+
 
 struct TicTacToeNode {
     
@@ -135,6 +139,7 @@ struct TicTacToeNode {
     }
     
     mutating func score() -> Int {
+        
         switch gameView.gameStatus! {
         case .PlayerOneWins:
             return 10
@@ -147,6 +152,7 @@ struct TicTacToeNode {
     
     
     var gameOver: Bool {
+        
         mutating get {
             switch gameView.gameStatus! {
             case .PlayerOneUp, .PlayerTwoUp:

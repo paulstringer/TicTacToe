@@ -37,9 +37,13 @@ private protocol GameBotStrategy: GamePlayerStrategy {
 //MARK:- Game Player Factory
 
 protocol GamePlayerStateFactory {
+    
     func humanOneUp(game: TicTacToe) -> Player
+    
     func humanTwoUp(game: TicTacToe) -> Player
+    
     func humanAgainstComputerUp(game: TicTacToe) -> Player
+    
     func computerUp(game: TicTacToe) -> Player
 }
 
@@ -73,40 +77,38 @@ class TicTacToeGamePlayerStateFactory: GamePlayerStateFactory {
 
 extension GameState {
     
-    func takeTurn(game: TicTacToe, position: BoardPosition) {}
+    // Default GameState Implementation
     
-}
-
-struct NewGame: GameState {
-    
-    init(game: TicTacToe) {
-        game.view.gameStatus = .None
+    func takeTurn(game: TicTacToe, position: BoardPosition) {
+        // No-Op
     }
-
+    
+    private func declareStalemate(game: TicTacToe) {
+        game.state = Stalemate(game: game)
+    }
+    
 }
+
 
 struct Player: GameState {
     
     private let strategy: GamePlayerStrategy
     
-    //MARK: - Game State API
+    //MARK: Game State API
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
         
-        guard strategy.ignoreTurns == false else {
+        guard tryTurn(game, atPosition: position) else {
             return
         }
-        
-        do {
-            try game.board.takeTurnAtPosition(position)
-        } catch {
-            return
-        }
-        
+   
         updateView(game)
+        
         advanceGame(game)
         
     }
+    
+    //MARK: Bot Player API
     
     func takeBotTurn(game: TicTacToe) {
         
@@ -119,6 +121,23 @@ struct Player: GameState {
         }
     }
     
+    //MARK: Private API
+    
+    private func tryTurn(game: TicTacToe, atPosition position: BoardPosition) -> Bool {
+        
+        guard strategy.ignoreTurns == false else {
+            return false
+        }
+        
+        do {
+            try game.board.takeTurnAtPosition(position)
+        } catch {
+            return false
+        }
+        
+        return true
+        
+    }
     
     private func updateView(game: TicTacToe) {
         game.view.gameBoard = game.board
@@ -131,7 +150,7 @@ struct Player: GameState {
         } else if stalemate(game) {
             declareStalemate(game)
         } else {
-            self.strategy.finishTurn(game)
+            strategy.finishTurn(game)
         }
         
     }
@@ -144,8 +163,14 @@ struct Player: GameState {
         return BoardAnalyzer.stalemate(game.board)
     }
     
-    private func declareStalemate(game: TicTacToe) {
-        game.state = Stalemate(game: game)
+    
+}
+
+struct NewGame: GameState {
+    
+    init(game: TicTacToe) {
+        game.view.gameStatus = .None
+        game.view.gameBoard = game.board
     }
     
 }
@@ -202,9 +227,9 @@ struct HumanOneAgainstComputerUp: GamePlayerStrategy {
     }
     
     func finishTurn(game: TicTacToe) {
-        let computerPlayer = factory.computerUp(game)
-        game.state = computerPlayer
-        computerPlayer.takeBotTurn(game)
+        let computersTurn = factory.computerUp(game)
+        game.state = computersTurn
+        computersTurn.takeBotTurn(game)
     }
     
     func declareVictory(game: TicTacToe) {
@@ -277,7 +302,6 @@ struct ComputerThinking: GamePlayerStrategy {
     }
 
 }
-
 
 
 typealias GameBotCompletion = (BoardPosition) -> Void

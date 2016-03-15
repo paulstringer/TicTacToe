@@ -62,7 +62,6 @@ struct BoardAnalyzer {
         }
         
     }
-    
 
     static func emptyPositions(board: GameBoard) -> [BoardPosition]{
         

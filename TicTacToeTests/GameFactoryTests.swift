@@ -18,7 +18,7 @@ class GameFactoryTests: XCTestCase {
         XCTAssertEqual(GameType.allValues[2], GameType.HumanVersusHuman)
     }
     
-    func testGivenInit_WhenGameTypeNotSet_ThenGameEqualsFirstGameType() {
+    func testGivenInit_WhenGameTypeNotSet_ThenGameTypeEqualsFirstGameType() {
         XCTAssertEqual(factory.gameType, GameType.HumanVersusComputer)
     }
     

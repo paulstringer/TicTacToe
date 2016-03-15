@@ -131,7 +131,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
     }
 
-    //MARK:- Horizontal Blocking Tests
+    //MARK: Horizontal Blocking Tests
     
     func testGivenGame_WhenPlayerTwoBlocksPlayerOnesTopEdge_ThenViewsPlayerUpIsPlayerOne() {
         game.takeTurnAtPosition(0)
@@ -215,7 +215,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
     }
     
-    //MARK: Diagonal Winning Tests
+    //MARK:- Diagonal Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopLeft_ThenPlayerOneWins(){
         game.takeTurnAtPosition(0)
@@ -273,7 +273,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
     }
     
-    //MARK: Stalemate Tests
+    //MARK:- Stalemate Tests
     
     func testGivenGame_WhenPlayersReachStalemate_ThenIsStalemate() {
         game.takeTurnAtPosition(0)
@@ -318,6 +318,8 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
         
     }
+    
+    //MARK:- Completed Game Tests
 
     func testGivenCompletedGame_WhenAttemptingToTakingTurn_ThenBoardDoesNotChange() {
         let markers: [BoardMarker] = [.Cross, .Cross, .None,  .Nought, .Nought, .None,  .None, .None, .None]

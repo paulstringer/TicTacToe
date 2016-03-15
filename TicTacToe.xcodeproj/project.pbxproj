@@ -16,7 +16,7 @@
 		8C2C194B1C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C194A1C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C194E1C7B389F00A4FA27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C194C1C7B389F00A4FA27 /* LaunchScreen.storyboard */; };
 		8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */; };
-		8C2C195E1C7B389F00A4FA27 /* TicTacToe WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */; };
+		8C2C195E1C7B389F00A4FA27 /* Tic Tac Toe.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */; };
 		8C2C19661C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19651C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C196D1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8C2C19721C7B389F00A4FA27 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19711C7B389F00A4FA27 /* InterfaceController.swift */; };
@@ -87,7 +87,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				8C2C195E1C7B389F00A4FA27 /* TicTacToe WatchKit App.app in Embed Watch Content */,
+				8C2C195E1C7B389F00A4FA27 /* Tic Tac Toe.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +97,7 @@
 /* Begin PBXFileReference section */
 		8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardAnalyzer.swift; sourceTree = "<group>"; };
 		8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimaxGameBotAsyncTests.swift; path = TicTacToeTests/MinimaxGameBotAsyncTests.swift; sourceTree = SOURCE_ROOT; };
-		8C2C19401C7B389F00A4FA27 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TicTacToe/AppDelegate.swift; sourceTree = "<group>"; };
 		8C2C19451C7B389F00A4FA27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = TicTacToe/ViewController.swift; sourceTree = "<group>"; };
 		8C2C19481C7B389F00A4FA27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		8C2C19541C7B389F00A4FA27 /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19581C7B389F00A4FA27 /* HumanVersusHumanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HumanVersusHumanTests.swift; path = TicTacToeTests/HumanVersusHumanTests.swift; sourceTree = SOURCE_ROOT; };
 		8C2C195A1C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TicTacToe WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19651C7B389F00A4FA27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2C19671C7B389F00A4FA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TicTacToe WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,9 +210,9 @@
 		8C2C19411C7B389F00A4FA27 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C2C19401C7B389F00A4FA27 /* TicTacToe.app */,
+				8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */,
 				8C2C19541C7B389F00A4FA27 /* TicTacToeTests.xctest */,
-				8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */,
+				8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */,
 				8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */,
 			);
 			name = Products;
@@ -330,7 +330,7 @@
 			);
 			name = TicTacToe;
 			productName = TicTacToe;
-			productReference = 8C2C19401C7B389F00A4FA27 /* TicTacToe.app */;
+			productReference = 8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8C2C19531C7B389F00A4FA27 /* TicTacToeTests */ = {
@@ -365,7 +365,7 @@
 			);
 			name = "TicTacToe WatchKit App";
 			productName = "TicTacToe WatchKit App";
-			productReference = 8C2C195D1C7B389F00A4FA27 /* TicTacToe WatchKit App.app */;
+			productReference = 8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		8C2C196B1C7B389F00A4FA27 /* TicTacToe WatchKit Extension */ = {
@@ -687,7 +687,7 @@
 				INFOPLIST_FILE = "TicTacToe WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tic Tac Toe";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -706,7 +706,7 @@
 				INFOPLIST_FILE = "TicTacToe WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tic Tac Toe";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -721,7 +721,7 @@
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tic Tac Toe";
 			};
 			name = Debug;
 		};
@@ -732,7 +732,7 @@
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tic Tac Toe";
 			};
 			name = Release;
 		};

@@ -8,10 +8,10 @@
         <!--Tic Tac Toe-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Tic Tac Toe" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="TicTacToe_WatchKit_App" customModuleProvider="target">
+                <controller title="Tic Tac Toe" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Tic_Tac_Toe" customModuleProvider="target">
                     <items>
                         <picker width="1" height="100" alignment="left" style="stack" focusStyle="sequence" id="8g0-7a-vri">
-                            <variation key="device=watch42mm" height="131.5"/>
+                            <variation key="device=watch42mm" height="121.5"/>
                             <connections>
                                 <action selector="pickerAction:" destination="AgC-eL-Hgc" id="5Wd-n0-2Hu"/>
                             </connections>

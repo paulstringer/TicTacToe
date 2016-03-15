@@ -1,6 +1,6 @@
 import Foundation
 
-typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
+private typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
 
 struct HeuristicGameBot: GameBot {
     

@@ -27,7 +27,7 @@ typealias BoardLine = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
-    private static let newMarkers: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    private static let NewBoard: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
     
     //MARK: Game Board
     
@@ -42,12 +42,14 @@ struct TicTacToeBoard: GameBoard {
         }
     }
     
-    init(markers: [BoardMarker] = TicTacToeBoard.newMarkers) {
+    init(markers: [BoardMarker] = TicTacToeBoard.NewBoard) {
+        
         self.markers = markers
+        
         self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
     }
     
-    //MARK: Board Operations
+    //MARK: Board Actions
     
     mutating func takeTurnAtPosition(position:BoardPosition) throws {
 
@@ -60,7 +62,7 @@ struct TicTacToeBoard: GameBoard {
         markers[position.rawValue] = marker
     }
     
-    //MARK: Private Helpers
+    //MARK: Private
     
     private func canAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
         
