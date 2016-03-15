@@ -247,6 +247,7 @@ struct ComputerUp: GameBotStrategy {
         self.factory = factory
         self.gameBot = gameBot
         self.game = game
+        game.view.gameStatus = .ComputerUp
     }
     
     func finishTurn(game: TicTacToe) {

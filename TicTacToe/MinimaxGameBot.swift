@@ -39,11 +39,16 @@ struct MinimaxGameBot: GameBot {
     private func minimaxPositionForBoard(board: GameBoard) -> BoardPosition{
         let rootNode = TicTacToeNode(board: board)
         var position = BoardPosition.TopLeft
-        _ = self.minimax(rootNode, outMove: &position)
+        var turnCount = 0
+        _ = self.minimax(rootNode, outMove: &position, turnCount: &turnCount)
+        print("Calculating Position using Minimax took \(turnCount) turns")
         return position
     }
     
-    private func minimax(var node: TicTacToeNode, inout outMove move: BoardPosition, maximise: Bool = false, depth:Int = 9 ) -> Int {
+    
+    private func minimax(var node: TicTacToeNode, inout outMove move: BoardPosition, maximise: Bool = false, depth:Int = 8, inout turnCount: Int ) -> Int {
+        
+        turnCount = turnCount + 1
         
         if depth == 0 || node.gameOver {
             let depthScore = (maximise) ? depth * -1 : depth
@@ -55,7 +60,7 @@ struct MinimaxGameBot: GameBot {
         let children = node.children
         
         for child in children {
-            let score = minimax(child, outMove: &move, maximise: !maximise, depth: depth - 1)
+            let score = minimax(child, outMove: &move, maximise: !maximise, depth: depth - 1, turnCount: &turnCount  )
             if let position = child.position {
                 scores.append(score)
                 moves.append(position)
@@ -106,8 +111,11 @@ struct TicTacToeNode {
         let remainingMoves = BoardAnalyzer.emptyPositions(board)
         
         for move in remainingMoves {
-            let child = TicTacToeNode(board: board, move: move)
+            var child = TicTacToeNode(board: board, move: move)
             nodes.append(child)
+            if child.gameOver {
+                break
+            }
         }
         
         return nodes

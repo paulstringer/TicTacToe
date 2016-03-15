@@ -51,8 +51,8 @@ class GameFactory {
     }
     
     private func startGameAndRenderInitialView(game: TicTacToe) -> TicTacToe {
-        startGame(game)
         game.view.gameBoard = game.board
+        startGame(game)
         return game
     }
     

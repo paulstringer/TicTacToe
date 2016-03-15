@@ -1,9 +1,7 @@
 import WatchKit
 import Foundation
 
-protocol GameContext {
-    func gameWithView(view: GameView) -> Game
-}
+typealias ButtonPositions = [WKInterfaceButton]
 
 class BoardInterfaceController: WKInterfaceController, GameView {
 
@@ -14,10 +12,16 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     var gameStatus: GameStatus! {
         didSet {            
+            
             guard needsColorUpdate() else {
                 return
             }
+            
             updateBoardColor()
+            
+            if gameStatus! == .ComputerUp {
+                animateEmptyButtons()
+            }
         }
     }
     
@@ -29,7 +33,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     //MARK: Game Buttons
     
-    var buttons: [WKInterfaceButton]!
+    var buttons: ButtonPositions!
     @IBOutlet var topLeftButton: WKInterfaceButton!
     @IBOutlet var topMiddleButton: WKInterfaceButton!
     @IBOutlet var topRightButton: WKInterfaceButton!
@@ -137,11 +141,22 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             })
             
         } else {
+            
             updatedButtons.appendContentsOf(buttons)
+            
         }
 
         updateButtons(updatedButtons, withColor: color)
         updateBoardMarkers()
+        
+   
+        
+    }
+    
+    func updateBoardMarkers() {
+        for (index, marker) in gameBoard.markers.enumerate() {
+            updateButtonAtIndex(index, forMarker: marker)
+        }
     }
     
     private func updateButtons(buttons: [WKInterfaceButton], withColor color: UIColor) {
@@ -150,12 +165,6 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         }
     }
 
-    func updateBoardMarkers() {
-        for (index, marker) in gameBoard.markers.enumerate() {
-            updateButtonAtIndex(index, forMarker: marker)
-        }
-    }
-    
     private func updateButtonAtIndex(index: Int, forMarker marker: BoardMarker) {
         let button = buttons[index]
         updateButton(button, backgroundImageWithMarker: marker)
@@ -201,12 +210,36 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         }
         
         switch gameStatus {
-        case .ComputerWins, .PlayerOneWins, .PlayerTwoWins, .Stalemate:
+        case .ComputerWins, .PlayerOneWins, .PlayerTwoWins, .Stalemate, .ComputerUp:
             return true
         default:
             return false
         }
     }
+    
+    private func animateEmptyButtons()  {
+
+        let emptyPositions = BoardAnalyzer.emptyPositions(gameBoard)
+        
+        let emptyButtons = buttons.filter { (button) -> Bool in
+            return emptyPositions.contains( buttons.boardPosition(button) )
+        }
+        
+        for button in emptyButtons {
+            let mod = buttons.indexOf(button)! % 2
+            let animatedImage = UIImage.animatedImageNamed("Thinking\(mod)-", duration: 0.5)
+            button.setBackgroundImage(animatedImage)
+
+        }
+    }
 
 
+}
+
+extension _ArrayType where Generator.Element == WKInterfaceButton {
+    
+    func boardPosition(button: WKInterfaceButton) -> BoardPosition {
+        let index = self.indexOf(button) as! Int
+        return BoardPosition(rawValue: index)!
+    }
 }

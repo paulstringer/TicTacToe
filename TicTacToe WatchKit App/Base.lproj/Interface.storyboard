@@ -128,7 +128,7 @@
                     </items>
                     <menu key="menu" id="zyo-FK-kfA">
                         <items>
-                            <menuItem title="New Game" icon="play" id="dAD-ig-S6H">
+                            <menuItem title="Play Again" icon="play" id="dAD-ig-S6H">
                                 <connections>
                                     <action selector="createGame" destination="eq8-p5-c0S" id="OZN-Hz-HzM"/>
                                 </connections>
