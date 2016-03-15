@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8C1ABFBA1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */; };
 		8C1ABFBB1C92E19400C81CE9 /* GameBoardAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */; };
+		8C1F2B581C980BC800898E78 /* MinimaxGameBotAsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */; };
 		8C2C19441C7B389F00A4FA27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */; };
 		8C2C19461C7B389F00A4FA27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19451C7B389F00A4FA27 /* ViewController.swift */; };
 		8C2C19491C7B389F00A4FA27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19471C7B389F00A4FA27 /* Main.storyboard */; };
@@ -23,7 +24,7 @@
 		8C2C19761C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19751C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */; };
 		8C2C19911C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */; };
-		8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */; };
+		8CB9841C1C84A83B005BA4F0 /* GameTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* GameTestExtensions.swift */; };
 		8CB9841E1C85ACB7005BA4F0 /* HeuristicGameBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */; };
 		8CE999011C918AD30003F170 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
 		8CE999021C918AD30003F170 /* TicTacToeGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */; };
@@ -95,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardAnalyzer.swift; sourceTree = "<group>"; };
+		8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimaxGameBotAsyncTests.swift; path = TicTacToeTests/MinimaxGameBotAsyncTests.swift; sourceTree = SOURCE_ROOT; };
 		8C2C19401C7B389F00A4FA27 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TicTacToe/AppDelegate.swift; sourceTree = "<group>"; };
 		8C2C19451C7B389F00A4FA27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = TicTacToe/ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
 		8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeBoard.swift; sourceTree = "<group>"; };
 		8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusHeuristicGameBotTests.swift; path = TicTacToeTests/HumanVersusHeuristicGameBotTests.swift; sourceTree = SOURCE_ROOT; };
-		8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacToeTestExtension.swift; path = ../TicTacToe/TicTacToeTestExtension.swift; sourceTree = "<group>"; };
+		8CB9841B1C84A83B005BA4F0 /* GameTestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTestExtensions.swift; path = ../TicTacToe/GameTestExtensions.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeuristicGameBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameState.swift; sourceTree = "<group>"; };
 		8CE9990A1C9191CD0003F170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				8CFE59291C8ECF2900A38EAB /* MinimaxGameBot.swift */,
 				8CF8517A1C902C200030AAA0 /* MinimaxGameBotVersusHumanTests.swift */,
 				8CF8517F1C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift */,
+				8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */,
 			);
 			name = "Minimax Bot";
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */,
-				8CB9841B1C84A83B005BA4F0 /* TicTacToeTestExtension.swift */,
+				8CB9841B1C84A83B005BA4F0 /* GameTestExtensions.swift */,
 			);
 			name = "Tests Support";
 			sourceTree = "<group>";
@@ -489,7 +492,8 @@
 				8C2C19591C7B389F00A4FA27 /* HumanVersusHumanTests.swift in Sources */,
 				8CE999121C92BE820003F170 /* GameFactoryTests.swift in Sources */,
 				8C2C19911C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift in Sources */,
-				8CB9841C1C84A83B005BA4F0 /* TicTacToeTestExtension.swift in Sources */,
+				8CB9841C1C84A83B005BA4F0 /* GameTestExtensions.swift in Sources */,
+				8C1F2B581C980BC800898E78 /* MinimaxGameBotAsyncTests.swift in Sources */,
 				8CF8517B1C902C200030AAA0 /* MinimaxGameBotVersusHumanTests.swift in Sources */,
 				8CFE59241C8DC14400A38EAB /* HeuristicGameBotVersusHumanTests.swift in Sources */,
 				8CF851801C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift in Sources */,

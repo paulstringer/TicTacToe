@@ -3,7 +3,7 @@ import Foundation
 typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
 
 struct HeuristicGameBot: GameBot {
-
+    
     func nextMove(board: GameBoard, completion:GameBotCompletion) {
 
         if board.lastTurn == nil {

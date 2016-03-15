@@ -160,4 +160,5 @@ class HumanVersusMinimaxGameBotTests: XCTestCase, GameTestCase {
         game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
     }
+
 }

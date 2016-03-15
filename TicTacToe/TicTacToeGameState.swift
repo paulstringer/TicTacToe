@@ -8,20 +8,30 @@ private protocol GamePlayerStrategy {
     
     func declareVictory(game: TicTacToe)
     
+    var ignoreTurns: Bool { get }
+    
 }
 
 extension GamePlayerStrategy {
     
-    // Default Implementation
+    // Default No-Op Implementations
     
     func finishTurn(game: TicTacToe) {}
 
     func declareVictory(game: TicTacToe) {}
     
+    var ignoreTurns: Bool  {
+        get {
+            return false
+        }
+    }
+    
 }
 
 private protocol GameBotStrategy: GamePlayerStrategy {
-    func botsPosition(completion: GameBotCompletion)
+    
+    func calculateNextPosition(completion: GameBotCompletion)
+    
 }
 
 //MARK:- Game Player Factory
@@ -83,6 +93,10 @@ struct Player: GameState {
     
     func takeTurn(game: TicTacToe, position: BoardPosition) {
         
+        guard strategy.ignoreTurns == false else {
+            return
+        }
+        
         do {
             try game.board.takeTurnAtPosition(position)
         } catch {
@@ -100,7 +114,7 @@ struct Player: GameState {
             return
         }
 
-        bot.botsPosition { (position) -> Void in
+        bot.calculateNextPosition { (position) -> Void in
             self.takeTurn(game, position: position)
         }
     }
@@ -223,12 +237,12 @@ struct HumanTwoUp: GamePlayerStrategy {
 
 //MARK: Computer
 
-class ComputerUp: GameBotStrategy {
+struct ComputerUp: GameBotStrategy {
 
     let factory: GamePlayerStateFactory
     let game: TicTacToe
     let gameBot: GameBot
-    
+ 
     init(game: TicTacToe, gameBot: GameBot, factory: GamePlayerStateFactory) {
         self.factory = factory
         self.gameBot = gameBot
@@ -243,17 +257,30 @@ class ComputerUp: GameBotStrategy {
         game.state = GameOver(game: game, gameStatus: .ComputerWins)
     }
     
-    func botsPosition(completion: GameBotCompletion )  {
-        gameBot.nextMove(game.board, completion: completion)
+    func calculateNextPosition(completion: GameBotCompletion )  {
+        game.state = Player( strategy: ComputerThinking() )
+        gameBot.nextMove(game.board) { (position) in
+            self.game.state = self.factory.computerUp(self.game)
+            completion(position)
+        }
     }
 
-    
 }
+
+struct ComputerThinking: GamePlayerStrategy {
+    
+    var ignoreTurns: Bool  {
+        get {
+            return true
+        }
+    }
+
+}
+
+
 
 typealias GameBotCompletion = (BoardPosition) -> Void
 
 protocol GameBot {
     func nextMove(board: GameBoard, completion: GameBotCompletion)
 }
-
-
