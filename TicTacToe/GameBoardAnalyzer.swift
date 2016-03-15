@@ -4,7 +4,7 @@ struct BoardAnalyzer {
     
     //MARK: Board Rules
     
-    static func victory(board: GameBoard) -> Bool {
+    static func victory(board: GameBoard) ->  (result: Bool, line: BoardLine?) {
         return BoardAnalyzerMetrics.hasCompleteLine(board)
     }
     
@@ -95,7 +95,7 @@ struct BoardAnalyzer {
             var tryOutBoard = TicTacToeBoard(markers: board.markers)
             do {
                 try tryOutBoard.takeTurnAtPosition(a)
-                return BoardAnalyzer.victory(tryOutBoard)
+                return BoardAnalyzer.victory(tryOutBoard).result
             } catch {
                 return false
             }
@@ -135,8 +135,9 @@ private struct BoardAnalyzerMetrics {
         
     }()
     
-    static private func hasCompleteLine(board: GameBoard) -> Bool{
-        return linesContainingSameMarkerCount(3, board: board).isEmpty == false
+    static private func hasCompleteLine(board: GameBoard) -> (result: Bool, line: BoardLine?){
+        let lines = linesContainingSameMarkerCount(3, board: board)
+        return (!lines.isEmpty, lines.first)
     }
     
     static func linesForMarkerCount(markerCount: Int, forBoard board: GameBoard) -> [BoardLine] {

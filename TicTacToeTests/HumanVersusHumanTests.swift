@@ -326,4 +326,12 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(.MiddleRight)
         XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
     }
+    
+    func testGivenGame_WhenWinningLineEqualsTopRow_ThenGameStateValueEqualsTopRow() {
+        let markers: [BoardMarker] = [.Cross, .Cross, .None,  .Nought, . Nought, .Cross,  .Cross, .Nought , .Nought]
+        setUpGame(markers)
+        game.takeTurnAtPosition(.TopRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameBoard.winningLine!, [BoardPosition.TopLeft, BoardPosition.TopMiddle, BoardPosition.TopRight])
+    }
 }

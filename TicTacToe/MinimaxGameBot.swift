@@ -83,6 +83,7 @@ struct MinimaxGameBot: GameBot {
 class TicTacToeNodeGameView: GameView {
     var gameStatus: GameStatus!
     var gameBoard: GameBoard!
+    var gameWinningLine: BoardLine?
 }
 
 struct TicTacToeNode {

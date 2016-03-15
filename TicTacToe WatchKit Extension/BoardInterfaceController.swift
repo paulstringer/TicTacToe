@@ -126,14 +126,30 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     //MARK: - Board View Updates
     
     private func updateBoardColor() {
+
         let color = colorForGameStatus()
-        buttons.forEach { (button) -> () in
-            button.setBackgroundColor(color)
-        }
+        var updatedButtons = [WKInterfaceButton]()
         
+        if let winningLine = gameBoard.winningLine  {
+            
+            winningLine.forEach({ (position) -> () in
+                updatedButtons.append(buttons[position.rawValue])
+            })
+            
+        } else {
+            updatedButtons.appendContentsOf(buttons)
+        }
+
+        updateButtons(updatedButtons, withColor: color)
         updateBoardMarkers()
     }
     
+    private func updateButtons(buttons: [WKInterfaceButton], withColor color: UIColor) {
+        buttons.forEach { (button) -> () in
+            button.setBackgroundColor(color)
+        }
+    }
+
     func updateBoardMarkers() {
         for (index, marker) in gameBoard.markers.enumerate() {
             updateButtonAtIndex(index, forMarker: marker)

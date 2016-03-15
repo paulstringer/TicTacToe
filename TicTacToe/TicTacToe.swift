@@ -19,6 +19,7 @@ protocol Game {
 protocol GameBoard {
     var lastTurn: BoardPosition? { get }
     var markers: [BoardMarker] { get }
+    var winningLine: BoardLine? { get }
 }
 
 protocol GameView: class {

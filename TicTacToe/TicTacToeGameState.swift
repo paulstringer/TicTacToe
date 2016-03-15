@@ -136,8 +136,8 @@ struct Player: GameState {
         
     }
     
-    private func victory(game: TicTacToe) -> Bool{
-        return BoardAnalyzer.victory(game.board)
+    private func victory(game: TicTacToe) -> Bool {
+        return BoardAnalyzer.victory(game.board).result
     }
     
     private func stalemate(game: TicTacToe) -> Bool{

@@ -35,6 +35,13 @@ struct TicTacToeBoard: GameBoard {
     
     var lastTurn: BoardPosition?
     
+    var winningLine: BoardLine? {
+        
+        get {
+            return BoardAnalyzer.victory(self).line
+        }
+    }
+    
     init(markers: [BoardMarker] = TicTacToeBoard.newMarkers) {
         self.markers = markers
         self.lastTurn = BoardAnalyzer.lastPlayedPosition(self)
