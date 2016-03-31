@@ -97,7 +97,7 @@
 /* Begin PBXFileReference section */
 		8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardAnalyzer.swift; sourceTree = "<group>"; };
 		8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimaxGameBotAsyncTests.swift; path = TicTacToeTests/MinimaxGameBotAsyncTests.swift; sourceTree = SOURCE_ROOT; };
-		8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2C19401C7B389F00A4FA27 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2C19431C7B389F00A4FA27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TicTacToe/AppDelegate.swift; sourceTree = "<group>"; };
 		8C2C19451C7B389F00A4FA27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = TicTacToe/ViewController.swift; sourceTree = "<group>"; };
 		8C2C19481C7B389F00A4FA27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		8C2C19411C7B389F00A4FA27 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */,
+				8C2C19401C7B389F00A4FA27 /* TicTacToe.app */,
 				8C2C19541C7B389F00A4FA27 /* TicTacToeTests.xctest */,
 				8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */,
 				8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */,
@@ -330,7 +330,7 @@
 			);
 			name = TicTacToe;
 			productName = TicTacToe;
-			productReference = 8C2C19401C7B389F00A4FA27 /* Tic Tac Toe.app */;
+			productReference = 8C2C19401C7B389F00A4FA27 /* TicTacToe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8C2C19531C7B389F00A4FA27 /* TicTacToeTests */ = {
@@ -721,7 +721,7 @@
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe;
-				PRODUCT_NAME = "Tic Tac Toe";
+				PRODUCT_NAME = "${TARGET_NAME}";
 			};
 			name = Debug;
 		};
@@ -732,7 +732,7 @@
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.stringerstheory.TicTacToe;
-				PRODUCT_NAME = "Tic Tac Toe";
+				PRODUCT_NAME = "${TARGET_NAME}";
 			};
 			name = Release;
 		};
