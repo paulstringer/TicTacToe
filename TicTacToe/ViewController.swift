@@ -139,6 +139,8 @@ class ViewController: UIViewController, GameView {
     private func updateBoardColor() {
         
         let color = colorForGameStatus()
+        let accessibilityLabel = labelForGameStatus()
+        
         var updatedButtons = [UIButton]()
         
         if let winningLine = gameBoard.winningLine  {
@@ -153,16 +155,17 @@ class ViewController: UIViewController, GameView {
             
         }
         
-        updateButtons(updatedButtons, withColor: color)
+        updateButtons(updatedButtons, withColor: color, accessibilityLabel: accessibilityLabel )
         updateBoardMarkers()
         
         
         
     }
     
-    private func updateButtons(buttons: [UIButton], withColor color: UIColor) {
+    private func updateButtons(buttons: [UIButton], withColor color: UIColor, accessibilityLabel: String) {
         buttons.forEach { (button) -> () in
             button.tintColor = color
+            button.accessibilityLabel = accessibilityLabel
         }
     }
     
@@ -181,6 +184,25 @@ class ViewController: UIViewController, GameView {
             return .yellowColor()
         default:
             return .whiteColor()
+        }
+        
+    }
+    
+    private func labelForGameStatus() -> String {
+        
+        guard let gameStatus = gameStatus else {
+            return "WHITE"
+        }
+        
+        switch gameStatus {
+        case .ComputerWins:
+            return "RED"
+        case .PlayerOneWins, .PlayerTwoWins:
+            return "GREEN"
+        case .Stalemate:
+            return "YELLOW"
+        default:
+            return "WHITE"
         }
         
     }
