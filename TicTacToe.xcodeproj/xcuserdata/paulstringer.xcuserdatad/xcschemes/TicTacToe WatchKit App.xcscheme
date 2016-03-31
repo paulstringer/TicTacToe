@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-               BuildableName = "TicTacToe WatchKit App.app"
+               BuildableName = "Tic Tac Toe.app"
                BlueprintName = "TicTacToe WatchKit App"
                ReferencedContainer = "container:TicTacToe.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-            BuildableName = "TicTacToe WatchKit App.app"
+            BuildableName = "Tic Tac Toe.app"
             BlueprintName = "TicTacToe WatchKit App"
             ReferencedContainer = "container:TicTacToe.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-            BuildableName = "TicTacToe WatchKit App.app"
+            BuildableName = "Tic Tac Toe.app"
             BlueprintName = "TicTacToe WatchKit App"
             ReferencedContainer = "container:TicTacToe.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-            BuildableName = "TicTacToe WatchKit App.app"
+            BuildableName = "Tic Tac Toe.app"
             BlueprintName = "TicTacToe WatchKit App"
             ReferencedContainer = "container:TicTacToe.xcodeproj">
          </BuildableReference>
@@ -116,7 +116,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-            BuildableName = "TicTacToe WatchKit App.app"
+            BuildableName = "Tic Tac Toe.app"
             BlueprintName = "TicTacToe WatchKit App"
             ReferencedContainer = "container:TicTacToe.xcodeproj">
          </BuildableReference>
@@ -125,7 +125,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C2C195C1C7B389F00A4FA27"
-            BuildableName = "TicTacToe WatchKit App.app"
+            BuildableName = "Tic Tac Toe.app"
             BlueprintName = "TicTacToe WatchKit App"
             ReferencedContainer = "container:TicTacToe.xcodeproj">
          </BuildableReference>
