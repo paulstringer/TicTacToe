@@ -1,3 +1,4 @@
-# TicTacToe
+# Tic Tac Toe for Watch
 
-An unbeatable TicTacToe for  Watch
+![New Game](https://raw.githubusercontent.com/paulstringer/TicTacToe/master/Screenshots/TTT-NewGame.png)
+![In Game](https://raw.githubusercontent.com/paulstringer/TicTacToe/master/Screenshots/TTT-InGame.png)
