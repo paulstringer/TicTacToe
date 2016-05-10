@@ -10,7 +10,7 @@ import XCTest
 
 class TicTacToeUITests: XCTestCase {
     
-    lazy var element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
+    lazy var element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other)
     
     override func setUp() {
         super.setUp()
@@ -23,7 +23,7 @@ class TicTacToeUITests: XCTestCase {
     }
     
     func testPlayerOneDiagonalWins() {
-
+        
         element.childrenMatchingType(.Button).elementBoundByIndex(0).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(4).tap()
