@@ -9,7 +9,9 @@
 import XCTest
 
 class TicTacToeUITests: XCTestCase {
-        
+    
+    lazy var element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
+    
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -22,7 +24,6 @@ class TicTacToeUITests: XCTestCase {
     
     func testPlayerOneDiagonalWins() {
 
-        let element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
         element.childrenMatchingType(.Button).elementBoundByIndex(0).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(4).tap()
@@ -37,7 +38,6 @@ class TicTacToeUITests: XCTestCase {
     
     func testPlayerOneHorizontalWins() {
 
-        let element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
         element.childrenMatchingType(.Button).elementBoundByIndex(3).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(4).tap()
@@ -52,7 +52,6 @@ class TicTacToeUITests: XCTestCase {
     
     func testPlayerOneVerticalLineWins() {
         
-        let element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
         element.childrenMatchingType(.Button).elementBoundByIndex(0).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(1).tap()
         element.childrenMatchingType(.Button).elementBoundByIndex(3).tap()
