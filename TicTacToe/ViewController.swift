@@ -41,14 +41,14 @@ class ViewController: UIViewController, GameView {
         createGame()
     }
 
-    private func configureButtons() {
+    fileprivate func configureButtons() {
         buttons = [
             topLeftButton, topMiddleButton, topRightButton,
             middleLeftButton, middleButton, middleRightButton,
             bottomLeftButton, bottomMiddleButton, bottomRightButton]
         
         buttons.forEach { (button) -> () in
-            button.setBackgroundImage(nil, forState: .Normal)
+            button.setBackgroundImage(nil, for: UIControlState())
         }
     }
     
@@ -57,32 +57,32 @@ class ViewController: UIViewController, GameView {
     }
     
     func createGame() {
-        let factory = GameFactory(gameType: .HumanVersusHuman)
+        let factory = GameFactory(gameType: .humanVersusHuman)
         game = factory.gameWithView(self)
     }
     
-    @IBAction func buttonAction(sender: UIButton) {
+    @IBAction func buttonAction(_ sender: UIButton) {
         
-        var position: BoardPosition = .Middle
+        var position: BoardPosition = .middle
         
         if sender == topLeftButton {
-            position = .TopLeft
+            position = .topLeft
         } else if sender == topMiddleButton {
-            position = .TopMiddle
+            position = .topMiddle
         } else if sender == topRightButton {
-            position = .TopRight
+            position = .topRight
         } else if sender == middleLeftButton {
-            position = .MiddleLeft
+            position = .middleLeft
         } else if sender == middleButton {
-            position = .Middle
+            position = .middle
         } else if sender == middleRightButton {
-            position = .MiddleRight
+            position = .middleRight
         } else if sender == bottomLeftButton {
-            position = .BottomLeft
+            position = .bottomLeft
         } else if sender == bottomMiddleButton {
-            position = .BottomMiddle
+            position = .bottomMiddle
         } else if sender == bottomRightButton {
-            position = .BottomRight
+            position = .bottomRight
         }
         
         game?.takeTurnAtPosition(position)
@@ -90,24 +90,24 @@ class ViewController: UIViewController, GameView {
     
     
     func updateBoardMarkers() {
-        for (index, marker) in gameBoard.markers.enumerate() {
+        for (index, marker) in gameBoard.markers.enumerated() {
             updateButtonAtIndex(index, forMarker: marker)
         }
     }
     
     
-    private func updateButtonAtIndex(index: Int, forMarker marker: BoardMarker) {
+    fileprivate func updateButtonAtIndex(_ index: Int, forMarker marker: BoardMarker) {
         let button = buttons[index]
         updateButton(button, backgroundImageWithMarker: marker)
     }
     
-    private func updateButton(button: UIButton, backgroundImageWithMarker marker: BoardMarker) {
+    fileprivate func updateButton(_ button: UIButton, backgroundImageWithMarker marker: BoardMarker) {
         var imageName: String? = nil
         
         button.titleLabel?.text = nil
         
         switch marker {
-        case .Cross, .Nought:
+        case .cross, .nought:
             imageName = "\(marker)"
         default:
             imageName = nil
@@ -115,19 +115,19 @@ class ViewController: UIViewController, GameView {
         
         if let imageName = imageName {
             let image = UIImage(named: imageName)
-            button.setBackgroundImage(image, forState: .Normal)
+            button.setBackgroundImage(image, for: UIControlState())
         }
         
     }
 
-    private func needsColorUpdate() -> Bool {
+    fileprivate func needsColorUpdate() -> Bool {
         
         guard let gameStatus = gameStatus else {
             return false
         }
         
         switch gameStatus {
-        case .ComputerWins, .PlayerOneWins, .PlayerTwoWins, .Stalemate, .ComputerUp:
+        case .computerWins, .playerOneWins, .playerTwoWins, .stalemate, .computerUp:
             return true
         default:
             return false
@@ -136,7 +136,7 @@ class ViewController: UIViewController, GameView {
     
     //MARK: - Board View Updates
     
-    private func updateBoardColor() {
+    fileprivate func updateBoardColor() {
         
         let color = colorForGameStatus()
         let accessibilityLabel = labelForGameStatus()
@@ -151,7 +151,7 @@ class ViewController: UIViewController, GameView {
             
         } else {
             
-            updatedButtons.appendContentsOf(buttons)
+            updatedButtons.append(contentsOf: buttons)
             
         }
         
@@ -162,44 +162,44 @@ class ViewController: UIViewController, GameView {
         
     }
     
-    private func updateButtons(buttons: [UIButton], withColor color: UIColor, accessibilityLabel: String) {
+    fileprivate func updateButtons(_ buttons: [UIButton], withColor color: UIColor, accessibilityLabel: String) {
         buttons.forEach { (button) -> () in
             button.tintColor = color
             button.accessibilityLabel = accessibilityLabel
         }
     }
     
-    private func colorForGameStatus() -> UIColor {
+    fileprivate func colorForGameStatus() -> UIColor {
         
         guard let gameStatus = gameStatus else {
-            return .whiteColor()
+            return .white
         }
         
         switch gameStatus {
-        case .ComputerWins:
-            return .redColor()
-        case .PlayerOneWins, .PlayerTwoWins:
-            return .greenColor()
-        case .Stalemate:
-            return .yellowColor()
+        case .computerWins:
+            return .red
+        case .playerOneWins, .playerTwoWins:
+            return .green
+        case .stalemate:
+            return .yellow
         default:
-            return .whiteColor()
+            return .white
         }
         
     }
     
-    private func labelForGameStatus() -> String {
+    fileprivate func labelForGameStatus() -> String {
         
         guard let gameStatus = gameStatus else {
             return "WHITE"
         }
         
         switch gameStatus {
-        case .ComputerWins:
+        case .computerWins:
             return "RED"
-        case .PlayerOneWins, .PlayerTwoWins:
+        case .playerOneWins, .playerTwoWins:
             return "GREEN"
-        case .Stalemate:
+        case .stalemate:
             return "YELLOW"
         default:
             return "WHITE"

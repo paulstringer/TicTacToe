@@ -1,19 +1,19 @@
 import Foundation
 
 enum GameStatus {
-    case None
-    case PlayerOneUp
-    case PlayerTwoUp
-    case ComputerUp
-    case PlayerOneWins
-    case PlayerTwoWins
-    case ComputerWins
-    case Stalemate
+    case none
+    case playerOneUp
+    case playerTwoUp
+    case computerUp
+    case playerOneWins
+    case playerTwoWins
+    case computerWins
+    case stalemate
 }
 
 protocol Game {
-    func takeTurnAtPosition(position: BoardPosition)
-    func takeTurnAtPosition(rawValue: BoardPosition.RawValue)
+    func takeTurnAtPosition(_ position: BoardPosition)
+    func takeTurnAtPosition(_ rawValue: BoardPosition.RawValue)
 }
 
 protocol GameBoard {
@@ -28,10 +28,10 @@ protocol GameView: class {
 }
 
 protocol GameState {
-    func takeTurn(game: TicTacToe, position: BoardPosition)
+    func takeTurn(_ game: TicTacToe, position: BoardPosition)
 }
 
-public class TicTacToe: Game {
+open class TicTacToe: Game {
 
     let view: GameView
     var board: TicTacToeBoard
@@ -44,7 +44,7 @@ public class TicTacToe: Game {
         self.board = board
     }
     
-    func takeTurnAtPosition(rawValue: BoardPosition.RawValue) {
+    func takeTurnAtPosition(_ rawValue: BoardPosition.RawValue) {
         
         guard let position = BoardPosition(rawValue: rawValue) else {
             return
@@ -54,7 +54,7 @@ public class TicTacToe: Game {
         
     }
     
-    func takeTurnAtPosition(position: BoardPosition) {
+    func takeTurnAtPosition(_ position: BoardPosition) {
         
         state.takeTurn(self, position: position )
     }

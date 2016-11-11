@@ -4,9 +4,9 @@ import Foundation
 
 private protocol GamePlayerStrategy {
     
-    func finishTurn(game:TicTacToe)
+    func finishTurn(_ game:TicTacToe)
     
-    func declareVictory(game: TicTacToe)
+    func declareVictory(_ game: TicTacToe)
     
     var ignoreTurns: Bool { get }
     
@@ -16,9 +16,9 @@ extension GamePlayerStrategy {
     
     // Default No-Op Implementations
     
-    func finishTurn(game: TicTacToe) {}
+    func finishTurn(_ game: TicTacToe) {}
 
-    func declareVictory(game: TicTacToe) {}
+    func declareVictory(_ game: TicTacToe) {}
     
     var ignoreTurns: Bool  {
         get {
@@ -30,7 +30,7 @@ extension GamePlayerStrategy {
 
 private protocol GameBotStrategy: GamePlayerStrategy {
     
-    func calculateNextPosition(completion: GameBotCompletion)
+    func calculateNextPosition(_ completion: GameBotCompletion)
     
 }
 
@@ -38,13 +38,13 @@ private protocol GameBotStrategy: GamePlayerStrategy {
 
 protocol GamePlayerStateFactory {
     
-    func humanOneUp(game: TicTacToe) -> Player
+    func humanOneUp(_ game: TicTacToe) -> Player
     
-    func humanTwoUp(game: TicTacToe) -> Player
+    func humanTwoUp(_ game: TicTacToe) -> Player
     
-    func humanAgainstComputerUp(game: TicTacToe) -> Player
+    func humanAgainstComputerUp(_ game: TicTacToe) -> Player
     
-    func computerUp(game: TicTacToe) -> Player
+    func computerUp(_ game: TicTacToe) -> Player
 }
 
 class TicTacToeGamePlayerStateFactory: GamePlayerStateFactory {
@@ -55,19 +55,19 @@ class TicTacToeGamePlayerStateFactory: GamePlayerStateFactory {
         self.gameBot = gameBot
     }
     
-    func humanOneUp(game: TicTacToe) -> Player {
+    func humanOneUp(_ game: TicTacToe) -> Player {
         return Player(strategy: HumanOneUp( game: game, factory: self)  )
     }
     
-    func humanTwoUp(game: TicTacToe) -> Player {
+    func humanTwoUp(_ game: TicTacToe) -> Player {
         return Player( strategy: HumanTwoUp(game: game, factory: self) )
     }
 
-    func humanAgainstComputerUp(game: TicTacToe) -> Player {
+    func humanAgainstComputerUp(_ game: TicTacToe) -> Player {
         return Player( strategy: HumanOneAgainstComputerUp(game: game, factory: self) )
     }
     
-    func computerUp(game: TicTacToe) -> Player {
+    func computerUp(_ game: TicTacToe) -> Player {
         return Player( strategy: ComputerUp(game: game, gameBot:gameBot, factory: self) )
     }
     
@@ -79,11 +79,11 @@ extension GameState {
     
     // Default GameState Implementation
     
-    func takeTurn(game: TicTacToe, position: BoardPosition) {
+    func takeTurn(_ game: TicTacToe, position: BoardPosition) {
         // No-Op
     }
     
-    private func declareStalemate(game: TicTacToe) {
+    fileprivate func declareStalemate(_ game: TicTacToe) {
         game.state = Stalemate(game: game)
     }
     
@@ -92,11 +92,11 @@ extension GameState {
 
 struct Player: GameState {
     
-    private let strategy: GamePlayerStrategy
+    fileprivate let strategy: GamePlayerStrategy
     
     //MARK: Game State API
     
-    func takeTurn(game: TicTacToe, position: BoardPosition) {
+    func takeTurn(_ game: TicTacToe, position: BoardPosition) {
         
         guard tryTurn(game, atPosition: position) else {
             return
@@ -110,7 +110,7 @@ struct Player: GameState {
     
     //MARK: Bot Player API
     
-    func takeBotTurn(game: TicTacToe) {
+    func takeBotTurn(_ game: TicTacToe) {
         
         guard let bot = strategy as? GameBotStrategy else {
             return
@@ -123,7 +123,7 @@ struct Player: GameState {
     
     //MARK: Private API
     
-    private func tryTurn(game: TicTacToe, atPosition position: BoardPosition) -> Bool {
+    fileprivate func tryTurn(_ game: TicTacToe, atPosition position: BoardPosition) -> Bool {
         
         guard strategy.ignoreTurns == false else {
             return false
@@ -139,11 +139,11 @@ struct Player: GameState {
         
     }
     
-    private func updateView(game: TicTacToe) {
+    fileprivate func updateView(_ game: TicTacToe) {
         game.view.gameBoard = game.board
     }
     
-    private func advanceGame(game: TicTacToe) {
+    fileprivate func advanceGame(_ game: TicTacToe) {
         
         if victory(game) {
             strategy.declareVictory(game)
@@ -155,11 +155,11 @@ struct Player: GameState {
         
     }
     
-    private func victory(game: TicTacToe) -> Bool {
+    fileprivate func victory(_ game: TicTacToe) -> Bool {
         return BoardAnalyzer.victory(game.board).result
     }
     
-    private func stalemate(game: TicTacToe) -> Bool{
+    fileprivate func stalemate(_ game: TicTacToe) -> Bool{
         return BoardAnalyzer.stalemate(game.board)
     }
     
@@ -169,7 +169,7 @@ struct Player: GameState {
 struct NewGame: GameState {
     
     init(game: TicTacToe) {
-        game.view.gameStatus = .None
+        game.view.gameStatus = .none
         game.view.gameBoard = game.board
     }
     
@@ -178,7 +178,7 @@ struct NewGame: GameState {
 struct Stalemate: GameState {
     
     init(game: TicTacToe) {
-        game.view.gameStatus = .Stalemate
+        game.view.gameStatus = .stalemate
     }
     
 }
@@ -202,15 +202,15 @@ struct HumanOneUp: GamePlayerStrategy  {
 
     init(game: TicTacToe, factory: GamePlayerStateFactory) {
         self.factory = factory
-        game.view.gameStatus = .PlayerOneUp
+        game.view.gameStatus = .playerOneUp
     }
 
-    func finishTurn(game: TicTacToe) {
+    func finishTurn(_ game: TicTacToe) {
         game.state = factory.humanTwoUp(game)
     }
     
-    func declareVictory(game: TicTacToe) {
-        game.state = GameOver(game: game, gameStatus: .PlayerOneWins)
+    func declareVictory(_ game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .playerOneWins)
     }
 
 }
@@ -223,17 +223,17 @@ struct HumanOneAgainstComputerUp: GamePlayerStrategy {
     
     init(game: TicTacToe, factory: GamePlayerStateFactory) {
         self.factory = factory
-        game.view.gameStatus = .PlayerOneUp
+        game.view.gameStatus = .playerOneUp
     }
     
-    func finishTurn(game: TicTacToe) {
+    func finishTurn(_ game: TicTacToe) {
         let computersTurn = factory.computerUp(game)
         game.state = computersTurn
         computersTurn.takeBotTurn(game)
     }
     
-    func declareVictory(game: TicTacToe) {
-        game.state = GameOver(game: game, gameStatus: .PlayerOneWins)
+    func declareVictory(_ game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .playerOneWins)
     }
     
 }
@@ -246,15 +246,15 @@ struct HumanTwoUp: GamePlayerStrategy {
 
     init(game: TicTacToe, factory: GamePlayerStateFactory) {
         self.factory = factory
-        game.view.gameStatus = .PlayerTwoUp
+        game.view.gameStatus = .playerTwoUp
     }
 
-    func finishTurn(game: TicTacToe) {
+    func finishTurn(_ game: TicTacToe) {
         game.state = factory.humanOneUp(game)
     }
 
-    func declareVictory(game: TicTacToe) {
-        game.state = GameOver(game: game, gameStatus: .PlayerTwoWins)
+    func declareVictory(_ game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .playerTwoWins)
     }
 
 }
@@ -272,18 +272,18 @@ struct ComputerUp: GameBotStrategy {
         self.factory = factory
         self.gameBot = gameBot
         self.game = game
-        game.view.gameStatus = .ComputerUp
+        game.view.gameStatus = .computerUp
     }
     
-    func finishTurn(game: TicTacToe) {
+    func finishTurn(_ game: TicTacToe) {
         game.state = factory.humanAgainstComputerUp(game)
     }
     
-    func declareVictory(game: TicTacToe) {
-        game.state = GameOver(game: game, gameStatus: .ComputerWins)
+    func declareVictory(_ game: TicTacToe) {
+        game.state = GameOver(game: game, gameStatus: .computerWins)
     }
     
-    func calculateNextPosition(completion: GameBotCompletion )  {
+    func calculateNextPosition(_ completion: GameBotCompletion )  {
         game.state = Player( strategy: ComputerThinking() )
         gameBot.nextMove(game.board) { (position) in
             self.game.state = self.factory.computerUp(self.game)
@@ -307,5 +307,5 @@ struct ComputerThinking: GamePlayerStrategy {
 typealias GameBotCompletion = (BoardPosition) -> Void
 
 protocol GameBot {
-    func nextMove(board: GameBoard, completion: GameBotCompletion)
+    func nextMove(_ board: GameBoard, completion: GameBotCompletion)
 }
