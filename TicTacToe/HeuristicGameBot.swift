@@ -4,7 +4,7 @@ private typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
 
 struct HeuristicGameBot: GameBot {
     
-    func nextMove(_ board: GameBoard, completion:GameBotCompletion) {
+    func nextMove(_ board: GameBoard, completion:@escaping GameBotCompletion) {
 
         if board.lastTurn == nil {
             return completion(.topLeft)
@@ -101,19 +101,19 @@ extension BoardPosition {
     
     var isCorner: Bool {
         get {
-            return [ topLeft, topRight, bottomLeft, bottomRight].contains(self)
+            return [ .topLeft, .topRight, .bottomLeft, .bottomRight].contains(self)
         }
     }
     
     var isEdge: Bool {
         get {
-            return [ middleLeft, topMiddle, middleRight, bottomMiddle].contains(self)
+            return [ .middleLeft, .topMiddle, .middleRight, .bottomMiddle].contains(self)
         }
     }
     
     var isMiddle: Bool {
         get {
-            return self == middle
+            return self == .middle
         }
     }
     

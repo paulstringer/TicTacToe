@@ -30,7 +30,7 @@ extension GamePlayerStrategy {
 
 private protocol GameBotStrategy: GamePlayerStrategy {
     
-    func calculateNextPosition(_ completion: GameBotCompletion)
+    func calculateNextPosition(_ completion: @escaping GameBotCompletion)
     
 }
 
@@ -283,7 +283,8 @@ struct ComputerUp: GameBotStrategy {
         game.state = GameOver(game: game, gameStatus: .computerWins)
     }
     
-    func calculateNextPosition(_ completion: GameBotCompletion )  {
+
+    func calculateNextPosition(_ completion: @escaping GameBotCompletion )  {
         game.state = Player( strategy: ComputerThinking() )
         gameBot.nextMove(game.board) { (position) in
             self.game.state = self.factory.computerUp(self.game)
@@ -303,9 +304,8 @@ struct ComputerThinking: GamePlayerStrategy {
 
 }
 
-
 typealias GameBotCompletion = (BoardPosition) -> Void
 
 protocol GameBot {
-    func nextMove(_ board: GameBoard, completion: GameBotCompletion)
+    func nextMove(_ board: GameBoard, completion: @escaping GameBotCompletion)
 }

@@ -438,7 +438,7 @@
 		8C2C19381C7B389E00A4FA27 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = stringerstheory;
 				TargetAttributes = {
@@ -458,11 +458,6 @@
 					8C2C196B1C7B389F00A4FA27 = {
 						CreatedOnToolsVersion = 7.2.1;
 						LastSwiftMigration = 0810;
-					};
-					8CDEFDAA1CADBE1700F1CB9B = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0810;
-						TestTargetID = 8C2C193F1C7B389F00A4FA27;
 					};
 				};
 			};

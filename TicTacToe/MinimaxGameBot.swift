@@ -2,6 +2,12 @@ import Foundation
 
 struct MinimaxGameBot: GameBot {
     
+    
+//    func nextMove(_ board: GameBoard, completion: (BoardPosition) -> Void) {
+//        //
+//    }
+
+    
     let testable: Bool
     
     init(testable: Bool = false) {
@@ -112,7 +118,8 @@ struct TicTacToeNode {
     mutating func generateChildren() -> [TicTacToeNode] {
         
         var nodes = [TicTacToeNode]()
-        let board = gameView.gameBoard
+        guard let board = gameView.gameBoard else { return [] }
+        
         let remainingMoves = BoardAnalyzer.emptyPositions(board)
         
         for move in remainingMoves {

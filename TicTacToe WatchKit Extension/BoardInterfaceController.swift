@@ -222,7 +222,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         let emptyPositions = BoardAnalyzer.emptyPositions(gameBoard)
         
         let emptyButtons = buttons.filter { (button) -> Bool in
-            return emptyPositions.contains( buttons.boardPosition(button) )
+            return emptyPositions.contains( boardPosition(button) )
         }
         
         for button in emptyButtons {
@@ -233,13 +233,10 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         }
     }
 
-
-}
-
-extension _ArrayType where Iterator.Element == WKInterfaceButton {
-    
-    func boardPosition(_ button: WKInterfaceButton) -> BoardPosition {
-        let index = self.index(of: button) as! Int
+    fileprivate func boardPosition(_  button: WKInterfaceButton) -> BoardPosition {
+        let index = buttons.index(of: button)!
         return BoardPosition(rawValue: index)!
     }
+
+
 }
