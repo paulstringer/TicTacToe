@@ -50,7 +50,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8CDEFDAA1CADBE1700F1CB9B"
+               BlueprintIdentifier = "B42B2F1C1DF71CA000463691"
                BuildableName = "TicTacToeUITests.xctest"
                BlueprintName = "TicTacToeUITests"
                ReferencedContainer = "container:TicTacToe.xcodeproj">
