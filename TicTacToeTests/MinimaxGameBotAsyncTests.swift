@@ -6,7 +6,7 @@ class MinimaxGameBotAsyncTests: XCTestCase, GameTestCase {
     var view: GameView!
     var game: Game!
     var bot: GameBot? = MinimaxGameBot(testable: false)
-    var type: GameType = .HumanVersusComputer
+    var type: GameType = .humanVersusComputer
     
     override func setUp() {
         super.setUp()

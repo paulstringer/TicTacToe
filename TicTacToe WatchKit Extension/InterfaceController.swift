@@ -11,8 +11,8 @@ class InterfaceController: WKInterfaceController {
     
     //MARK:- Interface Controller Lifecyle
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         configureNewGamePicker()
     }
 
@@ -24,27 +24,27 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         return gameFactory
         
     }
     
     //MARK:- Game Picker Interface
     
-    private func configureNewGamePicker() {
+    fileprivate func configureNewGamePicker() {
         let items = GameType.allValues.map { (type) -> WKPickerItem in
             return pickerItemForGameType(type)
         }
         picker.setItems(items)
     }
     
-    private func pickerItemForGameType(type: GameType) -> WKPickerItem {
+    fileprivate func pickerItemForGameType(_ type: GameType) -> WKPickerItem {
         let item = WKPickerItem()
         item.contentImage = WKImage(imageName: "\(type)")
         return item
     }
     
-    @IBAction func pickerAction(value: Int) {
+    @IBAction func pickerAction(_ value: Int) {
         gameFactory.gameType = GameType.allValues[value]
     }
     

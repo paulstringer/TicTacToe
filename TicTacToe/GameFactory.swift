@@ -2,13 +2,13 @@ import Foundation
 
 enum GameType {
     
-    case HumanVersusHuman
-    case HumanVersusComputer
-    case ComputerVersusHuman
+    case humanVersusHuman
+    case humanVersusComputer
+    case computerVersusHuman
     
     static var allValues: [GameType] {
         get {
-            return [.HumanVersusComputer, .ComputerVersusHuman, .HumanVersusHuman]
+            return [.humanVersusComputer, .computerVersusHuman, .humanVersusHuman]
         }
     }
     
@@ -25,7 +25,7 @@ class GameFactory {
         self.bot = bot
     }
     
-    func gameWithView(view: GameView, markers: [BoardMarker]? = nil) -> Game {
+    func gameWithView(_ view: GameView, markers: [BoardMarker]? = nil) -> Game {
         
         if let markers = markers {
             return restoreGameWithView(view, markers: markers)
@@ -34,7 +34,7 @@ class GameFactory {
         }
     }
     
-    private func restoreGameWithView(view: GameView, markers: [BoardMarker]) -> TicTacToe {
+    fileprivate func restoreGameWithView(_ view: GameView, markers: [BoardMarker]) -> TicTacToe {
 
         let board = TicTacToeBoard(markers: markers)
         let game = TicTacToe(view: view, board: board)
@@ -42,20 +42,20 @@ class GameFactory {
        
     }
     
-    private func newGameWithView(view: GameView) -> TicTacToe {
+    fileprivate func newGameWithView(_ view: GameView) -> TicTacToe {
         
         let game: TicTacToe = TicTacToe(view: view)
         return startGameAndRenderInitialView(game)
         
     }
     
-    private func startGameAndRenderInitialView(game: TicTacToe) -> TicTacToe {
+    fileprivate func startGameAndRenderInitialView(_ game: TicTacToe) -> TicTacToe {
         
         game.view.gameBoard = game.board
         return startGame(game)
     }
     
-    private func startGame(game: TicTacToe) -> TicTacToe {
+    fileprivate func startGame(_ game: TicTacToe) -> TicTacToe {
         
         let factory = TicTacToeGamePlayerStateFactory(gameBot: bot)
         
@@ -63,23 +63,23 @@ class GameFactory {
         
         switch gameType {
 
-        case .HumanVersusHuman:
+        case .humanVersusHuman:
             game.state = factory.humanOneUp(game)
             
             
-        case .HumanVersusComputer where isFirstPlayersTurn:
+        case .humanVersusComputer where isFirstPlayersTurn:
             game.state = factory.humanAgainstComputerUp(game)
             
-        case .HumanVersusComputer where !isFirstPlayersTurn:
+        case .humanVersusComputer where !isFirstPlayersTurn:
             let computer = factory.computerUp(game)
             startGame(game, againstComputer: computer)
             
             
-        case .ComputerVersusHuman where isFirstPlayersTurn:
+        case .computerVersusHuman where isFirstPlayersTurn:
             let computer = factory.computerUp(game)
             startGame(game, againstComputer: computer)
             
-        case .ComputerVersusHuman where !isFirstPlayersTurn:
+        case .computerVersusHuman where !isFirstPlayersTurn:
             game.state = factory.humanAgainstComputerUp(game)
             
             
@@ -91,7 +91,7 @@ class GameFactory {
         
     }
     
-    private func startGame(game: TicTacToe, againstComputer computer: Player) {
+    fileprivate func startGame(_ game: TicTacToe, againstComputer computer: Player) {
         
         game.state = computer
         computer.takeBotTurn(game)
