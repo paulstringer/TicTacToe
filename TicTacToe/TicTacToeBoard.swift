@@ -1,33 +1,33 @@
 import Foundation
 
 public enum BoardPosition: Int {
-    case TopLeft = 0
-    case TopMiddle = 1
-    case TopRight = 2
-    case MiddleLeft = 3
-    case Middle = 4
-    case MiddleRight = 5
-    case BottomLeft = 6
-    case BottomMiddle = 7
-    case BottomRight = 8
+    case topLeft = 0
+    case topMiddle = 1
+    case topRight = 2
+    case middleLeft = 3
+    case middle = 4
+    case middleRight = 5
+    case bottomLeft = 6
+    case bottomMiddle = 7
+    case bottomRight = 8
 }
 
 enum BoardMarker {
-    case None
-    case Nought
-    case Cross
+    case none
+    case nought
+    case cross
 }
 
-enum BoardError: ErrorType {
-    case PositionTaken
-    case InvalidMove
+enum BoardError: Error {
+    case positionTaken
+    case invalidMove
 }
 
 typealias BoardLine = [BoardPosition]
 
 struct TicTacToeBoard: GameBoard {
     
-    private static let NewBoard: [BoardMarker] = [.None, .None, .None, .None, .None, .None, .None, .None, .None]
+    fileprivate static let NewBoard: [BoardMarker] = [.none, .none, .none, .none, .none, .none, .none, .none, .none]
     
     //MARK: Game Board
     
@@ -51,7 +51,7 @@ struct TicTacToeBoard: GameBoard {
     
     //MARK: Board Actions
     
-    mutating func takeTurnAtPosition(position:BoardPosition) throws {
+    mutating func takeTurnAtPosition(_ position:BoardPosition) throws {
 
         let marker = BoardAnalyzer.nextMarker(self)
 
@@ -64,14 +64,14 @@ struct TicTacToeBoard: GameBoard {
     
     //MARK: Private
     
-    private func canAddMarker(marker: BoardMarker, atPosition position: BoardPosition) throws {
+    fileprivate func canAddMarker(_ marker: BoardMarker, atPosition position: BoardPosition) throws {
         
         guard BoardAnalyzer.isEmpty(self, position: position) else {
-            throw BoardError.PositionTaken
+            throw BoardError.positionTaken
         }
         
         guard BoardAnalyzer.nextMarker(self) == marker else {
-            throw BoardError.InvalidMove
+            throw BoardError.invalidMove
         }
     }
 

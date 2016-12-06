@@ -13,29 +13,29 @@ class GameFactoryTests: XCTestCase {
     }
     
     func testGivenGameTypes_AllValues_ThenGameTypesContainsAllGamesTypes() {
-        XCTAssertEqual(GameType.allValues[0], GameType.HumanVersusComputer)
-        XCTAssertEqual(GameType.allValues[1], GameType.ComputerVersusHuman)
-        XCTAssertEqual(GameType.allValues[2], GameType.HumanVersusHuman)
+        XCTAssertEqual(GameType.allValues[0], GameType.humanVersusComputer)
+        XCTAssertEqual(GameType.allValues[1], GameType.computerVersusHuman)
+        XCTAssertEqual(GameType.allValues[2], GameType.humanVersusHuman)
     }
     
     func testGivenInit_WhenGameTypeNotSet_ThenGameTypeEqualsFirstGameType() {
-        XCTAssertEqual(factory.gameType, GameType.HumanVersusComputer)
+        XCTAssertEqual(factory.gameType, GameType.humanVersusComputer)
     }
     
     func testGivenGameTypeComputerVersusHuman_WhenNewGame_ThenGameIsComputerVersusHuman() {
-        factory.gameType = .ComputerVersusHuman
+        factory.gameType = .computerVersusHuman
         game = factory.gameWithView(gameView)
         
         XCTAssertEqual(gameView.gameBoard.crosses, 1)
-        XCTAssertEqual(gameView.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(gameView.gameStatus, GameStatus.playerOneUp)
     }
     
     func testGivenGameTypeHumanVersusHuman_WhenNewGame_ThenGameIsHumanVersusHuman() {
-        factory.gameType = .HumanVersusHuman
+        factory.gameType = .humanVersusHuman
         game = factory.gameWithView(gameView)
         
         XCTAssertEqual(gameView.gameBoard.crosses, 0)
-        XCTAssertEqual(gameView.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(gameView.gameStatus, GameStatus.playerOneUp)
     
     }
     

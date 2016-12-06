@@ -4,10 +4,10 @@ private typealias BoardPositionTransform = (BoardPosition) -> (BoardPosition?)
 
 struct HeuristicGameBot: GameBot {
     
-    func nextMove(board: GameBoard, completion:GameBotCompletion) {
+    func nextMove(_ board: GameBoard, completion:@escaping GameBotCompletion) {
 
         if board.lastTurn == nil {
-            return completion(.TopLeft)
+            return completion(.topLeft)
         }
         
         if let position = BoardAnalyzer.emptyWinningPosition(board) {
@@ -18,8 +18,8 @@ struct HeuristicGameBot: GameBot {
             return completion(position)
         }
         
-        if BoardAnalyzer.isEmpty(board, position: .Middle) {
-            return completion(.Middle)
+        if BoardAnalyzer.isEmpty(board, position: .middle) {
+            return completion(.middle)
         }
             
         if let position = emptyOppositeCorner(board) {
@@ -34,9 +34,9 @@ struct HeuristicGameBot: GameBot {
         
     }
     
-    private func bestEmptyPosition(board: GameBoard) -> BoardPosition? {
+    fileprivate func bestEmptyPosition(_ board: GameBoard) -> BoardPosition? {
         
-        let didCaptureCenterGround =  BoardAnalyzer.nextPlayersMarkedPositions(board).contains(.Middle)
+        let didCaptureCenterGround =  BoardAnalyzer.nextPlayersMarkedPositions(board).contains(.middle)
         
         for position in BoardAnalyzer.emptyPositions(board) {
             
@@ -50,7 +50,7 @@ struct HeuristicGameBot: GameBot {
         return nil
     }
     
-    private func emptyCorner(board: GameBoard) -> BoardPosition? {
+    fileprivate func emptyCorner(_ board: GameBoard) -> BoardPosition? {
 
         let emptyCorners = BoardAnalyzer.emptyPositions(board).filter({ (position) -> Bool in
             return position.isCorner
@@ -59,7 +59,7 @@ struct HeuristicGameBot: GameBot {
         return emptyCorners.first
     }
     
-    private func emptyOppositeCorner(board: GameBoard) -> BoardPosition? {
+    fileprivate func emptyOppositeCorner(_ board: GameBoard) -> BoardPosition? {
         
         if let result = emptyOppositePosition(board, transform: { (position) in return position.diagonalOpposite } ) {
             return result
@@ -77,7 +77,7 @@ struct HeuristicGameBot: GameBot {
     }
     
     
-    private func emptyOppositePosition(board: GameBoard, transform: BoardPositionTransform ) -> BoardPosition? {
+    fileprivate func emptyOppositePosition(_ board: GameBoard, transform: @escaping BoardPositionTransform ) -> BoardPosition? {
         
         let myPositions = BoardAnalyzer.nextPlayersMarkedPositions(board)
         let empties = BoardAnalyzer.emptyPositions(board)
@@ -101,19 +101,19 @@ extension BoardPosition {
     
     var isCorner: Bool {
         get {
-            return [ TopLeft, TopRight, BottomLeft, BottomRight].contains(self)
+            return [ .topLeft, .topRight, .bottomLeft, .bottomRight].contains(self)
         }
     }
     
     var isEdge: Bool {
         get {
-            return [ MiddleLeft, TopMiddle, MiddleRight, BottomMiddle].contains(self)
+            return [ .middleLeft, .topMiddle, .middleRight, .bottomMiddle].contains(self)
         }
     }
     
     var isMiddle: Bool {
         get {
-            return self == Middle
+            return self == .middle
         }
     }
     
@@ -121,14 +121,14 @@ extension BoardPosition {
         
         get {
             switch (self) {
-            case .TopLeft:
-                return .BottomRight
-            case .BottomRight:
-                return .TopLeft
-            case .TopRight:
-                return .BottomLeft
-            case .BottomLeft:
-                return .TopRight
+            case .topLeft:
+                return .bottomRight
+            case .bottomRight:
+                return .topLeft
+            case .topRight:
+                return .bottomLeft
+            case .bottomLeft:
+                return .topRight
             default:
                 return nil
             }
@@ -139,14 +139,14 @@ extension BoardPosition {
         
         get {
             switch (self) {
-            case .TopLeft:
-                return .BottomLeft
-            case .TopRight:
-                return .BottomRight
-            case .BottomLeft:
-                return .TopLeft
-            case .BottomRight:
-                return .TopRight
+            case .topLeft:
+                return .bottomLeft
+            case .topRight:
+                return .bottomRight
+            case .bottomLeft:
+                return .topLeft
+            case .bottomRight:
+                return .topRight
             default:
                 return nil
             }
@@ -157,14 +157,14 @@ extension BoardPosition {
         
         get {
             switch (self) {
-            case .TopLeft:
-                return .TopRight
-            case .TopRight:
-                return .TopLeft
-            case .BottomLeft:
-                return .BottomRight
-            case .BottomRight:
-                return .BottomLeft
+            case .topLeft:
+                return .topRight
+            case .topRight:
+                return .topLeft
+            case .bottomLeft:
+                return .bottomRight
+            case .bottomRight:
+                return .bottomLeft
             default:
                 return nil
             }

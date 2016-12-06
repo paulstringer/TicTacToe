@@ -19,7 +19,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             
             updateBoardColor()
             
-            if gameStatus! == .ComputerUp {
+            if gameStatus! == .computerUp {
                 animateEmptyButtons()
             }
         }
@@ -46,13 +46,13 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     
     //MARK: - Life Cycle
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         configureButtons()
-        startGame(context)
+        startGame(context as AnyObject?)
     }
     
-    private func startGame(context: AnyObject?) {
+    fileprivate func startGame(_ context: AnyObject?) {
         if let context = context as? GameFactory {
             self.context = context
             createGame()
@@ -61,7 +61,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
         }
     }
     
-    private func configureButtons() {
+    fileprivate func configureButtons() {
         buttons = [
             topLeftButton, topMiddleButton, topRightButton,
             middleLeftButton, middleButton, middleRightButton,
@@ -82,54 +82,54 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     //TOP
     
     @IBAction func topLeftAction() {
-        takeTurnAtPosition(.TopLeft)
+        takeTurnAtPosition(.topLeft)
     }
     
     @IBAction func topMiddleAction() {
-        takeTurnAtPosition(.TopMiddle)
+        takeTurnAtPosition(.topMiddle)
     }
     
     @IBAction func topRightAction() {
-        takeTurnAtPosition(.TopRight)
+        takeTurnAtPosition(.topRight)
     }
     
     //MIDDLE
     
     @IBAction func middleLeftAction() {
-        takeTurnAtPosition(.MiddleLeft)
+        takeTurnAtPosition(.middleLeft)
     }
     
     @IBAction func middleAction() {
-        takeTurnAtPosition(.Middle)
+        takeTurnAtPosition(.middle)
     }
     
     @IBAction func middleRightAction() {
-        takeTurnAtPosition(.MiddleRight)
+        takeTurnAtPosition(.middleRight)
     }
     
     //BOTTOM
     
     @IBAction func bottomLeftAction() {
-        takeTurnAtPosition(.BottomLeft)
+        takeTurnAtPosition(.bottomLeft)
     }
     
     @IBAction func bottomMiddleAction() {
-        takeTurnAtPosition(.BottomMiddle)
+        takeTurnAtPosition(.bottomMiddle)
     }
     
     @IBAction func bottomRightAction() {
-        takeTurnAtPosition(.BottomRight)
+        takeTurnAtPosition(.bottomRight)
     }
     
     //Button Action
     
-    private func takeTurnAtPosition(position: BoardPosition) {
+    fileprivate func takeTurnAtPosition(_ position: BoardPosition) {
         game?.takeTurnAtPosition(position)
     }
     
     //MARK: - Board View Updates
     
-    private func updateBoardColor() {
+    fileprivate func updateBoardColor() {
 
         let color = colorForGameStatus()
         var updatedButtons = [WKInterfaceButton]()
@@ -142,7 +142,7 @@ class BoardInterfaceController: WKInterfaceController, GameView {
             
         } else {
             
-            updatedButtons.appendContentsOf(buttons)
+            updatedButtons.append(contentsOf: buttons)
             
         }
 
@@ -154,27 +154,27 @@ class BoardInterfaceController: WKInterfaceController, GameView {
     }
     
     func updateBoardMarkers() {
-        for (index, marker) in gameBoard.markers.enumerate() {
+        for (index, marker) in gameBoard.markers.enumerated() {
             updateButtonAtIndex(index, forMarker: marker)
         }
     }
     
-    private func updateButtons(buttons: [WKInterfaceButton], withColor color: UIColor) {
+    fileprivate func updateButtons(_ buttons: [WKInterfaceButton], withColor color: UIColor) {
         buttons.forEach { (button) -> () in
             button.setBackgroundColor(color)
         }
     }
 
-    private func updateButtonAtIndex(index: Int, forMarker marker: BoardMarker) {
+    fileprivate func updateButtonAtIndex(_ index: Int, forMarker marker: BoardMarker) {
         let button = buttons[index]
         updateButton(button, backgroundImageWithMarker: marker)
     }
     
-    private func updateButton(button: WKInterfaceButton, backgroundImageWithMarker marker: BoardMarker) {
+    fileprivate func updateButton(_ button: WKInterfaceButton, backgroundImageWithMarker marker: BoardMarker) {
         var imageName: String? = nil
         
         switch marker {
-        case .Cross, .Nought:
+        case .cross, .nought:
             imageName = "\(marker)"
         default:
             imageName = nil
@@ -184,62 +184,59 @@ class BoardInterfaceController: WKInterfaceController, GameView {
 
     }
     
-    private func colorForGameStatus() -> UIColor {
+    fileprivate func colorForGameStatus() -> UIColor {
        
         guard let gameStatus = gameStatus else {
-            return .whiteColor()
+            return .white
         }
         
         switch gameStatus {
-        case .ComputerWins:
-            return .redColor()
-        case .PlayerOneWins, .PlayerTwoWins:
-            return .greenColor()
-        case .Stalemate:
-            return .yellowColor()
+        case .computerWins:
+            return .red
+        case .playerOneWins, .playerTwoWins:
+            return .green
+        case .stalemate:
+            return .yellow
         default:
-            return .whiteColor()
+            return .white
         }
         
     }
     
-    private func needsColorUpdate() -> Bool {
+    fileprivate func needsColorUpdate() -> Bool {
         
         guard let gameStatus = gameStatus else {
             return false
         }
         
         switch gameStatus {
-        case .ComputerWins, .PlayerOneWins, .PlayerTwoWins, .Stalemate, .ComputerUp:
+        case .computerWins, .playerOneWins, .playerTwoWins, .stalemate, .computerUp:
             return true
         default:
             return false
         }
     }
     
-    private func animateEmptyButtons()  {
+    fileprivate func animateEmptyButtons()  {
 
         let emptyPositions = BoardAnalyzer.emptyPositions(gameBoard)
         
         let emptyButtons = buttons.filter { (button) -> Bool in
-            return emptyPositions.contains( buttons.boardPosition(button) )
+            return emptyPositions.contains( boardPosition(button) )
         }
         
         for button in emptyButtons {
-            let mod = buttons.indexOf(button)! % 2
+            let mod = buttons.index(of: button)! % 2
             let animatedImage = UIImage.animatedImageNamed("Thinking\(mod)-", duration: 0.5)
             button.setBackgroundImage(animatedImage)
 
         }
     }
-
-
-}
-
-extension _ArrayType where Generator.Element == WKInterfaceButton {
     
-    func boardPosition(button: WKInterfaceButton) -> BoardPosition {
-        let index = self.indexOf(button) as! Int
+    fileprivate func boardPosition(_  button: WKInterfaceButton) -> BoardPosition {
+        let index = buttons.index(of: button)!
         return BoardPosition(rawValue: index)!
     }
+
+
 }

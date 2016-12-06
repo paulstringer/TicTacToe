@@ -7,7 +7,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     var game: Game!
     
     var bot: GameBot? = nil
-    var type: GameType = .HumanVersusHuman
+    var type: GameType = .humanVersusHuman
     
     override func setUp() {
         super.setUp()
@@ -17,7 +17,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     //MARK:- Humam V Human Tests
 
     func testGivenView_WhenNewHumanVersusHumanGameStarted_ThenPlayerOneUp() {
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
     }
     
     func testGivenView_WhenNewHumanVersusHumanGameStarted_ThenLastTurnIsNil() {
@@ -27,33 +27,33 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
     //MARK:- Humam V Human Turn Order Tests
     
     func testGivenView_WhenTakingTurns_ThenViewsPlayerUpAlternates() {
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.TopLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
-        game.takeTurnAtPosition(.MiddleLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.BottomLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
-        game.takeTurnAtPosition(.TopMiddle)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.MiddleRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.topLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
+        game.takeTurnAtPosition(.middleLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.bottomLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
+        game.takeTurnAtPosition(.topMiddle)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.middleRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
     }
     
     func testGivenGame_WhenTakingTurnWherePositionIsTooSmall_ThenViewsPlayerRemainsPlayerOne() {
         game.takeTurnAtPosition(-1)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
     }
     
     func testGivenGame_WhenTakingTurnWherePositionIsTooBig_ThenViewsPlayerRemainsPlayerOne() {
         game.takeTurnAtPosition(9)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysSamePositionAsPlayerOne_ThenViewsPlayerRemainsPlayerTwo(){
-        game.takeTurnAtPosition(.Middle)
-        game.takeTurnAtPosition(.Middle)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        game.takeTurnAtPosition(.middle)
+        game.takeTurnAtPosition(.middle)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
     }
     
     //MARK:- Horizontal Winning Tests
@@ -63,9 +63,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(3)
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(4)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
         game.takeTurnAtPosition(2)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysMiddleRow_ThenViewsGameStatusIsPlayerOneWins() {
@@ -73,9 +73,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(1)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
         game.takeTurnAtPosition(5)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysBottomEdge_ThenViewsGameStatusIsPlayerOneWins() {
@@ -83,9 +83,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(7)
         game.takeTurnAtPosition(1)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysTopEdge_ThenViewsGameStatusIsPlayerTwoWins() {
@@ -94,9 +94,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(6)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
         game.takeTurnAtPosition(2)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysMiddleRow_ThenViewsGameStatusIsPlayerOneWins() {
@@ -105,9 +105,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(6)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
         game.takeTurnAtPosition(5)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysBottomEdge_ThenViewsGameStatusIsPlayerTwoWins() {
@@ -116,9 +116,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(7)
         game.takeTurnAtPosition(3)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysSequentialSquaresNotOnARow_ThenPlayerTwoIsUp() {
@@ -126,9 +126,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(2)
         game.takeTurnAtPosition(4)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
         game.takeTurnAtPosition(3)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
     }
 
     //MARK: Horizontal Blocking Tests
@@ -138,7 +138,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(6)
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(2)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
     }
     
     func testGivenGame_WhenPlayerOneBlocksPlayerTwosMiddleColumn_ThenViewsPlayerUpIsPlayerTwo() {
@@ -147,61 +147,61 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(5)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
     }
     
     //MARK:- Vertical Winning Tests
     
     func testGivenGame_WhenPlayerOnePlaysLeftEdge_ThenPlayerOneWins(){
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.TopMiddle)
-        game.takeTurnAtPosition(.MiddleLeft)
-        game.takeTurnAtPosition(.TopRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.BottomLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        game.takeTurnAtPosition(.topLeft)
+        game.takeTurnAtPosition(.topMiddle)
+        game.takeTurnAtPosition(.middleLeft)
+        game.takeTurnAtPosition(.topRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.bottomLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysMiddleColumn_ThenPlayerOneWins(){
-        game.takeTurnAtPosition(.TopMiddle)
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.Middle)
-        game.takeTurnAtPosition(.TopRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.BottomMiddle)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        game.takeTurnAtPosition(.topMiddle)
+        game.takeTurnAtPosition(.topLeft)
+        game.takeTurnAtPosition(.middle)
+        game.takeTurnAtPosition(.topRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.bottomMiddle)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysRightEdge_ThenPlayerOneWins(){
-        game.takeTurnAtPosition(.TopRight)
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.MiddleRight)
-        game.takeTurnAtPosition(.TopMiddle)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneUp)
-        game.takeTurnAtPosition(.BottomRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        game.takeTurnAtPosition(.topRight)
+        game.takeTurnAtPosition(.topLeft)
+        game.takeTurnAtPosition(.middleRight)
+        game.takeTurnAtPosition(.topMiddle)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneUp)
+        game.takeTurnAtPosition(.bottomRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysLeftEdge_ThenPlayerTwoWins(){
-        game.takeTurnAtPosition(.TopMiddle)
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.TopRight)
-        game.takeTurnAtPosition(.MiddleLeft)
-        game.takeTurnAtPosition(.BottomRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
-        game.takeTurnAtPosition(.BottomLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        game.takeTurnAtPosition(.topMiddle)
+        game.takeTurnAtPosition(.topLeft)
+        game.takeTurnAtPosition(.topRight)
+        game.takeTurnAtPosition(.middleLeft)
+        game.takeTurnAtPosition(.bottomRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
+        game.takeTurnAtPosition(.bottomLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysMiddleColumn_ThenPlayerTwoWins(){
-        game.takeTurnAtPosition(.TopLeft)
-        game.takeTurnAtPosition(.TopMiddle)
-        game.takeTurnAtPosition(.TopRight)
-        game.takeTurnAtPosition(.Middle)
-        game.takeTurnAtPosition(.BottomLeft)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
-        game.takeTurnAtPosition(.BottomMiddle)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        game.takeTurnAtPosition(.topLeft)
+        game.takeTurnAtPosition(.topMiddle)
+        game.takeTurnAtPosition(.topRight)
+        game.takeTurnAtPosition(.middle)
+        game.takeTurnAtPosition(.bottomLeft)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
+        game.takeTurnAtPosition(.bottomMiddle)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysRightEdge_ThenPlayerTwoWins(){
@@ -210,9 +210,9 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(5)
         game.takeTurnAtPosition(3)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoUp)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoUp)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     //MARK:- Diagonal Winning Tests
@@ -223,7 +223,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(2)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromTopRight_ThenPlayerOneWins(){
@@ -232,7 +232,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(0)
         game.takeTurnAtPosition(6)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromBottomLeft_ThenPlayerOneWins(){
@@ -241,7 +241,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(1)
         game.takeTurnAtPosition(2)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerOnePlaysDiagonalFromBottomRight_ThenPlayerOneWins(){
@@ -250,7 +250,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(2)
         game.takeTurnAtPosition(0)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysDiagonalFromLeft_ThenPlayerTwoWins() {
@@ -260,7 +260,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(3)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     func testGivenGame_WhenPlayerTwoPlaysDiagonalFromRight_ThenPlayerTwoWins() {
@@ -270,7 +270,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(4)
         game.takeTurnAtPosition(3)
         game.takeTurnAtPosition(6)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerTwoWins)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerTwoWins)
     }
     
     //MARK:- Stalemate Tests
@@ -285,7 +285,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(5)
         game.takeTurnAtPosition(8)
         game.takeTurnAtPosition(7)
-        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
+        XCTAssertEqual(view.gameStatus, GameStatus.stalemate)
         
     }
     
@@ -299,7 +299,7 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(6)
         game.takeTurnAtPosition(7)
         game.takeTurnAtPosition(8)
-        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
+        XCTAssertEqual(view.gameStatus, GameStatus.stalemate)
         
     }
     
@@ -315,25 +315,25 @@ class HumanVersusHumanTests: XCTestCase, GameTestCase  {
         game.takeTurnAtPosition(8)
         
         game.takeTurnAtPosition(2)
-        XCTAssertEqual(view.gameStatus, GameStatus.Stalemate)
+        XCTAssertEqual(view.gameStatus, GameStatus.stalemate)
         
     }
     
     //MARK:- Completed Game Tests
 
     func testGivenCompletedGame_WhenAttemptingToTakingTurn_ThenBoardDoesNotChange() {
-        let markers: [BoardMarker] = [.Cross, .Cross, .None,  .Nought, .Nought, .None,  .None, .None, .None]
+        let markers: [BoardMarker] = [.cross, .cross, .none,  .nought, .nought, .none,  .none, .none, .none]
         setUpGame(markers)
-        game.takeTurnAtPosition(.TopRight)
-        game.takeTurnAtPosition(.MiddleRight)
-        XCTAssertEqual(view.gameBoard.lastTurn, .TopRight)
+        game.takeTurnAtPosition(.topRight)
+        game.takeTurnAtPosition(.middleRight)
+        XCTAssertEqual(view.gameBoard.lastTurn, .topRight)
     }
     
     func testGivenGame_WhenWinningLineEqualsTopRow_ThenGameStateValueEqualsTopRow() {
-        let markers: [BoardMarker] = [.Cross, .Cross, .None,  .Nought, . Nought, .Cross,  .Cross, .Nought , .Nought]
+        let markers: [BoardMarker] = [.cross, .cross, .none,  .nought, . nought, .cross,  .cross, .nought , .nought]
         setUpGame(markers)
-        game.takeTurnAtPosition(.TopRight)
-        XCTAssertEqual(view.gameStatus, GameStatus.PlayerOneWins)
-        XCTAssertEqual(view.gameBoard.winningLine!, [BoardPosition.TopLeft, BoardPosition.TopMiddle, BoardPosition.TopRight])
+        game.takeTurnAtPosition(.topRight)
+        XCTAssertEqual(view.gameStatus, GameStatus.playerOneWins)
+        XCTAssertEqual(view.gameBoard.winningLine!, [BoardPosition.topLeft, BoardPosition.topMiddle, BoardPosition.topRight])
     }
 }
