@@ -10,26 +10,31 @@ import XCTest
 
 class TicTacToeUITests: XCTestCase {
     
-    lazy var element = XCUIApplication().children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .other)
-    
+	var element: XCUIElement!
+	
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
+		bindElement()
+		continueAfterFailure = false
         XCUIApplication().launch()
     }
+	
+	func bindElement() {
+		element = XCUIApplication().children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+	}
     
     override func tearDown() {
         super.tearDown()
     }
     
     func testPlayerOneDiagonalWins() {
-        
-        element.children(matching: .button).element(boundBy: 0).tap()
-        element.children(matching: .button).element(boundBy: 1).tap()
-        element.children(matching: .button).element(boundBy: 4).tap()
-        element.children(matching: .button).element(boundBy: 2).tap()
-        element.children(matching: .button).element(boundBy: 8).tap()
-        
+		
+		element.children(matching: .button).element(boundBy: 0).tap()
+		element.children(matching: .button).element(boundBy: 1).tap()
+		element.children(matching: .button).element(boundBy: 4).tap()
+		element.children(matching: .button).element(boundBy: 2).tap()
+		element.children(matching: .button).element(boundBy: 8).tap()
+		
         XCTAssertEqual(element.children(matching: .button).element(boundBy: 0).label, "GREEN")
         XCTAssertEqual(element.children(matching: .button).element(boundBy: 4).label, "GREEN")
         XCTAssertEqual(element.children(matching: .button).element(boundBy: 8).label, "GREEN")
