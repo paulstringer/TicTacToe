@@ -13,11 +13,3 @@
 
 *PLAYER ONE WINS*
 }}} 
-
-
-|Turn Rules         |
-|Turns|Game Message?|
-|     |Player One Up|
-|0    |Player Two Up|
-|0,1  |Player One Up|
-|0,1,2|Player Two Up|
