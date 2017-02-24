@@ -4,6 +4,8 @@
 
 To add your first "page", click the [[Edit][.FrontPage?edit]] button and add a [[!-WikiWord-!][.FitNesse.UserGuide.FitNesseWiki.WikiWord]] to the page.
 
+TicTacToe
+
 |'''Hello Xcode Developer!'''                                                                               |
 |[[OCSlimProject Example][.OCSlimProjectExamplePage]]|''Try out your OCSlimProject Acceptance Tests Target''|
 
