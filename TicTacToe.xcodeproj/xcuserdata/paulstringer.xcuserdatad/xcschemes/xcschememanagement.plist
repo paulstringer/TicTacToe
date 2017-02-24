@@ -3,7 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
+	<dict>
+		<key>AcceptanceTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>TicTacToe WatchKit App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>TicTacToe.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>8C2C193F1C7B389F00A4FA27</key>
@@ -17,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>8C2C195C1C7B389F00A4FA27</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C7E9B9D1E60E07C004EBA33</key>
 		<dict>
 			<key>primary</key>
 			<true/>

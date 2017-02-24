@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01EE28F7A9E0BFFA401D810C65E06C55 /* SlimListDeserializer.c in Sources */ = {isa = PBXBuildFile; fileRef = FEC2E23E94310C55B121EC0E9BDD8A36 /* SlimListDeserializer.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		11C80AA193CC3B3E2B71452EA45A4EC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91ECD7CD28D91EE78585EE5BFB32DEEA /* main.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		127EE3203F2B7AF7AC17AEAD3BBBD05A /* SlimListSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 657C46A6B04AF3E2AC260941886C7FAD /* SlimListSerializer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		138156918FB44EC43A5B13753DEA0D61 /* SlimList.h in Headers */ = {isa = PBXBuildFile; fileRef = 307094032386E5989B7C778CCF6FC2FF /* SlimList.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		15ED57FB5F32FC1CC43A6B8CF46ABB72 /* SlimConnectionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 472A2384FAC8D3CE024404596A5D9CEA /* SlimConnectionHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1945273396BCDA242ED21CB32DA7B7CF /* StatementExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 082A232AFA45DEE07950EA44A35FC410 /* StatementExecutor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		19C993C1ED3DB2D189187F4C0C190E07 /* OCSlimToObjectiveCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = BC29DEC034ACBE0B7EBB7A8CEC769BBA /* OCSlimToObjectiveCBridge.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1D2351255CCD48223EA9ACFA44387F5E /* OCSSymbolDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1956940F01FF639BCE06571BBE5FC630 /* OCSSymbolDictionary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1EF0A02D5D01BA1040B3A19063C27CE5 /* SlimUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 97F7D61D86563B9E93933A0EFFDDDDE7 /* SlimUtil.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		24070F44B13EFD96A5FA996997457986 /* SocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 71434E497E0D57C6BDB6506698A09BF4 /* SocketServer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		25871B982638D500CB1FF9E8F1987FA3 /* OCSReturnValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D2E5325B48632CB2CB007BAD9C6F5EC /* OCSReturnValue.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2F44088D47A8A06E6C061E1E56764E6C /* OCSObjectiveCtoCBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5FB7E2FECB3A801E3398B5037C5F4B /* OCSObjectiveCtoCBridge.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		31C3327AE50FC156235DFACEE859EF76 /* OCSStatementExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F857A93C0628A29E2668A2A7BEF7F3A /* OCSStatementExecutor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		31CF911ED83D137DF4A293FE3B1810D0 /* OCSSymbolDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F38518117F756891F15B8CC592EE84F7 /* OCSSymbolDictionary.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3335FADC2EB9B1DFCCB63734E69F0137 /* SlimConnectionHandler.c in Sources */ = {isa = PBXBuildFile; fileRef = 3805B9AF66B6C3A0660FB26528C7147F /* SlimConnectionHandler.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3592F7FEDD31947A6C718B7A51A31B42 /* OCSInstanceCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C640931F1406A2DF0189CC9B51629F4 /* OCSInstanceCreator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3E8D439DD53CA696FB9004C827AB655E /* SocketServer.c in Sources */ = {isa = PBXBuildFile; fileRef = 36C3BC2C59FCCF669311DF33E837228F /* SocketServer.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		40C623F557401574D1A8E2FE7AF76A68 /* ListExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C1A351EF93BEC03F8B1B32A8A879E76 /* ListExecutor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		56DB67C9FA691B745565BD6BCD167B67 /* SlimListSerializer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0A17C2E6B263C1CF17BE4BB0E462849E /* SlimListSerializer.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5FBCA01F18B5609E65D98D9275B58417 /* TcpComLink.h in Headers */ = {isa = PBXBuildFile; fileRef = D9B78E9E10C0D2CC32F579425C444049 /* TcpComLink.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		65BFB798E815E754FB1C8C12E6B32771 /* OCSSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D2F1D260201A71DBE4070ECC3D5D477 /* OCSSelector.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66CE32FAD5126DF218E7B2EC358C7606 /* OCSException.m in Sources */ = {isa = PBXBuildFile; fileRef = E5474D6A436810174FFDE2E6678C6008 /* OCSException.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8650FD76376219B7FF0CA7489947FF2E /* Slim.c in Sources */ = {isa = PBXBuildFile; fileRef = 73EFF84CD5E20F7D6ED4C344A23912D6 /* Slim.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		89F84A50170C50ABA80AB724D9A1AD1D /* OCSException.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAF8CFEB4A7AEB5F06B69B543FA4B93 /* OCSException.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8AD696AC1C7C7465B7570A90F614B25E /* OCSMethodCaller.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC073545024AC127F7C78D12098B2D2 /* OCSMethodCaller.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8F11C0DB2171A73406BCAE15D980537C /* Fixtures.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A77B884D2BA0D1F851CD3159B10911 /* Fixtures.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		90C613C27A5A0D8BD4CFEF90FA751CE2 /* OCSReturnValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CB69E4E553D93E3388C222BDA4B636 /* OCSReturnValue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		90F2C20AC4222266FB7D59895AB26965 /* OCSInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = B1922AC86350A08A04C63FEF377F4E66 /* OCSInvocation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		9B1ABF9E295404D8EA9F008B37D6FAE8 /* cslim-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A015CB5BA77540F1ED967208671247 /* cslim-dummy.m */; };
+		9B44F8CF69EFEF87E4FA94376738784C /* OCSInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 720D158E204A3346E493769F9FFEA022 /* OCSInvocation.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AAA5CD2EDA3203C315C968D0FCE9F460 /* TcpComLink.c in Sources */ = {isa = PBXBuildFile; fileRef = B06C6B9BAAA6BA77262055A782328613 /* TcpComLink.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B2E0CD8771331D11D373163F621E6051 /* Pods-AcceptanceTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB9F53AB0CA1268FAD0C647C8BBDBF1 /* Pods-AcceptanceTests-dummy.m */; };
+		B4673FA3D63587F39310AE01729AA481 /* SlimUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 59A4A8C27B1DAF142AB40A996A00B5E5 /* SlimUtil.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		BF066F8696F7D15FB54F119126C9C675 /* OCSObjectiveCtoCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE2982A9C2A9398159D1034315F39EF /* OCSObjectiveCtoCBridge.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C0FFC94564D76957CB18A6B804BBA50B /* Fixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = F485DD6739192FBC5BF601E5E0D324E6 /* Fixtures.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CD0F4F15C439924469B6567F316E613C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		CE1211A19DA159035A839869766F9EF9 /* OCSStatementExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E9CE865987443FDCC648C9F8CC3F9D /* OCSStatementExecutor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D912810701A7D166BFDADBFD851C3EA4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		E429BD0F11AEE222E994FB589533097F /* Slim.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F2598BBB9C805FB9A5883EC6939CB6E /* Slim.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E81AF6B91C4D4F6A22ECD299F7829450 /* StatementExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EECD912C690DBF89354F5E3A587516 /* StatementExecutor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E95B284F9A404CCAF3ED4F156C587072 /* SlimListDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 064BFC274C8A85FEF707CC4B37ED2DF6 /* SlimListDeserializer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EB8BA33CC28E58072D50F7FECF2F884C /* OCSInstanceCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 705A879FEC5A9D81C384BA68BFE7F469 /* OCSInstanceCreator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F84E6F2940B98D0A0802073A0460D633 /* ListExecutor.c in Sources */ = {isa = PBXBuildFile; fileRef = 425430FC0407F44FC09E59329A4D8359 /* ListExecutor.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FB87D8734CC0992FB8CF2AFC18BF3E42 /* OCSlimToObjectiveCBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 00030B4590871A44FF520AA35A8907C8 /* OCSlimToObjectiveCBridge.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FBF6CEBE86D30DEC9F47919A97325679 /* OCSSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 924D0A719370CE5D31E42949F5C2B8C2 /* OCSSelector.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FC35D844A12030EA6260744D37A04786 /* OCSMethodCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EB5C9939A33B162D83302A4815AEA6 /* OCSMethodCaller.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FDBF0B185575B93337D99C5A4326FD6A /* SlimList.c in Sources */ = {isa = PBXBuildFile; fileRef = 09AA8BF229BF7BE89902C7890C39F832 /* SlimList.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73E9D3F2B939916E7B3D1EA4E37A98DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17BEE8B3D62D51299A0309B5D7A5B2EE;
+			remoteInfo = cslim;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00030B4590871A44FF520AA35A8907C8 /* OCSlimToObjectiveCBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSlimToObjectiveCBridge.m; path = src/ExecutorObjectiveC/OCSlimToObjectiveCBridge.m; sourceTree = "<group>"; };
+		003C9F982170C530D2174125BA48B4F1 /* Pods-AcceptanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AcceptanceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		064BFC274C8A85FEF707CC4B37ED2DF6 /* SlimListDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SlimListDeserializer.h; path = include/CSlim/SlimListDeserializer.h; sourceTree = "<group>"; };
+		082A232AFA45DEE07950EA44A35FC410 /* StatementExecutor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = StatementExecutor.m; path = src/ExecutorObjectiveC/StatementExecutor.m; sourceTree = "<group>"; };
+		09AA8BF229BF7BE89902C7890C39F832 /* SlimList.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SlimList.c; path = src/CSlim/SlimList.c; sourceTree = "<group>"; };
+		0A17C2E6B263C1CF17BE4BB0E462849E /* SlimListSerializer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SlimListSerializer.c; path = src/CSlim/SlimListSerializer.c; sourceTree = "<group>"; };
+		0F857A93C0628A29E2668A2A7BEF7F3A /* OCSStatementExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSStatementExecutor.h; path = include/ExecutorObjectiveC/OCSStatementExecutor.h; sourceTree = "<group>"; };
+		0FD33F2D4C15193C9261ED22AD77B6EA /* cslim-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "cslim-prefix.pch"; sourceTree = "<group>"; };
+		1956940F01FF639BCE06571BBE5FC630 /* OCSSymbolDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSSymbolDictionary.h; path = include/ExecutorObjectiveC/OCSSymbolDictionary.h; sourceTree = "<group>"; };
+		1BAF8CFEB4A7AEB5F06B69B543FA4B93 /* OCSException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSException.h; path = include/ExecutorObjectiveC/OCSException.h; sourceTree = "<group>"; };
+		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		27A77B884D2BA0D1F851CD3159B10911 /* Fixtures.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fixtures.h; path = include/CSlim/Fixtures.h; sourceTree = "<group>"; };
+		2B58F6B5C2463B3BB165821212D0EB36 /* libPods-AcceptanceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AcceptanceTests.a"; path = "libPods-AcceptanceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1A351EF93BEC03F8B1B32A8A879E76 /* ListExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ListExecutor.h; path = include/CSlim/ListExecutor.h; sourceTree = "<group>"; };
+		307094032386E5989B7C778CCF6FC2FF /* SlimList.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SlimList.h; path = include/CSlim/SlimList.h; sourceTree = "<group>"; };
+		36C3BC2C59FCCF669311DF33E837228F /* SocketServer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SocketServer.c; path = src/Com/SocketServer.c; sourceTree = "<group>"; };
+		37E9CE865987443FDCC648C9F8CC3F9D /* OCSStatementExecutor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSStatementExecutor.m; path = src/ExecutorObjectiveC/OCSStatementExecutor.m; sourceTree = "<group>"; };
+		3805B9AF66B6C3A0660FB26528C7147F /* SlimConnectionHandler.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SlimConnectionHandler.c; path = src/CSlim/SlimConnectionHandler.c; sourceTree = "<group>"; };
+		3D5FB7E2FECB3A801E3398B5037C5F4B /* OCSObjectiveCtoCBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSObjectiveCtoCBridge.m; path = src/ExecutorObjectiveC/OCSObjectiveCtoCBridge.m; sourceTree = "<group>"; };
+		3F2598BBB9C805FB9A5883EC6939CB6E /* Slim.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Slim.h; path = include/CSlim/Slim.h; sourceTree = "<group>"; };
+		425430FC0407F44FC09E59329A4D8359 /* ListExecutor.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ListExecutor.c; path = src/CSlim/ListExecutor.c; sourceTree = "<group>"; };
+		46EECD912C690DBF89354F5E3A587516 /* StatementExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = StatementExecutor.h; path = include/CSlim/StatementExecutor.h; sourceTree = "<group>"; };
+		472A2384FAC8D3CE024404596A5D9CEA /* SlimConnectionHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SlimConnectionHandler.h; path = include/CSlim/SlimConnectionHandler.h; sourceTree = "<group>"; };
+		4DB9F53AB0CA1268FAD0C647C8BBDBF1 /* Pods-AcceptanceTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AcceptanceTests-dummy.m"; sourceTree = "<group>"; };
+		52CB69E4E553D93E3388C222BDA4B636 /* OCSReturnValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSReturnValue.m; path = src/ExecutorObjectiveC/OCSReturnValue.m; sourceTree = "<group>"; };
+		59A4A8C27B1DAF142AB40A996A00B5E5 /* SlimUtil.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SlimUtil.c; path = src/CSlim/SlimUtil.c; sourceTree = "<group>"; };
+		657C46A6B04AF3E2AC260941886C7FAD /* SlimListSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SlimListSerializer.h; path = include/CSlim/SlimListSerializer.h; sourceTree = "<group>"; };
+		6D2E5325B48632CB2CB007BAD9C6F5EC /* OCSReturnValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSReturnValue.h; path = include/ExecutorObjectiveC/OCSReturnValue.h; sourceTree = "<group>"; };
+		705A879FEC5A9D81C384BA68BFE7F469 /* OCSInstanceCreator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSInstanceCreator.m; path = src/ExecutorObjectiveC/OCSInstanceCreator.m; sourceTree = "<group>"; };
+		71434E497E0D57C6BDB6506698A09BF4 /* SocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SocketServer.h; path = include/Com/SocketServer.h; sourceTree = "<group>"; };
+		720D158E204A3346E493769F9FFEA022 /* OCSInvocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSInvocation.m; path = src/ExecutorObjectiveC/OCSInvocation.m; sourceTree = "<group>"; };
+		73EFF84CD5E20F7D6ED4C344A23912D6 /* Slim.c */ = {isa = PBXFileReference; includeInIndex = 1; name = Slim.c; path = src/CSlim/Slim.c; sourceTree = "<group>"; };
+		84286BED7587FBA060EB7B7AFA432114 /* cslim.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = cslim.xcconfig; sourceTree = "<group>"; };
+		8C640931F1406A2DF0189CC9B51629F4 /* OCSInstanceCreator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSInstanceCreator.h; path = include/ExecutorObjectiveC/OCSInstanceCreator.h; sourceTree = "<group>"; };
+		8D2F1D260201A71DBE4070ECC3D5D477 /* OCSSelector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSSelector.h; path = include/ExecutorObjectiveC/OCSSelector.h; sourceTree = "<group>"; };
+		91ECD7CD28D91EE78585EE5BFB32DEEA /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/ExecutorObjectiveC/main.m; sourceTree = "<group>"; };
+		924D0A719370CE5D31E42949F5C2B8C2 /* OCSSelector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSSelector.m; path = src/ExecutorObjectiveC/OCSSelector.m; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97F7D61D86563B9E93933A0EFFDDDDE7 /* SlimUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SlimUtil.h; path = include/CSlim/SlimUtil.h; sourceTree = "<group>"; };
+		981923B1AFEDDC15E63213C5D1468E1C /* Pods-AcceptanceTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AcceptanceTests-resources.sh"; sourceTree = "<group>"; };
+		B06C6B9BAAA6BA77262055A782328613 /* TcpComLink.c */ = {isa = PBXFileReference; includeInIndex = 1; name = TcpComLink.c; path = src/Com/TcpComLink.c; sourceTree = "<group>"; };
+		B1922AC86350A08A04C63FEF377F4E66 /* OCSInvocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSInvocation.h; path = include/ExecutorObjectiveC/OCSInvocation.h; sourceTree = "<group>"; };
+		B7EB5C9939A33B162D83302A4815AEA6 /* OCSMethodCaller.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSMethodCaller.m; path = src/ExecutorObjectiveC/OCSMethodCaller.m; sourceTree = "<group>"; };
+		BC29DEC034ACBE0B7EBB7A8CEC769BBA /* OCSlimToObjectiveCBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSlimToObjectiveCBridge.h; path = include/ExecutorObjectiveC/OCSlimToObjectiveCBridge.h; sourceTree = "<group>"; };
+		D0A015CB5BA77540F1ED967208671247 /* cslim-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "cslim-dummy.m"; sourceTree = "<group>"; };
+		D110C14942B30EA5C9F7D88AF8319DFA /* OCSlimProject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSlimProject.h; path = Pod/Classes/OCSlimProject.h; sourceTree = "<group>"; };
+		D25246BFB3D8D814ADAE5FAD610E5EFF /* Pods-AcceptanceTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AcceptanceTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D4A144E3E27EDB2566C383B893FF66E9 /* Pods-AcceptanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AcceptanceTests.release.xcconfig"; sourceTree = "<group>"; };
+		D9B78E9E10C0D2CC32F579425C444049 /* TcpComLink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TcpComLink.h; path = include/Com/TcpComLink.h; sourceTree = "<group>"; };
+		DB8F08E2E8CEFA3ABBAC0F289FEC1D2B /* Pods-AcceptanceTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AcceptanceTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DCE2982A9C2A9398159D1034315F39EF /* OCSObjectiveCtoCBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSObjectiveCtoCBridge.h; path = include/ExecutorObjectiveC/OCSObjectiveCtoCBridge.h; sourceTree = "<group>"; };
+		E5474D6A436810174FFDE2E6678C6008 /* OCSException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSException.m; path = src/ExecutorObjectiveC/OCSException.m; sourceTree = "<group>"; };
+		F0C8368F6C4B1D0B39BC088AD4742F54 /* libcslim.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libcslim.a; path = libcslim.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38518117F756891F15B8CC592EE84F7 /* OCSSymbolDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OCSSymbolDictionary.m; path = src/ExecutorObjectiveC/OCSSymbolDictionary.m; sourceTree = "<group>"; };
+		F485DD6739192FBC5BF601E5E0D324E6 /* Fixtures.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Fixtures.m; path = src/ExecutorObjectiveC/Fixtures.m; sourceTree = "<group>"; };
+		FEC073545024AC127F7C78D12098B2D2 /* OCSMethodCaller.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OCSMethodCaller.h; path = include/ExecutorObjectiveC/OCSMethodCaller.h; sourceTree = "<group>"; };
+		FEC2E23E94310C55B121EC0E9BDD8A36 /* SlimListDeserializer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = SlimListDeserializer.c; path = src/CSlim/SlimListDeserializer.c; sourceTree = "<group>"; };
+		FF960269F929715AF593777740C3484C /* Pods-AcceptanceTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AcceptanceTests-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37B8089EC4CAFBDE5D50159D4B126C07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D912810701A7D166BFDADBFD851C3EA4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D17807B81E5B8247BEA096BEFBF7C4F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD0F4F15C439924469B6567F316E613C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0133691FCC3A8D6B5FE8146998E310DA /* Pods-AcceptanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB8F08E2E8CEFA3ABBAC0F289FEC1D2B /* Pods-AcceptanceTests-acknowledgements.markdown */,
+				D25246BFB3D8D814ADAE5FAD610E5EFF /* Pods-AcceptanceTests-acknowledgements.plist */,
+				4DB9F53AB0CA1268FAD0C647C8BBDBF1 /* Pods-AcceptanceTests-dummy.m */,
+				FF960269F929715AF593777740C3484C /* Pods-AcceptanceTests-frameworks.sh */,
+				981923B1AFEDDC15E63213C5D1468E1C /* Pods-AcceptanceTests-resources.sh */,
+				003C9F982170C530D2174125BA48B4F1 /* Pods-AcceptanceTests.debug.xcconfig */,
+				D4A144E3E27EDB2566C383B893FF66E9 /* Pods-AcceptanceTests.release.xcconfig */,
+			);
+			name = "Pods-AcceptanceTests";
+			path = "Target Support Files/Pods-AcceptanceTests";
+			sourceTree = "<group>";
+		};
+		04C068A18C5413F804A2959126093416 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		0965CE1DC30ED1282323F87D7920B72A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				84286BED7587FBA060EB7B7AFA432114 /* cslim.xcconfig */,
+				D0A015CB5BA77540F1ED967208671247 /* cslim-dummy.m */,
+				0FD33F2D4C15193C9261ED22AD77B6EA /* cslim-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/cslim";
+			sourceTree = "<group>";
+		};
+		165A4AFCDAB6C3A604835FDB114AE78C /* OCSlimProject */ = {
+			isa = PBXGroup;
+			children = (
+				D110C14942B30EA5C9F7D88AF8319DFA /* OCSlimProject.h */,
+			);
+			name = OCSlimProject;
+			path = OCSlimProject;
+			sourceTree = "<group>";
+		};
+		39028DE2993F4872EA3848CC89489639 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D86B8F8C7386C622E645F152F9D110B7 /* cslim */,
+				165A4AFCDAB6C3A604835FDB114AE78C /* OCSlimProject */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04C068A18C5413F804A2959126093416 /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
+				39028DE2993F4872EA3848CC89489639 /* Pods */,
+				AAE275DBB843C4F721E6F778710C2E11 /* Products */,
+				91D220408048B0AEBFAB87014C706FF3 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		91D220408048B0AEBFAB87014C706FF3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0133691FCC3A8D6B5FE8146998E310DA /* Pods-AcceptanceTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		AAE275DBB843C4F721E6F778710C2E11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0C8368F6C4B1D0B39BC088AD4742F54 /* libcslim.a */,
+				2B58F6B5C2463B3BB165821212D0EB36 /* libPods-AcceptanceTests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86B8F8C7386C622E645F152F9D110B7 /* cslim */ = {
+			isa = PBXGroup;
+			children = (
+				27A77B884D2BA0D1F851CD3159B10911 /* Fixtures.h */,
+				F485DD6739192FBC5BF601E5E0D324E6 /* Fixtures.m */,
+				425430FC0407F44FC09E59329A4D8359 /* ListExecutor.c */,
+				2C1A351EF93BEC03F8B1B32A8A879E76 /* ListExecutor.h */,
+				91ECD7CD28D91EE78585EE5BFB32DEEA /* main.m */,
+				1BAF8CFEB4A7AEB5F06B69B543FA4B93 /* OCSException.h */,
+				E5474D6A436810174FFDE2E6678C6008 /* OCSException.m */,
+				8C640931F1406A2DF0189CC9B51629F4 /* OCSInstanceCreator.h */,
+				705A879FEC5A9D81C384BA68BFE7F469 /* OCSInstanceCreator.m */,
+				B1922AC86350A08A04C63FEF377F4E66 /* OCSInvocation.h */,
+				720D158E204A3346E493769F9FFEA022 /* OCSInvocation.m */,
+				BC29DEC034ACBE0B7EBB7A8CEC769BBA /* OCSlimToObjectiveCBridge.h */,
+				00030B4590871A44FF520AA35A8907C8 /* OCSlimToObjectiveCBridge.m */,
+				FEC073545024AC127F7C78D12098B2D2 /* OCSMethodCaller.h */,
+				B7EB5C9939A33B162D83302A4815AEA6 /* OCSMethodCaller.m */,
+				DCE2982A9C2A9398159D1034315F39EF /* OCSObjectiveCtoCBridge.h */,
+				3D5FB7E2FECB3A801E3398B5037C5F4B /* OCSObjectiveCtoCBridge.m */,
+				6D2E5325B48632CB2CB007BAD9C6F5EC /* OCSReturnValue.h */,
+				52CB69E4E553D93E3388C222BDA4B636 /* OCSReturnValue.m */,
+				8D2F1D260201A71DBE4070ECC3D5D477 /* OCSSelector.h */,
+				924D0A719370CE5D31E42949F5C2B8C2 /* OCSSelector.m */,
+				0F857A93C0628A29E2668A2A7BEF7F3A /* OCSStatementExecutor.h */,
+				37E9CE865987443FDCC648C9F8CC3F9D /* OCSStatementExecutor.m */,
+				1956940F01FF639BCE06571BBE5FC630 /* OCSSymbolDictionary.h */,
+				F38518117F756891F15B8CC592EE84F7 /* OCSSymbolDictionary.m */,
+				73EFF84CD5E20F7D6ED4C344A23912D6 /* Slim.c */,
+				3F2598BBB9C805FB9A5883EC6939CB6E /* Slim.h */,
+				3805B9AF66B6C3A0660FB26528C7147F /* SlimConnectionHandler.c */,
+				472A2384FAC8D3CE024404596A5D9CEA /* SlimConnectionHandler.h */,
+				09AA8BF229BF7BE89902C7890C39F832 /* SlimList.c */,
+				307094032386E5989B7C778CCF6FC2FF /* SlimList.h */,
+				FEC2E23E94310C55B121EC0E9BDD8A36 /* SlimListDeserializer.c */,
+				064BFC274C8A85FEF707CC4B37ED2DF6 /* SlimListDeserializer.h */,
+				0A17C2E6B263C1CF17BE4BB0E462849E /* SlimListSerializer.c */,
+				657C46A6B04AF3E2AC260941886C7FAD /* SlimListSerializer.h */,
+				59A4A8C27B1DAF142AB40A996A00B5E5 /* SlimUtil.c */,
+				97F7D61D86563B9E93933A0EFFDDDDE7 /* SlimUtil.h */,
+				36C3BC2C59FCCF669311DF33E837228F /* SocketServer.c */,
+				71434E497E0D57C6BDB6506698A09BF4 /* SocketServer.h */,
+				46EECD912C690DBF89354F5E3A587516 /* StatementExecutor.h */,
+				082A232AFA45DEE07950EA44A35FC410 /* StatementExecutor.m */,
+				B06C6B9BAAA6BA77262055A782328613 /* TcpComLink.c */,
+				D9B78E9E10C0D2CC32F579425C444049 /* TcpComLink.h */,
+				0965CE1DC30ED1282323F87D7920B72A /* Support Files */,
+			);
+			name = cslim;
+			path = cslim;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FD5F1E1E9AE3B9E85D10F66C5D9C2701 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F11C0DB2171A73406BCAE15D980537C /* Fixtures.h in Headers */,
+				40C623F557401574D1A8E2FE7AF76A68 /* ListExecutor.h in Headers */,
+				89F84A50170C50ABA80AB724D9A1AD1D /* OCSException.h in Headers */,
+				3592F7FEDD31947A6C718B7A51A31B42 /* OCSInstanceCreator.h in Headers */,
+				90F2C20AC4222266FB7D59895AB26965 /* OCSInvocation.h in Headers */,
+				19C993C1ED3DB2D189187F4C0C190E07 /* OCSlimToObjectiveCBridge.h in Headers */,
+				8AD696AC1C7C7465B7570A90F614B25E /* OCSMethodCaller.h in Headers */,
+				BF066F8696F7D15FB54F119126C9C675 /* OCSObjectiveCtoCBridge.h in Headers */,
+				25871B982638D500CB1FF9E8F1987FA3 /* OCSReturnValue.h in Headers */,
+				65BFB798E815E754FB1C8C12E6B32771 /* OCSSelector.h in Headers */,
+				31C3327AE50FC156235DFACEE859EF76 /* OCSStatementExecutor.h in Headers */,
+				1D2351255CCD48223EA9ACFA44387F5E /* OCSSymbolDictionary.h in Headers */,
+				E429BD0F11AEE222E994FB589533097F /* Slim.h in Headers */,
+				15ED57FB5F32FC1CC43A6B8CF46ABB72 /* SlimConnectionHandler.h in Headers */,
+				138156918FB44EC43A5B13753DEA0D61 /* SlimList.h in Headers */,
+				E95B284F9A404CCAF3ED4F156C587072 /* SlimListDeserializer.h in Headers */,
+				127EE3203F2B7AF7AC17AEAD3BBBD05A /* SlimListSerializer.h in Headers */,
+				1EF0A02D5D01BA1040B3A19063C27CE5 /* SlimUtil.h in Headers */,
+				24070F44B13EFD96A5FA996997457986 /* SocketServer.h in Headers */,
+				E81AF6B91C4D4F6A22ECD299F7829450 /* StatementExecutor.h in Headers */,
+				5FBCA01F18B5609E65D98D9275B58417 /* TcpComLink.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		17BEE8B3D62D51299A0309B5D7A5B2EE /* cslim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 941FF46BF49F32F28D3F2FCB79EFCE1B /* Build configuration list for PBXNativeTarget "cslim" */;
+			buildPhases = (
+				1CC6541274A146C56C1978FCB3597366 /* Sources */,
+				37B8089EC4CAFBDE5D50159D4B126C07 /* Frameworks */,
+				FD5F1E1E9AE3B9E85D10F66C5D9C2701 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cslim;
+			productName = cslim;
+			productReference = F0C8368F6C4B1D0B39BC088AD4742F54 /* libcslim.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F47884FAB2D69D8C86FF9EFE6F706422 /* Pods-AcceptanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30B7A29169E0E6CCFE712A300462E178 /* Build configuration list for PBXNativeTarget "Pods-AcceptanceTests" */;
+			buildPhases = (
+				072094022FFEDF7DBB872E3B211C6583 /* Sources */,
+				D17807B81E5B8247BEA096BEFBF7C4F3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24211F372FEB80CC8AD86A992B7DCB64 /* PBXTargetDependency */,
+			);
+			name = "Pods-AcceptanceTests";
+			productName = "Pods-AcceptanceTests";
+			productReference = 2B58F6B5C2463B3BB165821212D0EB36 /* libPods-AcceptanceTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = AAE275DBB843C4F721E6F778710C2E11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17BEE8B3D62D51299A0309B5D7A5B2EE /* cslim */,
+				F47884FAB2D69D8C86FF9EFE6F706422 /* Pods-AcceptanceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		072094022FFEDF7DBB872E3B211C6583 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2E0CD8771331D11D373163F621E6051 /* Pods-AcceptanceTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CC6541274A146C56C1978FCB3597366 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B1ABF9E295404D8EA9F008B37D6FAE8 /* cslim-dummy.m in Sources */,
+				C0FFC94564D76957CB18A6B804BBA50B /* Fixtures.m in Sources */,
+				F84E6F2940B98D0A0802073A0460D633 /* ListExecutor.c in Sources */,
+				11C80AA193CC3B3E2B71452EA45A4EC3 /* main.m in Sources */,
+				66CE32FAD5126DF218E7B2EC358C7606 /* OCSException.m in Sources */,
+				EB8BA33CC28E58072D50F7FECF2F884C /* OCSInstanceCreator.m in Sources */,
+				9B44F8CF69EFEF87E4FA94376738784C /* OCSInvocation.m in Sources */,
+				FB87D8734CC0992FB8CF2AFC18BF3E42 /* OCSlimToObjectiveCBridge.m in Sources */,
+				FC35D844A12030EA6260744D37A04786 /* OCSMethodCaller.m in Sources */,
+				2F44088D47A8A06E6C061E1E56764E6C /* OCSObjectiveCtoCBridge.m in Sources */,
+				90C613C27A5A0D8BD4CFEF90FA751CE2 /* OCSReturnValue.m in Sources */,
+				FBF6CEBE86D30DEC9F47919A97325679 /* OCSSelector.m in Sources */,
+				CE1211A19DA159035A839869766F9EF9 /* OCSStatementExecutor.m in Sources */,
+				31CF911ED83D137DF4A293FE3B1810D0 /* OCSSymbolDictionary.m in Sources */,
+				8650FD76376219B7FF0CA7489947FF2E /* Slim.c in Sources */,
+				3335FADC2EB9B1DFCCB63734E69F0137 /* SlimConnectionHandler.c in Sources */,
+				FDBF0B185575B93337D99C5A4326FD6A /* SlimList.c in Sources */,
+				01EE28F7A9E0BFFA401D810C65E06C55 /* SlimListDeserializer.c in Sources */,
+				56DB67C9FA691B745565BD6BCD167B67 /* SlimListSerializer.c in Sources */,
+				B4673FA3D63587F39310AE01729AA481 /* SlimUtil.c in Sources */,
+				3E8D439DD53CA696FB9004C827AB655E /* SocketServer.c in Sources */,
+				1945273396BCDA242ED21CB32DA7B7CF /* StatementExecutor.m in Sources */,
+				AAA5CD2EDA3203C315C968D0FCE9F460 /* TcpComLink.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24211F372FEB80CC8AD86A992B7DCB64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cslim;
+			target = 17BEE8B3D62D51299A0309B5D7A5B2EE /* cslim */;
+			targetProxy = 73E9D3F2B939916E7B3D1EA4E37A98DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00387782582A89D2F06DE2950EADDD86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84286BED7587FBA060EB7B7AFA432114 /* cslim.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/cslim/cslim-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0.1;
+			};
+			name = Release;
+		};
+		1865F37252872448E01953C385E6AFAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		287E24C818514FEEE8242A82271DFA6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84286BED7587FBA060EB7B7AFA432114 /* cslim.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/cslim/cslim-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0.1;
+			};
+			name = Debug;
+		};
+		3667B040C42A4F85AD0E858D536309B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 003C9F982170C530D2174125BA48B4F1 /* Pods-AcceptanceTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66AA31CB836890BFE48ECF14D23C3C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8E49F65D4321CDF7D87FA18C091C59A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4A144E3E27EDB2566C383B893FF66E9 /* Pods-AcceptanceTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66AA31CB836890BFE48ECF14D23C3C2E /* Debug */,
+				1865F37252872448E01953C385E6AFAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30B7A29169E0E6CCFE712A300462E178 /* Build configuration list for PBXNativeTarget "Pods-AcceptanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3667B040C42A4F85AD0E858D536309B1 /* Debug */,
+				8E49F65D4321CDF7D87FA18C091C59A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		941FF46BF49F32F28D3F2FCB79EFCE1B /* Build configuration list for PBXNativeTarget "cslim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				287E24C818514FEEE8242A82271DFA6B /* Debug */,
+				00387782582A89D2F06DE2950EADDD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

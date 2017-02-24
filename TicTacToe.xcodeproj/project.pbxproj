@@ -24,6 +24,9 @@
 		8C2C19761C7B389F00A4FA27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2C19751C7B389F00A4FA27 /* Assets.xcassets */; };
 		8C2C19891C7B3D7400A4FA27 /* GameViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19881C7B3D7400A4FA27 /* GameViewSpy.swift */; };
 		8C2C19911C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */; };
+		8C7E9BA21E60E07C004EBA33 /* AcceptanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7E9BA11E60E07C004EBA33 /* AcceptanceTests.m */; };
+		8C7E9BA51E60E07C004EBA33 /* FixtureExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7E9BA41E60E07C004EBA33 /* FixtureExample.swift */; };
+		8C7E9BA91E60E07C004EBA33 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7E9BA81E60E07C004EBA33 /* Empty.xib */; };
 		8CB9841C1C84A83B005BA4F0 /* GameTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841B1C84A83B005BA4F0 /* GameTestExtensions.swift */; };
 		8CB9841E1C85ACB7005BA4F0 /* HeuristicGameBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */; };
 		8CE999011C918AD30003F170 /* TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */; };
@@ -43,6 +46,7 @@
 		8CF851801C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF8517F1C90A8F60030AAA0 /* HumanVersusMinimaxGameBotTests.swift */; };
 		8CFE59241C8DC14400A38EAB /* HeuristicGameBotVersusHumanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59231C8DC14400A38EAB /* HeuristicGameBotVersusHumanTests.swift */; };
 		8CFE592A1C8ECF2900A38EAB /* MinimaxGameBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE59291C8ECF2900A38EAB /* MinimaxGameBot.swift */; };
+		A2483ABA6376EEE70DBEA0ED /* libPods-AcceptanceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE750FB88C4404ADB414873B /* libPods-AcceptanceTests.a */; };
 		B42B2F201DF71CA000463691 /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B2F1F1DF71CA000463691 /* TicTacToeUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +107,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		254B46258F18372F69082947 /* Pods-AcceptanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcceptanceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AcceptanceTests/Pods-AcceptanceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C1ABFB91C92E19400C81CE9 /* GameBoardAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardAnalyzer.swift; sourceTree = "<group>"; };
 		8C1F2B571C980BC800898E78 /* MinimaxGameBotAsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimaxGameBotAsyncTests.swift; path = TicTacToeTests/MinimaxGameBotAsyncTests.swift; sourceTree = SOURCE_ROOT; };
 		8C2C19401C7B389F00A4FA27 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +132,13 @@
 		8C2C198C1C7B3E7200A4FA27 /* TicTacToe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToe.swift; sourceTree = "<group>"; };
 		8C2C198E1C7E085C00A4FA27 /* TicTacToeBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeBoard.swift; sourceTree = "<group>"; };
 		8C2C19901C7E2AA700A4FA27 /* HumanVersusHeuristicGameBotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HumanVersusHeuristicGameBotTests.swift; path = TicTacToeTests/HumanVersusHeuristicGameBotTests.swift; sourceTree = SOURCE_ROOT; };
+		8C7E9B9E1E60E07C004EBA33 /* AcceptanceTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcceptanceTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C7E9BA11E60E07C004EBA33 /* AcceptanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceptanceTests.m; sourceTree = "<group>"; };
+		8C7E9BA41E60E07C004EBA33 /* FixtureExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureExample.swift; sourceTree = "<group>"; };
+		8C7E9BA61E60E07C004EBA33 /* SlimTables.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlimTables.h; sourceTree = "<group>"; };
+		8C7E9BA71E60E07C004EBA33 /* AcceptanceTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AcceptanceTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C7E9BA81E60E07C004EBA33 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		8C7E9BAA1E60E07C004EBA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CB9841B1C84A83B005BA4F0 /* GameTestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTestExtensions.swift; path = ../TicTacToe/GameTestExtensions.swift; sourceTree = "<group>"; };
 		8CB9841D1C85ACB7005BA4F0 /* HeuristicGameBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeuristicGameBot.swift; sourceTree = "<group>"; };
 		8CB9841F1C85F0AC005BA4F0 /* TicTacToeGameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicTacToeGameState.swift; sourceTree = "<group>"; };
@@ -141,6 +153,8 @@
 		B42B2F1D1DF71CA000463691 /* TicTacToeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B42B2F1F1DF71CA000463691 /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		B42B2F211DF71CA000463691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F44727AF93FD5000FA8FDD8E /* Pods-AcceptanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AcceptanceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AcceptanceTests/Pods-AcceptanceTests.release.xcconfig"; sourceTree = "<group>"; };
+		FE750FB88C4404ADB414873B /* libPods-AcceptanceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AcceptanceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +179,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C7E9B9A1E60E07C004EBA33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2483ABA6376EEE70DBEA0ED /* libPods-AcceptanceTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B42B2F1A1DF71CA000463691 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0EFF62211BAAEE3E85FD1AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,6 +204,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1894E4C7AF6B8F97E89136BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				254B46258F18372F69082947 /* Pods-AcceptanceTests.debug.xcconfig */,
+				F44727AF93FD5000FA8FDD8E /* Pods-AcceptanceTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5BE0A4EB84AB6B24B8031C76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE750FB88C4404ADB414873B /* libPods-AcceptanceTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8C1ABFBC1C9326AA00C81CE9 /* Game Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +268,10 @@
 				8C2C19611C7B389F00A4FA27 /* TicTacToe WatchKit App */,
 				8C2C19701C7B389F00A4FA27 /* TicTacToe WatchKit Extension */,
 				B42B2F1E1DF71CA000463691 /* TicTacToeUITests */,
+				8C7E9B9F1E60E07C004EBA33 /* AcceptanceTests */,
 				8C2C19411C7B389F00A4FA27 /* Products */,
+				1894E4C7AF6B8F97E89136BE /* Pods */,
+				5BE0A4EB84AB6B24B8031C76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,6 +283,7 @@
 				8C2C195D1C7B389F00A4FA27 /* Tic Tac Toe.app */,
 				8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */,
 				B42B2F1D1DF71CA000463691 /* TicTacToeUITests.xctest */,
+				8C7E9B9E1E60E07C004EBA33 /* AcceptanceTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,6 +346,35 @@
 				8CF8517E1C90A8340030AAA0 /* Game Bots */,
 			);
 			name = "Tic Tac Toe";
+			sourceTree = "<group>";
+		};
+		8C7E9B9F1E60E07C004EBA33 /* AcceptanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C7E9BAA1E60E07C004EBA33 /* Info.plist */,
+				8C7E9BA31E60E07C004EBA33 /* Fixtures */,
+				8C7E9BA01E60E07C004EBA33 /* Supporting Files */,
+			);
+			path = AcceptanceTests;
+			sourceTree = "<group>";
+		};
+		8C7E9BA01E60E07C004EBA33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C7E9BA11E60E07C004EBA33 /* AcceptanceTests.m */,
+				8C7E9BA61E60E07C004EBA33 /* SlimTables.h */,
+				8C7E9BA71E60E07C004EBA33 /* AcceptanceTests-Bridging-Header.h */,
+				8C7E9BA81E60E07C004EBA33 /* Empty.xib */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C7E9BA31E60E07C004EBA33 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				8C7E9BA41E60E07C004EBA33 /* FixtureExample.swift */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 		8CF8517C1C90A7A90030AAA0 /* iOS App */ = {
@@ -386,6 +465,7 @@
 			buildPhases = (
 				8C2C195B1C7B389F00A4FA27 /* Resources */,
 				8C2C197D1C7B389F00A4FA27 /* Embed App Extensions */,
+				F0EFF62211BAAEE3E85FD1AC /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -414,6 +494,27 @@
 			productReference = 8C2C196C1C7B389F00A4FA27 /* TicTacToe WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		8C7E9B9D1E60E07C004EBA33 /* AcceptanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C7E9BAD1E60E07C004EBA33 /* Build configuration list for PBXNativeTarget "AcceptanceTests" */;
+			buildPhases = (
+				1AC053C577EDA03C1ACA4D76 /* [CP] Check Pods Manifest.lock */,
+				8C7E9B991E60E07C004EBA33 /* Sources */,
+				8C7E9B9A1E60E07C004EBA33 /* Frameworks */,
+				8C7E9B9B1E60E07C004EBA33 /* Resources */,
+				8C7E9B9C1E60E07C004EBA33 /* [OCSP] Generate Fitnesse Test System Scripts */,
+				A5E3E3E3B3D6DE60F341D65E /* [CP] Embed Pods Frameworks */,
+				69B92186574316E2DA9C892C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcceptanceTests;
+			productName = AcceptanceTests;
+			productReference = 8C7E9B9E1E60E07C004EBA33 /* AcceptanceTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B42B2F1C1DF71CA000463691 /* TicTacToeUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B42B2F241DF71CA000463691 /* Build configuration list for PBXNativeTarget "TicTacToeUITests" */;
@@ -438,7 +539,7 @@
 		8C2C19381C7B389E00A4FA27 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = stringerstheory;
 				TargetAttributes = {
@@ -458,6 +559,11 @@
 					8C2C196B1C7B389F00A4FA27 = {
 						CreatedOnToolsVersion = 7.2.1;
 						LastSwiftMigration = 0810;
+					};
+					8C7E9B9D1E60E07C004EBA33 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ZVUBTRY64K;
+						ProvisioningStyle = Automatic;
 					};
 					B42B2F1C1DF71CA000463691 = {
 						CreatedOnToolsVersion = 8.1;
@@ -484,6 +590,7 @@
 				8C2C195C1C7B389F00A4FA27 /* TicTacToe WatchKit App */,
 				8C2C196B1C7B389F00A4FA27 /* TicTacToe WatchKit Extension */,
 				B42B2F1C1DF71CA000463691 /* TicTacToeUITests */,
+				8C7E9B9D1E60E07C004EBA33 /* AcceptanceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -523,6 +630,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C7E9B9B1E60E07C004EBA33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7E9BA91E60E07C004EBA33 /* Empty.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B42B2F1B1DF71CA000463691 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,6 +646,68 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1AC053C577EDA03C1ACA4D76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69B92186574316E2DA9C892C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AcceptanceTests/Pods-AcceptanceTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C7E9B9C1E60E07C004EBA33 /* [OCSP] Generate Fitnesse Test System Scripts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[OCSP] Generate Fitnesse Test System Scripts";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${OCSP_SUPPORT_FILE_DIR}/ocsp-generate-fitnesse-test-system-scripts.sh \"${OCSP_BUNDLE_RESOURCES_DIR}\"";
+		};
+		A5E3E3E3B3D6DE60F341D65E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AcceptanceTests/Pods-AcceptanceTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C2C193C1C7B389F00A4FA27 /* Sources */ = {
@@ -579,6 +756,15 @@
 				8CE999081C918AFA0003F170 /* MinimaxGameBot.swift in Sources */,
 				8CE9990D1C9197250003F170 /* BoardInterfaceController.swift in Sources */,
 				8C2C19721C7B389F00A4FA27 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7E9B991E60E07C004EBA33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7E9BA51E60E07C004EBA33 /* FixtureExample.swift in Sources */,
+				8C7E9BA21E60E07C004EBA33 /* AcceptanceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +1036,44 @@
 			};
 			name = Release;
 		};
+		8C7E9BAB1E60E07C004EBA33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 254B46258F18372F69082947 /* Pods-AcceptanceTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = ZVUBTRY64K;
+				INFOPLIST_FILE = AcceptanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordevcon.AcceptanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "AcceptanceTests/AcceptanceTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0.1;
+			};
+			name = Debug;
+		};
+		8C7E9BAC1E60E07C004EBA33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F44727AF93FD5000FA8FDD8E /* Pods-AcceptanceTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = ZVUBTRY64K;
+				INFOPLIST_FILE = AcceptanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nordevcon.AcceptanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "AcceptanceTests/AcceptanceTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0.1;
+			};
+			name = Release;
+		};
 		B42B2F251DF71CA000463691 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -930,6 +1154,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		8C7E9BAD1E60E07C004EBA33 /* Build configuration list for PBXNativeTarget "AcceptanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7E9BAB1E60E07C004EBA33 /* Debug */,
+				8C7E9BAC1E60E07C004EBA33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		B42B2F241DF71CA000463691 /* Build configuration list for PBXNativeTarget "TicTacToeUITests" */ = {
 			isa = XCConfigurationList;
